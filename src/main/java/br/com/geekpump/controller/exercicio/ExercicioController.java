@@ -22,7 +22,7 @@ public class ExercicioController extends AbstractController<ExercicioTO> impleme
 
 	@PostConstruct
 	private void init() {
-		System.out.println("Teste");
+		System.out.println("Teste 2");
 		getTo().setExercicios(exercicioService.listar());
 	}
 	
