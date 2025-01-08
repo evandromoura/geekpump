@@ -1,5 +1,7 @@
 package br.com.geekpump.service.exercicio;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,6 +19,11 @@ public class ExercicioService extends AbstractService<Exercicio> {
 	@Override
 	public AbstractDAO<Exercicio> getDAO() {
 		return exercicioDAO;
+	}
+
+	public List<Exercicio> pesquisar(Exercicio exercicio){
+		
+		return exercicioDAO.pesquisar(exercicio);
 	}
 
 }

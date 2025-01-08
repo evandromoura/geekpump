@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+	
+	<aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+		<a id="btn-collapse" style="text-decoration: none;" class="sidebar-collapser">
+			<i class="fa fa-chevron-left" style="font-size: 12px;"></i>
+		</a>
+		<a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg btn btn-sm btn-primary">
+              <i class="fa fa-navicon"></i>
+            </a>
+		
+		<div class="image-wrapper">
+			<img src="/resources/layout/assets/img/sidebar_bg.png" alt="sidebar background" class="transparent-img" />
+		</div>
+		<div class="sidebar-layout">
+		
+			
+            
+			<div class="sidebar-header">
+				<div class="pro-sidebar-logo">
+					<div><a href="/admin" style="text-decoration: none;color: #fff">G</a></div>
+					<h5><a href="/admin" style="text-decoration: none;color: #fff">GEEK PUMP</a></h5>
+				</div>
+			</div>	
+          
+			<div class="sidebar-content">
+				<nav class="menu open-current-submenu">
+					<ul>
+						<li class="menu-header"><span> MENU </span></li>
+						
+						<li class="menu-item">
+							<a href="/admin" class="#{submenu eq 'admin'?'active':''}"> 
+								<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
+								<span class="menu-title">Exercicios</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			
+		<div class="sidebar-footer">
+			<div class="row" style="width: 100%">
+				<h:panelGroup id="idPanelMessage" style="padding: 20px 0;">
+		           	<h:messages infoClass="alert alert-important alert-dismissible alert-success"
+						errorClass="alert alert-important alert-dismissible alert-danger"
+						warnClass="alert alert-important alert-dismissible alert-warning" id="idMessages"
+						style="list-style-type: none;font-size:0.65rem"  />
+				</h:panelGroup>
+			</div>		
+				
+            
+            	<div class="card card-sm" style="width: 100%;background-color: rgba(22, 45, 74, 0.7);border: none">
+                      <div class="card-body">
+                      	<h:form>
+	                        <div class="row align-items-center">
+	                          <div class="col-auto">
+	                            <span>
+	                            	<img class="react-logo" src="https://bioface.trixti.com.br/view/generate?name=#{customIdentity.usuario.nome}" alt="react" style="max-width: 35px"></img>
+	                            </span>
+	                          </div>
+	                          	
+	                          <div class="col">
+	                            <div class="font-weight-light" style="color: #fff">
+	                              USUARIO LOGADO
+	                            </div>
+	                            <div class="text-secondary" style="color: #fff">
+	                              NOME USUARIO&#160;&#160;
+	                            </div>
+	                          </div>
+	                        </div>
+	                     </h:form>   
+                      </div>
+                </div>
+            	
+          </div>
+          
+          
+		</div>
+	</aside>
+	
+	
+</ui:composition>	

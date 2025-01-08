@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+  <h:head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>GEEKPUMP</title>
+    <link rel="icon" href="/resources/layout/novo/static/favicon.png"/>
+    <script src="/assets/js/tabler.min.js"></script>
+	<link rel="stylesheet" href="/assets/css/tabler.css?v=1.0" />
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css?v=1.0" />
+	<link rel="stylesheet" href="/assets/css/menu.css?v=1.0" />
+	<script src="/assets/js/mascaras.js?v=1.0" type="text/javascript"></script>
+	
+	<ui:insert name="scripts" />
+   
+    
+  </h:head>
+  <h:body styleClass="layout-fluid" data-bs-theme="dark" >
+    <div class="page layout has-sidebar fixed-sidebar fixed-header" >
+      <ui:include src="menu.xhtml" />
+
+      <div id="overlay" class="overlay"></div>
+      <div class="page-wrapper layout" id="principal" >
+      	<h:form prependId="false" id="formGeekpump">
+	        <div class="page-header d-print-none" data-bs-theme="dark">
+	          <div class="container-xl">
+	            <ui:insert name="header" />
+	          </div>
+	        </div>
+	        <div class="page-body">
+	          <div class="container-xl">
+	            <ui:insert name="corpo" />
+	          </div>
+	        </div>
+	    </h:form> 
+      </div>
+    </div>
+	<a id="back-to-top" href="#" class="btn btn-success btn-sm back-to-top " role="button"><i class="fa fa-chevron-up"></i></a>
+	 <script src="/assets/js/menu.js" type="text/javascript"></script>
+  </h:body>
+     
+  
+</html>
