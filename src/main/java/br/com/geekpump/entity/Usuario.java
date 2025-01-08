@@ -15,8 +15,8 @@ public class Usuario {
 	@Id
 	@SequenceGenerator(name="USUARIO_ID_GENERATOR", sequenceName="usuario_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_ID_GENERATOR")
-
 	private Integer id;
+	
 	private String nome;
 	private String email;
 	private String imagem;

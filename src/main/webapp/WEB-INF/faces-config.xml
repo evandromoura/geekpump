@@ -24,6 +24,14 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/usuario/usuario_form.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/pages/usuario/usuario_list.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	
 	<application>
 		<locale-config>
