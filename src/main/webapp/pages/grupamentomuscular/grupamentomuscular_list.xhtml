@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="corpo">
+    
+    	<div class="row">
+    		<div class="col-lg-12">
+    		     
+    		     <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Filtro de pesquisa</h3>
+                  </div>
+                  <div class="card-body">
+                  		<div class="col-lg-12">
+		                    <label class="form-label">Nome</label>
+		                    <h:inputText value="#{grupamentoMuscularController.to.grupamentoMuscularAcao.nome}" styleClass="form-control" />
+			            </div>        
+                  </div>
+                  <div class="card-footer">
+                  	<div class="row">
+    					<div class="col-lg-2">
+    						<h:commandLink action="#{grupamentoMuscularController.pesquisar()}" styleClass="btn btn-md btn-success">
+    							Pesquisar
+    						</h:commandLink>
+    					</div>
+    				</div>
+                </div>
+               </div> 
+            </div>      
+    	
+    		<div class="col-lg-12" style="margin-top:10px">
+    		     
+    		     <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Lista de grupamentoMusculars</h3>
+                  </div>
+                  <div class="card-body">
+                  	<h:dataTable value="#{grupamentoMuscularController.to.grupamentoMusculars}" var="grupamentoMuscular" styleClass="table table-vcenter card-table">
+						<h:column>
+							<f:facet name="header">NOME</f:facet>
+					    	#{grupamentoMuscular.nome}
+					    </h:column>
+						<h:column>
+							<f:facet name="header">IMAGEM</f:facet>
+					    	#{grupamentoMuscular.imagem} 
+					    </h:column>
+					    
+					    <h:column>
+							<f:facet name="header">ACOES</f:facet>
+					    	<a href="/grupamentomuscular/edit/#{grupamentoMuscular.id}">Editar</a> 
+					    </h:column>
+					</h:dataTable>
+                  </div>
+                  <div class="card-footer">
+                  	<div class="row">
+    					<div class="col-lg-2">
+                   			 <a href="/grupamentoMuscular/edit/new" class="btn btn-outline-primary w-100">Novo registro</a>
+                   		</div>
+                   	</div>		 
+                  </div>
+                </div>
+    		     
+    		</div>
+    	
+    	</div>
+    	
+    	
+    	
+		
+	</ui:define>	
+
+
+
+</ui:composition>

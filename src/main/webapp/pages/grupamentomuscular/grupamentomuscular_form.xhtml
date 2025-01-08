@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="corpo">
+		
+		<div class="row">
+			<div class="col-lg-12 col-md-8 col-sm-3 col-12">
+				<div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Editar Exercicio</h3>
+                  </div>
+                  <div class="card-body">
+	                  <div class="row">
+	                  		<div class="col-lg-12">
+			                    <label class="form-label">Nome</label>
+			                    <h:inputText value="#{grupamentoMuscularController.to.grupamentoMuscular.nome}" styleClass="form-control" />
+	                  		</div>
+	                  		<div class="col-lg-12">
+			                    <label class="form-label">Imagem</label>
+			                    <h:inputText value="#{grupamentoMuscularController.to.grupamentoMuscular.imagem}" styleClass="form-control" />
+	                  		</div>
+	                  		
+	                  		<div class="col-lg-6" style="margin-top:30px">
+	                  			<h:commandLink action="#{grupamentoMuscularController.gravar()}" styleClass="btn btn-outline-success w-100">Gravar</h:commandLink>
+	                  		</div>
+	                  </div>
+                  </div>
+                </div>
+			</div>
+		</div>
+	</ui:define>	
+
+
+
+</ui:composition>
