@@ -23,30 +23,38 @@
 				</div>
 			</div>	
 			<div class="sidebar-content">
-				<nav class="menu open-current-submenu">
-					<ul>
-						<li class="menu-header"><span> MENU </span></li>
-						<li class="menu-item">
-							<a href="/usuario" class="#{submenu eq 'admin'?'active':''}"> 
-								<span class="menu-icon"> <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-								</span> 
-								<span class="menu-title">Usuario</span>
-							</a>
-						</li>
-						<li class="menu-item">
-							<a href="/exercicio" class="#{submenu eq 'admin'?'active':''}"> 
-								<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
-								<span class="menu-title">Exercicios</span>
-							</a>
-						</li>
-						<li class="menu-item">
-							<a href="/grupamentomuscular" class="#{submenu eq 'admin'?'active':''}"> 
-								<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
-								<span class="menu-title">Grupamento Muscular</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
+				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ADMIN'}">
+					<nav class="menu open-current-submenu">
+						<ul>
+							<li class="menu-header"><span> MENU </span></li>
+							<li class="menu-item">
+								<a href="/usuario" class="#{submenu eq 'admin'?'active':''}"> 
+									<span class="menu-icon"> <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+									</span> 
+									<span class="menu-title">Usuario</span>
+								</a>
+							</li>
+							<li class="menu-item">
+								<a href="/exercicio" class="#{submenu eq 'admin'?'active':''}"> 
+									<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
+									<span class="menu-title">Exercicios</span>
+								</a>
+							</li>
+							<li class="menu-item">
+								<a href="/grupamentomuscular" class="#{submenu eq 'admin'?'active':''}"> 
+									<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
+									<span class="menu-title">Grupamento Muscular</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</ui:fragment>	
+				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
+					MENU DE ALUNO
+				</ui:fragment>
+				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'PERSONAL'}">
+					MENU DE PERSONAL
+				</ui:fragment>
 			</div>
 		<div class="sidebar-footer">
 			<div class="row" style="width: 100%">
@@ -68,10 +76,13 @@
 	                          </div>
 	                          <div class="col">
 	                            <div class="font-weight-light" style="color: #fff">
-	                              USUARIO LOGADO
+	                              #{customIdentity.usuario.nome}
 	                            </div>
 	                            <div class="text-secondary" style="color: #fff">
-	                              NOME USUARIO&#160;&#160;
+	                              #{customIdentity.usuario.perfil.name}&#160;&#160;
+									<h:commandLink styleClass="btn btn-sm btn-outline-secondary" title="Sair" action="#{simpleAuthenticator.logout()}" immediate="true"> 
+										<i class="fa fa-sign-out"></i>   
+									</h:commandLink>
 	                            </div>
 	                          </div>
 	                        </div>

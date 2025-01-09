@@ -1,9 +1,15 @@
 package br.com.geekpump.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,6 +26,17 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String imagem;
+	private String login;
+	private String senha;
+	
+	@OneToMany(mappedBy = "usuario",orphanRemoval = true)
+	private List<TreinoUsuario> treinos;
+	
+	/*
+	 * Enum sao constantes no JAVA, para reduzir erros de programacao e melhorar a manutencao
+	 */
+	@Enumerated(EnumType.STRING)
+	private PerfilEnum perfil;
 
 	public Integer getId() {
 		return id;
@@ -44,6 +61,24 @@ public class Usuario {
 	}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public PerfilEnum getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(PerfilEnum perfil) {
+		this.perfil = perfil;
 	}
 
 	

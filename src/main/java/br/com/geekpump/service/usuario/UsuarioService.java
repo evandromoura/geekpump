@@ -16,4 +16,8 @@ public class UsuarioService extends AbstractService<Usuario>{
 	public AbstractDAO<Usuario> getDAO() {
 		return usuarioDAO;
 	} 
+	
+	public Usuario login(String login, String senha) {
+		return usuarioDAO.login(login, senha);
+	}
 }

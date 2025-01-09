@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions" lang="pt">
+
+<h:head>
+    <title>GEEKPUMP</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+	<script src="/assets/js/tabler.min.js"></script>
+	<link rel="stylesheet" href="/assets/css/tabler.css?v=1.0" />
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css?v=1.0" />
+</h:head>
+
+<h:body>
+	
+	
+	<div class="row g-0 flex-fill" style="overflow: hidden">
+      <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center" style="border-color: inherit !important">
+        <div class="container container-tight my-5 px-lg-5">
+          
+          <h2 class="h3 text-center mb-3">
+          	<img src="/assets/img/logo_bioface.png" style="width:50%" />
+          </h2>
+          <h:form method="POST" prependId="false">
+            <div class="mb-3">
+              <label class="form-label">Usuário</label>
+              	  <div class="input-group input-group-flat">
+              <h:inputText id="j_username" styleClass="form-control underlined bg-white" required="true" label="Usuario">
+				<f:passThroughAttribute name="placeholder" value="Informe seu login de acesso" />
+				<f:passThroughAttribute name="required" value="required" />
+			 </h:inputText>
+					<span class="input-group-text">
+	                  <a href="#" class="link-secondary text-center" title="Usuário" data-bs-toggle="tooltip">
+	                  	<i class="fa fa-user text-info" style="margin-left: 10px;"></i>
+	                  </a>
+	                </span>
+	                </div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">
+                Senha
+                <span class="form-label-description">
+                  <h:outputLink value="#{request.contextPath}/recuperar-senha" styleClass="btn btn-link">
+                      Esqueceu sua senha?
+                  </h:outputLink>
+                    
+                </span>
+              </label>
+              <div class="input-group input-group-flat">
+                <h:inputSecret id="j_password" styleClass="form-control underlined" required="true" label="#{resources['label.global.senha']}" redisplay="true">
+					<f:passThroughAttribute name="placeholder" value="Informe sua senha" />
+					<f:passThroughAttribute name="required" value="required" />
+				</h:inputSecret>
+                <span class="input-group-text">
+                  <a href="#" class="link-secondary text-center" title="Visualizar Senha!" data-bs-toggle="tooltip" onclick="togglePasswordVisibility()">
+                  	<i class="fa fa-eye text-info" style="margin-left: 10px;"></i>
+                  </a>
+                </span>
+              </div>
+              <script>function togglePasswordVisibility() {
+            	    var passwordField = document.getElementById("j_password");
+            	    if (passwordField.type === "password") {
+            	        passwordField.type = "text";
+            	    } else {
+            	        passwordField.type = "password";
+            	    }
+            	}</script>
+            </div>
+            <div class="form-footer">
+              <h:commandButton id="login" value="Entrar" action="#{identity.login}" styleClass="btn btn-primary w-100" />
+            </div>
+          </h:form>
+          <div class="text-center text-secondary mt-3">
+          </div>
+          
+        </div>
+	         <div class="logo-trix">
+		    	  <a href="http://www.trixti.com.br" title="Trix Ti" target="_blank"> <img src="/assets/img/logo.png" alt="Logo GEEKPUMP"></img></a>	 
+		    </div>
+      </div>
+      
+      <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
+        <!-- Photo -->
+		<div class="h-100 min-vh-100 logobioface" style="display: flex; justify-content: center; align-items: center;">
+		  <img src="/assets/img/logo_bioface_branca.png" alt="Logo Bioface"></img>
+		</div>
+      </div>
+    </div>
+	
+</h:body>
+</html>

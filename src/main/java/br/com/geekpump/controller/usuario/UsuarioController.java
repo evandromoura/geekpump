@@ -21,7 +21,6 @@ public class UsuarioController extends AbstractController<UsuarioTO> implements 
 	private @Inject UsuarioService usuarioService;
 	
 	
-	
 	@PostConstruct
 	private void init() {
 		if(getRequest().getParameter("parametro") != null) {

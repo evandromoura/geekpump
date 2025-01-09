@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="corpo">
+    
+    	<div class="row g-2 align-items-center">
+              <div class="col">
+                <div class="page-pretitle">
+                  Treino
+                </div>
+                <h2 class="page-title">
+                  #{customIdentity.usuario.perfil.name}
+                </h2>
+              </div>
+              <!-- Page title actions -->
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  
+                  <a href="#" class="btn btn-primary d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
+                   <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Treino
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
+    		
+    		<ui:fragment rendered="#{!empty treinoUsuarioController.to.treinos}">
+	    		<ui:repeat var="treino" value="#{treinoUsuarioController.to.treinos}">
+	    			<div class="card" style="margin-top:10px">
+	                  <div class="card-header">
+	                    <h3 class="card-title">#{treino.nome}</h3>
+	                    <div class="card-actions btn-actions">
+	                      <a href="/treinousuarioexercicio/#{treino.uid}" class="btn-action">
+	                      	<i class="fa fa-share" aria-hidden="true"></i>
+	                      </a>
+	                    </div>
+	                  </div>
+	                  <div class="card-body p-0">
+	                  </div>
+	                </div>
+	    		
+	    		</ui:repeat>
+    		</ui:fragment>
+    		<ui:fragment rendered="#{empty treinoUsuarioController.to.treinos}">
+    			<div class="page page-center">
+			      <div class="container-tight py-4">
+			        <div class="empty">
+			          <p class="empty-title">Nenhum treino encontrado!</p>
+			          <p class="empty-subtitle text-secondary">
+			            Crie seu treino.
+			          </p>
+			        </div>
+			      </div>
+			    </div>	
+    		</ui:fragment>
+    		
+    		
+    	</ui:fragment>
+    	
+    	
+    </ui:define>
+</ui:composition>    

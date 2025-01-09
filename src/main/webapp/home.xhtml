@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="corpo">
+    
+    	<div class="row g-2 align-items-center">
+              <div class="col">
+                <div class="page-pretitle">
+                  Home
+                </div>
+                <h2 class="page-title">
+                  #{customIdentity.usuario.perfil.name}
+                </h2>
+              </div>
+              <!-- Page title actions -->
+              
+            </div>
+    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
+    		
+    		<div class="card card-active" style="margin-top:10px">
+                <div class="card-header">
+                  <h3 class="card-title">Acesse seu treino</h3>
+                  <div class="card-actions btn-actions">
+                    <a href="/treinousuario" class="btn-action">
+                    	<i class="fa fa-share" aria-hidden="true"></i>
+                    </a>
+                    
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                </div>
+              </div>
+    		
+    		
+    	</ui:fragment>
+    	
+    	
+    </ui:define>
+</ui:composition>    
