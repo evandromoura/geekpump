@@ -14,19 +14,18 @@ import javax.persistence.Transient;
 import br.com.geekpump.util.UtilData;
 
 @Entity
-@Table(name = "treino_usuario_exercicio", schema = "public")
-public class TreinoUsuarioExercicio {
+@Table(name = "treino_usuario_divisao_exercicio", schema = "public")
+public class TreinoUsuarioDivisaoExercicio {
 	
 	@Id
-	@SequenceGenerator(name="TREINO_USUARIO_EXERCICIO_ID_GENERATOR", sequenceName="treino_usuario_exercicio_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TREINO_USUARIO_EXERCICIO_ID_GENERATOR")
+	@SequenceGenerator(name="TREINO_USUARIO_DIVISAO_EXERCICIO_ID_GENERATOR", sequenceName="treino_usuario_exercicio_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TREINO_USUARIO_DIVISAO_EXERCICIO_ID_GENERATOR")
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name="id_treino")
-	private TreinoUsuario treinoUsuario;
+	@JoinColumn(name="id_treino_usuario_divisao")
+	private TreinoUsuarioDivisao treinoUsuarioDivisao;
 	
-	@ManyToOne
 	@JoinColumn(name="id_exercicio")
 	private Exercicio exercicio;
 	
@@ -49,12 +48,12 @@ public class TreinoUsuarioExercicio {
 		this.id = id;
 	}
 
-	public TreinoUsuario getTreinoUsuario() {
-		return treinoUsuario;
+	public TreinoUsuarioDivisao getTreinoUsuarioDivisao() {
+		return treinoUsuarioDivisao;
 	}
 
-	public void setTreinoUsuario(TreinoUsuario treinoUsuario) {
-		this.treinoUsuario = treinoUsuario;
+	public void setTreinoUsuarioDivisao(TreinoUsuarioDivisao treinoUsuarioDivisao) {
+		this.treinoUsuarioDivisao = treinoUsuarioDivisao;
 	}
 
 	public Exercicio getExercicio() {

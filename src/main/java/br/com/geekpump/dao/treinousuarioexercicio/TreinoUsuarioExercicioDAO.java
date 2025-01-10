@@ -7,13 +7,13 @@ import javax.persistence.criteria.Root;
 
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.entity.TreinoUsuario;
-import br.com.geekpump.entity.TreinoUsuarioExercicio;
+import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 
-public class TreinoUsuarioExercicioDAO extends AbstractDAO<TreinoUsuarioExercicio> {
+public class TreinoUsuarioExercicioDAO extends AbstractDAO<TreinoUsuarioDivisaoExercicio> {
 
-	public List<TreinoUsuarioExercicio> pesquisarPorTreinoUsuario(TreinoUsuario treinoUsuario) {
-		CriteriaQuery<TreinoUsuarioExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioExercicio.class);
-		Root<TreinoUsuarioExercicio> root = criteria.from(TreinoUsuarioExercicio.class);
+	public List<TreinoUsuarioDivisaoExercicio> pesquisarPorTreinoUsuario(TreinoUsuario treinoUsuario) {
+		CriteriaQuery<TreinoUsuarioDivisaoExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioDivisaoExercicio.class);
+		Root<TreinoUsuarioDivisaoExercicio> root = criteria.from(TreinoUsuarioDivisaoExercicio.class);
 		return getManager().createQuery(
 				criteria.select(root).where(getCriteriaBuilder().equal(root.get("treinoUsuario"), treinoUsuario)))
 				.getResultList();

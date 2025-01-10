@@ -2,18 +2,18 @@ package br.com.geekpump.to;
 
 import java.util.List;
 
-import br.com.geekpump.entity.TreinoUsuarioExercicio;
+import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 
 public class TreinoUsuarioExercicioTO {
 	
 	
-	private List<TreinoUsuarioExercicio> treinoUsuarioExercicios;
+	private List<TreinoUsuarioDivisaoExercicio> treinoUsuarioExercicios;
 
-	public List<TreinoUsuarioExercicio> getTreinoUsuarioExercicios() {
+	public List<TreinoUsuarioDivisaoExercicio> getTreinoUsuarioExercicios() {
 		return treinoUsuarioExercicios;
 	}
 
-	public void setTreinoUsuarioExercicios(List<TreinoUsuarioExercicio> treinoUsuarioExercicios) {
+	public void setTreinoUsuarioExercicios(List<TreinoUsuarioDivisaoExercicio> treinoUsuarioExercicios) {
 		this.treinoUsuarioExercicios = treinoUsuarioExercicios;
 	}
 
