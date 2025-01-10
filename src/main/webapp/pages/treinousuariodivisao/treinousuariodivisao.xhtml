@@ -11,7 +11,7 @@
     	<div class="row g-2 align-items-center">
               <div class="col">
                 <div class="page-pretitle">
-                  Treino
+                  Divisões do Treino
                 </div>
                 <h2 class="page-title">
                   #{customIdentity.usuario.perfil.name}
@@ -30,28 +30,25 @@
             </div>
     	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
     		
-    		<ui:fragment rendered="#{!empty treinoUsuarioController.to.treinos}">
-	    		<ui:repeat var="treino" value="#{treinoUsuarioController.to.treinos}">
-	    			<a href="/treinousuariodivisao/#{treino.uid}" style="text-decoration: none;">
+    		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
+	    		<ui:repeat var="treinoUsuarioDivisao" value="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
+	    			<a href="/treinousuariodivisaoexercicio/#{treinoUsuarioDivisao.uid}">
 		    			<div class="card" style="margin-top:10px">
 		                  <div class="card-header">
-		                    <h3 class="card-title">#{treino.nome}</h3>
-		                    
-		                  </div>
-		                  <div class="card-body p-0">
+		                    <h3 class="card-title">#{treinoUsuarioDivisao.nome}</h3>
 		                  </div>
 		                </div>
-		             </a>   
+		            </a>    
 	    		
 	    		</ui:repeat>
     		</ui:fragment>
-    		<ui:fragment rendered="#{empty treinoUsuarioController.to.treinos}">
+    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
     			<div class="page page-center">
 			      <div class="container-tight py-4">
 			        <div class="empty">
-			          <p class="empty-title">Nenhum treino encontrado!</p>
+			          <p class="empty-title">Nenhuma divisão encontrada!</p>
 			          <p class="empty-subtitle text-secondary">
-			            Crie seu treino.
+			            Inclua as divisões do treino.
 			          </p>
 			        </div>
 			      </div>

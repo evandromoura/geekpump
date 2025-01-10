@@ -1,6 +1,7 @@
 package br.com.geekpump.entity;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -79,6 +80,10 @@ public class Usuario {
 	}
 	public void setPerfil(PerfilEnum perfil) {
 		this.perfil = perfil;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(UUID.randomUUID().toString());
 	}
 
 	

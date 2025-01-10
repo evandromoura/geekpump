@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<cc:interface>
+	<cc:attribute name="value" required="true"/>
+	<cc:attribute name="styleClass" default="form-control"/>
+	<cc:attribute name="disabled" default="false" />
+	<cc:attribute name="timeZone" default="America/Sao_Paulo" />
+	<cc:attribute name="label" default="" />
+	<cc:attribute name="hideIcon" default="false" />
+	<cc:clientBehavior name="atualizar" targets="#{cc.attrs.id}" event="blur" />
+</cc:interface>
+
+<cc:implementation>
+	 
+	<div class="input-group text-center">
+		<ui:fragment rendered="#{!cc.attrs.hideIcon}">
+         	<span class="input-group-addon "><i class="fa-solid fa-calendar" style="padding-left: 5px;font-size: 12px"></i></span>
+         </ui:fragment>
+		<h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}" onkeypress="mascara(this,data);" styleClass="#{cc.attrs.styleClass} datepicker" maxlength="10" disabled="#{cc.attrs.disabled}" label="#{cc.attrs.label}" size="6">
+			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{cc.attrs.timeZone}"/>
+			<cc:insertChildren />
+			<f:passThroughAttribute name="type" value="tel"/>
+		</h:inputText>
+     </div>
+     	<script>
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+			    weekStart: 1,
+			    todayBtn: "linked"
+			});
+		</script>
+</cc:implementation>
+
+</html>

@@ -12,12 +12,10 @@ import br.com.geekpump.service.AbstractService;
 public class HistoricoCargaService extends AbstractService<HistoricoCarga> {
 	
 	private @Inject HistoricoCargaDAO historicoCargaDAO;
+	
 	@Override
 	public AbstractDAO<HistoricoCarga> getDAO() {
-		
 		return historicoCargaDAO;
 	}
-
-	
 	
 }

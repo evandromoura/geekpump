@@ -1,5 +1,8 @@
 package br.com.geekpump.util;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class UtilData {
 
 	public static String formatarHora(Integer hora) {
@@ -24,4 +27,22 @@ public class UtilData {
 			return "0" + String.valueOf(n);  
 		return String.valueOf(n);  
 	} 
+	
+	public static Date ajustaData(Date data, int horas, int minutos,
+			int segundos) {
+		Calendar calendar = null;
+		try {
+			if (data != null) {
+				calendar = Calendar.getInstance();
+				calendar.setTime(data);
+				calendar.set(Calendar.HOUR_OF_DAY, horas);
+				calendar.set(Calendar.MINUTE, minutos);
+				calendar.set(Calendar.SECOND, segundos);
+				data = calendar.getTime();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
 }

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "execucao_treino", schema = "public")
@@ -27,6 +29,7 @@ public class ExecucaoTreino {
 	@JoinColumn(name="id_treino_usuario_divisao_exercicio")
 	private TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name= "data_execucao")
 	private Date dataExecucao;
 

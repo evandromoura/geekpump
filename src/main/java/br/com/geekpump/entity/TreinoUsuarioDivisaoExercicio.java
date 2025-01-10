@@ -1,5 +1,7 @@
 package br.com.geekpump.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -26,6 +29,7 @@ public class TreinoUsuarioDivisaoExercicio {
 	@JoinColumn(name="id_treino_usuario_divisao")
 	private TreinoUsuarioDivisao treinoUsuarioDivisao;
 	
+	@ManyToOne
 	@JoinColumn(name="id_exercicio")
 	private Exercicio exercicio;
 	
@@ -39,6 +43,9 @@ public class TreinoUsuarioDivisaoExercicio {
 	
 	@Column(name="qtd_segundo_descanso")
 	private Integer qtdSegundoDescanso;
+	
+	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio")
+	private List<ExecucaoTreino> execucoes;
 
 	public Integer getId() {
 		return id;

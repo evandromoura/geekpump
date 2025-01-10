@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "historico_carga", schema = "public")
@@ -20,7 +22,10 @@ public class HistoricoCarga {
 	@SequenceGenerator(name="HISTORICO_CARGA_ID_GENERATOR", sequenceName="historico_carga_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HISTORICO_CARGA_ID_GENERATOR")
 	private Integer id;
+	
 	private Double carga;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name= "data_cargo")
 	private Date dataCarga;
 	
