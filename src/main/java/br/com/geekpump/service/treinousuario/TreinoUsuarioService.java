@@ -1,8 +1,11 @@
 package br.com.geekpump.service.treinousuario;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import br.com.geekpump.dao.AbstractDAO;
@@ -28,6 +31,14 @@ public class TreinoUsuarioService extends AbstractService<TreinoUsuario>{
 	public TreinoUsuario recuperarPorUid(String uid) {
 		return treinoUsuarioDAO.recuperarPorUid(uid);
 	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	public void incluir(TreinoUsuario entidade) {
+		entidade.setUid(UUID.randomUUID().toString());
+		treinoUsuarioDAO.incluir(entidade);
+	}
+	
 	
 	
 	

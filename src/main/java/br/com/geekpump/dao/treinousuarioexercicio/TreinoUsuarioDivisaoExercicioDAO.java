@@ -9,6 +9,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
 
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.entity.ExecucaoTreino;
@@ -24,7 +25,7 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 		CriteriaQuery<TreinoUsuarioDivisaoExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioDivisaoExercicio.class);
 		Root<TreinoUsuarioDivisaoExercicio> root = criteria.from(TreinoUsuarioDivisaoExercicio.class);
 		return getManager().createQuery(
-				criteria.select(root).where(comporPredicates(root, treinoUsuarioDivisao, data, executado)))
+				criteria.select(root).distinct(true).where(comporPredicates(root, treinoUsuarioDivisao, data, executado)))
 				.getResultList();
 	}
 	
@@ -35,11 +36,20 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 			Date dataInicio = UtilData.ajustaData(data, 0, 0, 0);
 			Date dataFim = UtilData.ajustaData(data, 23, 59, 59);
 			Join<TreinoUsuarioDivisaoExercicio, ExecucaoTreino> join = root.join("execucoes",JoinType.LEFT);
-			predicates.add(getCriteriaBuilder().greaterThan(join.get("dataExecucao"),dataInicio));
-			predicates.add(getCriteriaBuilder().lessThan(join.get("dataExecucao"),dataFim));
+			predicates.add(getCriteriaBuilder().greaterThanOrEqualTo(join.get("dataExecucao"),dataInicio));
+			predicates.add(getCriteriaBuilder().lessThanOrEqualTo(join.get("dataExecucao"),dataFim));
 		}else {
-			
-			//NAO EXECUTADOS
+			Subquery<Long> subquery = getCriteriaBuilder().createQuery().subquery(Long.class);
+	        Root<ExecucaoTreino> subRoot = subquery.from(ExecucaoTreino.class);
+	        subquery.select(subRoot.get("id"))
+	                .where(
+	                    getCriteriaBuilder().equal(subRoot.get("treinoUsuarioDivisaoExercicio"), root.get("id")),
+	                    getCriteriaBuilder().between(subRoot.get("dataExecucao"),
+	                            UtilData.ajustaData(data, 0, 0, 0),
+	                            UtilData.ajustaData(data, 23, 59, 59))
+	                );
+
+	        predicates.add(getCriteriaBuilder().not(getCriteriaBuilder().exists(subquery)));
 		}
 		return (Predicate[]) predicates.toArray(new Predicate[predicates.size()]);
 		

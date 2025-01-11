@@ -8,148 +8,167 @@
 	template="/WEB-INF/templates/default.xhtml">
 
     <ui:define name="corpo">
-    
-    	<div class="row g-2 align-items-center">
-              <div class="col">
-                <h2 class="page-title">
-                  Exercicios
-                </h2>
-              </div>
-              <!-- Page title actions -->
-              <div class="col-auto ms-auto d-print-none">
-                <div class="btn-list">
-                  
-                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
-                  </gk:data>
-                  
-                  <a href="#" class="btn btn-primary d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
-                   <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Treino
-                  </a>
-                  
-                  
-                </div>
-              </div>
-            </div>
-    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
-    		
-    		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
-	    		<ui:repeat var="treinoUsuarioDivisaoExercicio" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
+    	<h:panelGroup id="idPainelPrincipal">
+	    	<div class="row g-2 align-items-center">
+	              <div class="col">
+	                <h2 class="page-title">
+	                  Exercicios
+	                </h2>
+	              </div>
+	              <!-- Page title actions -->
+	              <div class="col-auto ms-auto d-print-none">
+	                <div class="btn-list">
+	                  <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-cadastro">
+	                    <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Divisão
+	                  </a>
+	                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
+	                  </gk:data>
+	                  <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-sm btn-primary">OK</h:commandLink>
+	                </div>
+	              </div>
+	            </div>
+	    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
 	    		
-	    			<div class="card" style="margin-top:10px">
-                  <div class="row row-0">
-                    <div class="col-3">
-                      <!-- Photo -->
-                      <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="w-100 h-100 object-cover card-img-start" alt="" />
-                    </div>
-                    <div class="col">
-                      <div class="card-body">
-                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
-                        <p class="text-secondary">
-                        	<div class="row">
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Carga</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Series</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Repetições</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Descanso</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
-			                  </div>
-			                 </div> 
-                        
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-	    		</ui:repeat>
+	    		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
+		    		<ui:repeat var="treinoUsuarioDivisaoExercicio" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
+		    		
+		    			<div class="card" style="margin-top:10px">
+	                  <div class="row row-0">
+	                    <div class="col-3">
+	                      <!-- Photo -->
+	                      
+	                      <label class="form-imagecheck mb-2">
+	                        <h:selectBooleanCheckbox value="#{treinoUsuarioDivisaoExercicio.selecionado}" styleClass="form-imagecheck-input">
+	                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
+	                        </h:selectBooleanCheckbox>
+	                        <span class="form-imagecheck-figure">
+	                          <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+	                        </span>
+	                      </label>
+	                      
+	                    </div>
+	                    <div class="col">
+	                      <div class="card-body">
+	                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
+	                        <p class="text-secondary">
+	                        	<div class="row">
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Carga</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Series</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Repetições</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Descanso</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
+				                  </div>
+				                 </div> 
+	                        
+	                        </p>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+		    		</ui:repeat>
+		    		
+	    		</ui:fragment>
+	    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
+	    			<div class="page page-center">
+				      <div class="container-tight py-4">
+				        <div class="empty">
+				          <p class="empty-title">Boaa Mlk. Treino Finalizado</p>
+				          <p class="empty-subtitle text-secondary">
+				            Inclua os divisaos do treino.
+				          </p>
+				        </div>
+				      </div>
+				    </div>	
+	    		</ui:fragment>
 	    		
-    		</ui:fragment>
-    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
-    			<div class="page page-center">
-			      <div class="container-tight py-4">
-			        <div class="empty">
-			          <p class="empty-title">Nenhum divisao encontrado!</p>
-			          <p class="empty-subtitle text-secondary">
-			            Inclua os divisaos do treino.
-			          </p>
-			        </div>
-			      </div>
-			    </div>	
-    		</ui:fragment>
-    		
-    		
-    	<br />
-    	<br />
-    	<div class="row g-2 align-items-center">
-          <div class="col">
-            <h2 class="page-title">
-              Executados
-            </h2>
-          </div>
-        </div>
-        
-        <ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
-	    		<ui:repeat var="treinoUsuarioDivisaoExercicio" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
 	    		
-	    			<div class="card" style="margin-top:10px">
-                  <div class="row row-0">
-                    <div class="col-3">
-                      <!-- Photo -->
-                      <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="w-100 h-100 object-cover card-img-start" alt="" />
-                    </div>
-                    <div class="col">
-                      <div class="card-body">
-                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
-                        <p class="text-secondary">
-                        	<div class="row">
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Carga</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Series</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Repetições</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
-			                  </div>
-		                  	  <div class="col-6">
-			                    <div class="datagrid-title">Descanso</div>
-			                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
-			                  </div>
-			                 </div> 
-                        
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-	    		</ui:repeat>
-	    		
-    		</ui:fragment>
-    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
-    			<div class="page page-center">
-			      <div class="container-tight py-4">
-			        <div class="empty">
-			          <p class="empty-title">Nenhum divisao encontrado!</p>
-			          <p class="empty-subtitle text-secondary">
-			            Inclua os divisaos do treino.
-			          </p>
-			        </div>
-			      </div>
-			    </div>	
-    		</ui:fragment>
+	    	<br />
+	    	<br />
+	    	<div class="row g-2 align-items-center">
+	          <div class="col">
+	            <h2 class="page-title">
+	              Executados
+	            </h2>
+	          </div>
+	        </div>
+	        
+	        <ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
+		    		<ui:repeat var="treinoUsuarioDivisaoExercicio" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
+		    		
+		    			<div class="card" style="margin-top:10px">
+	                  <div class="row row-0">
+	                    <div class="col-3">
+	                      <!-- Photo -->
+	                      <label class="form-imagecheck mb-2">
+	                        <h:selectBooleanCheckbox value="#{treinoUsuarioDivisaoExercicio.selecionado}" styleClass="form-imagecheck-input">
+	                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
+	                        </h:selectBooleanCheckbox>
+	                        <span class="form-imagecheck-figure">
+	                          <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+	                        </span>
+	                      </label>
+	                      
+	                      
+	                    </div>
+	                    <div class="col">
+	                      <div class="card-body">
+	                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
+	                        <p class="text-secondary">
+	                        	<div class="row">
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Carga</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Series</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Repetições</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Descanso</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
+				                  </div>
+				                 </div> 
+	                        
+	                        </p>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+		    		</ui:repeat>
+		    		
+	    		</ui:fragment>
+	    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
+	    			<div class="page page-center">
+				      <div class="container-tight py-4">
+				        <div class="empty">
+				          <p class="empty-title">Nenhum divisao encontrado!</p>
+				          <p class="empty-subtitle text-secondary">
+				            Inclua os divisaos do treino.
+				          </p>
+				        </div>
+				      </div>
+				    </div>	
+	    		</ui:fragment>
+	    	
+	    	</ui:fragment>
+    	</h:panelGroup>
     	
-    	</ui:fragment>
+    	
+    	
     	
     </ui:define>
 </ui:composition>    

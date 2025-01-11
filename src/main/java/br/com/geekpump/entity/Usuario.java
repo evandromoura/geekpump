@@ -38,6 +38,9 @@ public class Usuario {
 	 */
 	@Enumerated(EnumType.STRING)
 	private PerfilEnum perfil;
+	
+	private Double peso;
+	private Double altura;
 
 	public Integer getId() {
 		return id;
@@ -82,6 +85,24 @@ public class Usuario {
 		this.perfil = perfil;
 	}
 	
+	public List<TreinoUsuario> getTreinos() {
+		return treinos;
+	}
+	public void setTreinos(List<TreinoUsuario> treinos) {
+		this.treinos = treinos;
+	}
+	public Double getPeso() {
+		return peso;
+	}
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
+	public Double getAltura() {
+		return altura;
+	}
+	public void setAltura(Double altura) {
+		this.altura = altura;
+	}
 	public static void main(String[] args) {
 		System.out.println(UUID.randomUUID().toString());
 	}

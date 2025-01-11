@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
+import br.com.geekpump.entity.TreinoUsuario;
 import br.com.geekpump.security.CustomIdentity;
 import br.com.geekpump.service.treinousuario.TreinoUsuarioService;
 import br.com.geekpump.to.HomeTO;
@@ -26,9 +27,29 @@ public class TreinoUsuarioController extends AbstractController<TreinoUsuarioTO>
 	
 	@PostConstruct
 	private void init() {
-		
-		getTo().setTreinos(treinoUsuarioService.pesquisarPorUsuario(customIdentity.getUsuario()));
-		
+		pesquisar();
 	}
+	
+	public void pesquisar() {
+		getTo().setTreinos(treinoUsuarioService.pesquisarPorUsuario(customIdentity.getUsuario()));
+	}
+	
+	
+	public void gravar() {
+		if(getTo().getTreinoUsuario().getId() == null) {
+			getTo().getTreinoUsuario().setUsuario(customIdentity.getUsuario());
+			treinoUsuarioService.incluir(getTo().getTreinoUsuario());
+		}else {
+			treinoUsuarioService.alterar(getTo().getTreinoUsuario());
+		}
+		getTo().setTreinoUsuario(null);
+		pesquisar();
+	}
+	
+	public void excluir() {
+		treinoUsuarioService.excluir(getTo().getTreinoUsuarioAcao());
+		pesquisar();
+	}
+
 	
 }

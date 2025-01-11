@@ -14,15 +14,15 @@
                   Treino
                 </div>
                 <h2 class="page-title">
-                  #{customIdentity.usuario.perfil.name}
+                  #{customIdentity.usuario.nome}
                 </h2>
               </div>
               <!-- Page title actions -->
               <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
                   
-                  <a href="#" class="btn btn-primary d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
-                   <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Treino
+                  <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-cadastro">
+                    <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Treino
                   </a>
                   
                 </div>
@@ -32,16 +32,27 @@
     		
     		<ui:fragment rendered="#{!empty treinoUsuarioController.to.treinos}">
 	    		<ui:repeat var="treino" value="#{treinoUsuarioController.to.treinos}">
-	    			<a href="/treinousuariodivisao/#{treino.uid}" style="text-decoration: none;">
+	    			
 		    			<div class="card" style="margin-top:10px">
 		                  <div class="card-header">
-		                    <h3 class="card-title">#{treino.nome}</h3>
-		                    
+    		                <a href="/treinousuariodivisao/#{treino.uid}" style="text-decoration: none;"> 
+		                    	<h3 class="card-title">#{treino.nome}</h3>
+		                    </a> 	
+		                   <div class="card-actions btn-actions">
+		                   		<h:commandLink>
+									<i class="fa fa-trash"></i>
+									<f:setPropertyActionListener target="#{treinoUsuarioController.to.treinoUsuarioAcao}"
+										value="#{treino}" />
+									<f:ajax render="modal-excluir-panel" />
+									<f:passThroughAttribute name="data-bs-toggle" value="modal" />
+									<f:passThroughAttribute name="data-bs-target" value="#modal-excluir" />
+								</h:commandLink>
+	                 	   </div>
 		                  </div>
 		                  <div class="card-body p-0">
 		                  </div>
 		                </div>
-		             </a>   
+		               
 	    		
 	    		</ui:repeat>
     		</ui:fragment>
@@ -60,7 +71,59 @@
     		
     		
     	</ui:fragment>
+    	<div class="modal modal-blur fade" id="modal-cadastro" tabindex="-1" style="display: none;" aria-hidden="true">
+	      <div class="modal-dialog modal-dialog-centered" role="document">
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <h5 class="modal-title">Adicionar Treino</h5>
+	            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	          </div>
+	          <div class="modal-body">
+	            <div class="row mb-3 align-items-end">
+	              <div class="col">
+	                <label class="form-label">Nome</label>
+	                <h:inputText value="#{treinoUsuarioController.to.treinoUsuario.nome}" styleClass="form-control"></h:inputText>
+	                
+	              </div>
+	            </div>
+	          </div>
+	          <div class="modal-footer">
+	            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+	            <h:commandLink action="#{treinoUsuarioController.gravar()}" styleClass="btn btn-primary">Gravar</h:commandLink>
+	          </div>
+	        </div>
+	      </div>
+    	</div>
     	
+    	<div class="modal modal-blur fade" id="modal-excluir" tabindex="-1" style="display: none;" aria-hidden="true">
+    		  	
+		      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+		        <div class="modal-content">
+		          <h:panelGroup id="modal-excluir-panel"> 	
+			          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			          <div class="modal-status bg-danger"></div>
+			          <div class="modal-body text-center py-4">
+			            <h3>Confirmação</h3>
+			            <div class="text-secondary">Deseja remover o treino #{treinoUsuarioController.to.treinoUsuarioAcao.nome} ?</div>
+			          </div>
+			          <div class="modal-footer">
+			            <div class="w-100">
+			              <div class="row">
+			                <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+			                    Cancel
+			                  </a></div>
+			                <div class="col">
+			                  <h:commandLink action="#{treinoUsuarioController.excluir()}" styleClass="btn btn-danger w-100">
+			                    Sim
+			                  </h:commandLink>
+			                  </div>
+			              </div>
+			            </div>
+			          </div>
+				   </h:panelGroup>   
+		        </div>
+		      </div>
+		 </div>
     	
     </ui:define>
 </ui:composition>    

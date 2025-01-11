@@ -45,4 +45,129 @@ public class UtilData {
 		}
 		return data;
 	}
+	
+	/**
+	 * M�todo que adiciona Anos
+	 * 
+	 * @param data Date
+	 * @param quantidadeAnos int
+	 * @return Date
+	 */
+
+	public static Date adicionarAnos(Date data, int quantidadeAnos) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.YEAR, quantidadeAnos);
+		return cal.getTime();
+	}
+	/**
+	 * M�todo que adiciona Anos
+	 * 
+	 * @param data Date
+	 * @param quantidadeAnos int
+	 * @return Date
+	 */
+
+	public static Date adicionarHoras(Date data, int quantidadeHoras) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.HOUR, quantidadeHoras);
+		return cal.getTime();
+	}
+	
+	public static Date adicionarMinuto(Date data, int quantidadeMinutos) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.MINUTE, quantidadeMinutos);
+		return cal.getTime();
+	}
+
+	/**
+	 * M�todo que subtrai meses
+	 * 
+	 * @param data Date
+	 * @param quantidadeMeses int
+	 * @return Date
+	 */
+	
+	public static Date subtrairMeses(Date data, int quantidadeMeses) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.MONTH, quantidadeMeses * -1);
+		return cal.getTime();
+	}
+	/**
+	 * M�todo que subtrai dias
+	 * 
+	 * @param data Date
+	 * @param quantidadeDias int
+	 * @return Date
+	 */
+
+	public static Date subtrairDias(Date data, int quantidadeDias) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.DAY_OF_MONTH, quantidadeDias * -1);
+		return cal.getTime();
+	}
+
+	/**
+	 * M�todo que subtrai meses
+	 * 
+	 * @param data Date
+	 * @param quantidadeMeses int
+	 * @return Date
+	 */
+
+	public static Date subtrairHoras(Date data, int quantidadeHoras) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.HOUR_OF_DAY, quantidadeHoras * -1);
+		return cal.getTime();
+	}
+
+
+	/**
+	 * M�todo que subtrai meses
+	 * 
+	 * @param data Date
+	 * @param quantidadeMeses int
+	 * @return Date
+	 */
+
+	public static Date subtrairMinutos(Date data, int quantidadeMinuto) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.MINUTE, quantidadeMinuto * -1);
+		return cal.getTime();
+	}
+	
+	public static Date subtrairMilisegundos(Date data, int quantidadeMilisegundos) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		cal.add(Calendar.MILLISECOND, quantidadeMilisegundos * -1);
+		return cal.getTime();
+	}
+	
+	/**
+	 * Retorna se a data 1 � maior ou igual a data 2
+	 * 
+	 * @param dt1 Date
+	 * @param d2 Date
+	 * @return boolean
+	 */
+	public static boolean data1MaiorIgualData2(Date dt1, Date d2) {
+		return ((dt1.compareTo(d2) > 0) || (dt1.compareTo(d2) == 0));
+	}
+
+	/**
+	 * Retorna se a data 1 � menor ou igual a data 2
+	 * 
+	 * @param dt1 Date
+	 * @param d2 Date
+	 * @return boolean
+	 */
+	public static boolean data1MenorIgualData2(Date dt1, Date d2) {
+		return ((dt1.compareTo(d2) < 0) || (dt1.compareTo(d2) == 0));
+	}
 }

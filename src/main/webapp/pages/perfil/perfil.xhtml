@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="corpo">
+    	Perfil de Usuario
+    	<div class="card card-borderless">
+                  <div class="card-body">
+                    <h3 class="card-title">#{perfilController.to.usuario.nome}</h3>
+                    <div>#{perfilController.to.usuario.perfil.name}</div>
+                    <h3 class="card-title">Peso</h3>
+                    <div><h:inputText value="#{perfilController.to.usuario.peso}" /> </div>
+                    <h3 class="card-title">Altura</h3>
+                    <div><h:inputText value="#{perfilController.to.usuario.altura}" /> </div>
+                  </div>
+                </div>
+               
+    </ui:define>
+</ui:composition>    

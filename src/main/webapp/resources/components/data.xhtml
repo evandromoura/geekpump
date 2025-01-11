@@ -17,7 +17,7 @@
 	 
 	<div class="input-group text-center">
 		<ui:fragment rendered="#{!cc.attrs.hideIcon}">
-         	<span class="input-group-addon "><i class="fa-solid fa-calendar" style="padding-left: 5px;font-size: 12px"></i></span>
+<!--          	<span class="input-group-addon "><i class="fa fa-calendar" style="padding-left: 5px;font-size: 12px"></i></span> -->
          </ui:fragment>
 		<h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}" onkeypress="mascara(this,data);" styleClass="#{cc.attrs.styleClass} datepicker" maxlength="10" disabled="#{cc.attrs.disabled}" label="#{cc.attrs.label}" size="6">
 			<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{cc.attrs.timeZone}"/>

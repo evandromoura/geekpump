@@ -46,6 +46,16 @@ public class TreinoUsuarioDivisaoExercicio {
 	
 	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio")
 	private List<ExecucaoTreino> execucoes;
+	
+	
+	@Transient
+	private List<ExecucaoTreino> execucoesTemp;
+	
+	/**
+	 * Campo @Transient são desconectados com o banco de dados. Serve para controle 
+	 */
+	@Transient
+	private boolean selecionado;
 
 	public Integer getId() {
 		return id;
@@ -109,6 +119,30 @@ public class TreinoUsuarioDivisaoExercicio {
 
 	public void setQtdSegundoDescanso(Integer qtdSegundoDescanso) {
 		this.qtdSegundoDescanso = qtdSegundoDescanso;
+	}
+
+	public List<ExecucaoTreino> getExecucoes() {
+		return execucoes;
+	}
+
+	public void setExecucoes(List<ExecucaoTreino> execucoes) {
+		this.execucoes = execucoes;
+	}
+
+	public boolean isSelecionado() {
+		return selecionado;
+	}
+
+	public void setSelecionado(boolean selecionado) {
+		this.selecionado = selecionado;
+	}
+
+	public List<ExecucaoTreino> getExecucoesTemp() {
+		return execucoesTemp;
+	}
+
+	public void setExecucoesTemp(List<ExecucaoTreino> execucoesTemp) {
+		this.execucoesTemp = execucoesTemp;
 	} 
 	
 	

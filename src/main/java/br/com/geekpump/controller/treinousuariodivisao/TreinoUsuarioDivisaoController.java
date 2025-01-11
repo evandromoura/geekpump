@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
+import br.com.geekpump.service.treinousuario.TreinoUsuarioService;
 import br.com.geekpump.service.treinousuariodivisao.TreinoUsuarioDivisaoService;
 import br.com.geekpump.to.TreinoUsuarioDivisaoTO;
 
@@ -19,11 +20,35 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 	private static final long serialVersionUID = 5893208120396926784L;
 	
 	private @Inject TreinoUsuarioDivisaoService treinoUsuarioDivisaoService;
+	private @Inject TreinoUsuarioService treinoUsuarioService;
+			
 	
 	@PostConstruct
 	private void init() {
+		
+		pesquisar();
+	}
+	
+	public void pesquisar() {
+		getTo().setTreinoUsuario(treinoUsuarioService.recuperarPorUid(getRequest().getParameter("parametro")));
 		getTo().setTreinoUsuarioDivisoes(
-				treinoUsuarioDivisaoService.pesquisarPorUidTreinoUsuario(getRequest().getParameter("parametro")));
+			treinoUsuarioDivisaoService.pesquisarPorTreinoUsuario(getTo().getTreinoUsuario()));
+	}
+	
+	public void gravar() {
+		if(getTo().getTreinoUsuarioDivisao().getId() == null) {
+			getTo().getTreinoUsuarioDivisao().setTreinoUsuario(getTo().getTreinoUsuario());
+			treinoUsuarioDivisaoService.incluir(getTo().getTreinoUsuarioDivisao());
+		}else {
+			treinoUsuarioDivisaoService.alterar(getTo().getTreinoUsuarioDivisao());
+		}
+		getTo().setTreinoUsuarioDivisao(null);
+		pesquisar();
+	}
+	
+	public void excluir() {
+		treinoUsuarioDivisaoService.excluir(getTo().getTreinoUsuarioDivisaoAcao());
+		pesquisar();
 	}
 
 }

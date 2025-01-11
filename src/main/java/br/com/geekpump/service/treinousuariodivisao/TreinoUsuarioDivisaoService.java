@@ -10,21 +10,18 @@ import br.com.geekpump.dao.treinousuariodivisao.TreinoUsuarioDivisaoDAO;
 import br.com.geekpump.entity.TreinoUsuario;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.service.AbstractService;
-import br.com.geekpump.service.treinousuario.TreinoUsuarioService;
 
 @Stateless
 public class TreinoUsuarioDivisaoService extends AbstractService<TreinoUsuarioDivisao> {
 
 	private @Inject TreinoUsuarioDivisaoDAO treinoUsuarioDivisaoDAO;
-	private @Inject TreinoUsuarioService treinoUsuarioService;
 	
 	@Override
 	public AbstractDAO<TreinoUsuarioDivisao> getDAO() {
 		return treinoUsuarioDivisaoDAO;
 	}
 
-	public List<TreinoUsuarioDivisao> pesquisarPorUidTreinoUsuario(String uidTreinoUsuario) {
-		TreinoUsuario treinoUsuario = treinoUsuarioService.recuperarPorUid(uidTreinoUsuario);
+	public List<TreinoUsuarioDivisao> pesquisarPorTreinoUsuario(TreinoUsuario treinoUsuario) {
 		return treinoUsuarioDivisaoDAO.pesquisarPorTreinoUsuario(treinoUsuario);
 	}
 	

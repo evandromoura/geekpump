@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 
 import br.com.geekpump.util.UtilBeans;
@@ -123,6 +125,23 @@ public class AbstractDAO<T> {
 		for(T objeto:listaEntidade){
 			this.alterar(objeto);
 		}
+	}
+	
+	public void removeList(Collection<T> list) throws Exception {
+		if ((list == null) || (list.size() < 1)) {
+			return;
+		}
+		StringBuilder jql = new StringBuilder("DELETE FROM ");
+		jql.append(this.getEntityType().getName());
+		jql.append(" entity ");
+		jql.append(" WHERE ");
+		jql.append(" entity ");
+		// jql.append(getIdName(lista.iterator().next()));
+		jql.append(" IN (:list) ");
+		Query query = this.getManager().createQuery(jql.toString());
+		query.setParameter("list", list);
+		query.executeUpdate();
+		
 	}
 
 	
