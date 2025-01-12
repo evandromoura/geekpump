@@ -1,9 +1,10 @@
 package br.com.geekpump.entity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "usuario", schema = "public")
@@ -30,6 +33,9 @@ public class Usuario {
 	private String login;
 	private String senha;
 	
+	@Column(name="id_google")
+	private String idGoogle;
+	
 	@OneToMany(mappedBy = "usuario",orphanRemoval = true)
 	private List<TreinoUsuario> treinos;
 	
@@ -41,6 +47,10 @@ public class Usuario {
 	
 	private Double peso;
 	private Double altura;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="data_nascimento")
+	private Date dataNascimento;
 
 	public Integer getId() {
 		return id;
@@ -102,6 +112,18 @@ public class Usuario {
 	}
 	public void setAltura(Double altura) {
 		this.altura = altura;
+	}
+	public String getIdGoogle() {
+		return idGoogle;
+	}
+	public void setIdGoogle(String idGoogle) {
+		this.idGoogle = idGoogle;
+	}
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	public static void main(String[] args) {
 		System.out.println(UUID.randomUUID().toString());

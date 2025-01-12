@@ -20,4 +20,8 @@ public class UsuarioService extends AbstractService<Usuario>{
 	public Usuario login(String login, String senha) {
 		return usuarioDAO.login(login, senha);
 	}
+
+	public Usuario recuperarPorIdGoogle(String idGoogle) {
+		return usuarioDAO.recuperarPorIdGoogle(idGoogle);
+	}
 }

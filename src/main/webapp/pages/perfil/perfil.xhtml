@@ -3,21 +3,39 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:gk="http://java.sun.com/jsf/composite/components" 
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 
     <ui:define name="corpo">
-    	Perfil de Usuario
-    	<div class="card card-borderless">
-                  <div class="card-body">
-                    <h3 class="card-title">#{perfilController.to.usuario.nome}</h3>
-                    <div>#{perfilController.to.usuario.perfil.name}</div>
-                    <h3 class="card-title">Peso</h3>
-                    <div><h:inputText value="#{perfilController.to.usuario.peso}" /> </div>
-                    <h3 class="card-title">Altura</h3>
-                    <div><h:inputText value="#{perfilController.to.usuario.altura}" /> </div>
-                  </div>
-                </div>
+         <div class="card">
+             <div class="card-header">
+               <h3 class="card-title">#{perfilController.to.usuario.nome}</h3>
+             </div>
+             <div class="card-body">
+               <div class="mb-3 row">
+                 <label class="col-4 col-form-label">Peso</label>
+                 <div class="col">
+                   <gk:decimal value="#{perfilController.to.usuario.peso}" styleClass="form-control" />
+                 </div>
+               </div>
+               <div class="mb-3 row">
+                 <label class="col-4 col-form-label">Altura</label>
+                 <div class="col">
+                   <gk:integer value="#{perfilController.to.usuario.altura}" styleClass="form-control" />
+                 </div>
+               </div>
+               <div class="mb-3 row">
+                 <label class="col-4 col-form-label">Nascimento</label>
+                 <div class="col">
+                 	<gk:data value="#{perfilController.to.usuario.dataNascimento}" />
+                 </div>
+               </div>
+             </div>
+             <div class="card-footer text-end">
+             	<h:commandLink action= "#{perfilController.gravar()}" styleClass="btn btn-md btn-success">Gravar</h:commandLink>
+             </div>
+           </div>
                
     </ui:define>
 </ui:composition>    

@@ -22,7 +22,6 @@ public class ExercicioService extends AbstractService<Exercicio> {
 	}
 
 	public List<Exercicio> pesquisar(Exercicio exercicio){
-		
 		return exercicioDAO.pesquisar(exercicio);
 	}
 

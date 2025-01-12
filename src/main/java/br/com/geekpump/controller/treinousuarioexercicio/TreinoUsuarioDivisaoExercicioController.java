@@ -10,8 +10,13 @@ import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
 import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.Exercicio;
+import br.com.geekpump.entity.GrupamentoMuscular;
+import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 import br.com.geekpump.service.execucaotreino.ExecucaoTreinoService;
+import br.com.geekpump.service.exercicio.ExercicioService;
+import br.com.geekpump.service.treinousuariodivisao.TreinoUsuarioDivisaoService;
 import br.com.geekpump.service.treinousuarioexercicio.TreinoUsuarioDivisaoExercicioService;
 import br.com.geekpump.to.TreinoUsuarioDivisaoExercicioTO;
 import br.com.geekpump.util.UtilData;
@@ -23,13 +28,16 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 
 	private static final long serialVersionUID = 172034915448715026L;
 
+	private @Inject TreinoUsuarioDivisaoService treinoUsuarioDivisaoService;
 	private @Inject TreinoUsuarioDivisaoExercicioService treinoUsuarioDivisaoExercicioService;
 	
 	private @Inject ExecucaoTreinoService execucaoTreinoService;
 	
+	private @Inject ExercicioService exercicioService; 
+	
 	@PostConstruct
 	private void init() {
-		
+		inicializarFiltros();
 		getTo().setData(new Date());
 		pesquisar();
 	}
@@ -39,11 +47,13 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 	}
 	
 	public void pesquisar() {
+		getTo().setTreinoUsuarioDivisao(treinoUsuarioDivisaoService.recuperarPorUid(getRequest().getParameter("parametro")));
+		
 		getTo().setTreinoUsuarioExercicios(treinoUsuarioDivisaoExercicioService
-				.pesquisarPorUidTreinoUsuarioDivisao(getRequest().getParameter("parametro"),getTo().getData(),false));
+				.pesquisarPorTreinoUsuarioDivisao(getTo().getTreinoUsuarioDivisao(),getTo().getData(),false));
 		
 		getTo().setTreinoUsuarioExerciciosExecutados(treinoUsuarioDivisaoExercicioService
-				.pesquisarPorUidTreinoUsuarioDivisao(getRequest().getParameter("parametro"),getTo().getData(),true));
+				.pesquisarPorTreinoUsuarioDivisao(getTo().getTreinoUsuarioDivisao(),getTo().getData(),true));
 		
 		getTo().getTreinoUsuarioExerciciosExecutados().forEach(exercicio->exercicio.setSelecionado(true));
 	}
@@ -70,6 +80,36 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 						}	
 					}	
 				}
+			}
+		}
+		pesquisar();
+	}
+	
+	public void pesquisarExercicio() {
+		getTo().setExercicios(exercicioService.pesquisar(getTo().getExercicioAcao()));
+		
+	}
+	
+	private void inicializarFiltros() {
+		getTo().setExercicioAcao(null);
+		getTo().getExercicioAcao().setGrupamentoMuscular(new GrupamentoMuscular());
+	}
+	
+	public void adicionarExercicios() {
+		for(Exercicio exercicio:getTo().getExercicios()) {
+			if(exercicio.isSelecionado()) {
+				
+				if(treinoUsuarioDivisaoExercicioService.countPorExercicioDivisao(exercicio, getTo().getTreinoUsuarioDivisao()) == 0) {
+				
+					TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio = new TreinoUsuarioDivisaoExercicio();
+					treinoUsuarioDivisaoExercicio.setTreinoUsuarioDivisao(getTo().getTreinoUsuarioDivisao());
+					treinoUsuarioDivisaoExercicio.setExercicio(exercicio);
+					/*
+					 * TODO Pegar do historico carga
+					 */
+					treinoUsuarioDivisaoExercicio.setCarga(Double.valueOf(0));
+					treinoUsuarioDivisaoExercicioService.incluir(treinoUsuarioDivisaoExercicio);
+				}	
 			}
 		}
 		pesquisar();

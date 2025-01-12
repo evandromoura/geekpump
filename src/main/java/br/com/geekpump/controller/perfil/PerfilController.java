@@ -25,4 +25,9 @@ import br.com.geekpump.to.PerfilTO;
 		getTo().setUsuario(usuarioService.recuperar(customIdentity.getUsuario().getId()));
 	}
 	
+	public String gravar() {
+		usuarioService.alterar(getTo().getUsuario());
+		return "sucesso";
+	}
+	
 }

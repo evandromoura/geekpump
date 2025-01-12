@@ -9,16 +9,15 @@ import javax.inject.Inject;
 
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.dao.treinousuarioexercicio.TreinoUsuarioDivisaoExercicioDAO;
+import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 import br.com.geekpump.service.AbstractService;
 import br.com.geekpump.service.execucaotreino.ExecucaoTreinoService;
-import br.com.geekpump.service.treinousuariodivisao.TreinoUsuarioDivisaoService;
 
 @Stateless
 public class TreinoUsuarioDivisaoExercicioService extends AbstractService<TreinoUsuarioDivisaoExercicio>{
 
-	private @Inject TreinoUsuarioDivisaoService treinoUsuarioDivisaoService;
 	private @Inject TreinoUsuarioDivisaoExercicioDAO treinoUsuarioDivisaoExercicioDAO; 
 	
 	private @Inject ExecucaoTreinoService execucaoTreinoService;
@@ -28,13 +27,16 @@ public class TreinoUsuarioDivisaoExercicioService extends AbstractService<Treino
 		return treinoUsuarioDivisaoExercicioDAO;
 	}
 
-	public List<TreinoUsuarioDivisaoExercicio> pesquisarPorUidTreinoUsuarioDivisao(String uidTreinoUsuarioDivisao, Date data, boolean executado) {
-		TreinoUsuarioDivisao treinoUsuarioDivisao = treinoUsuarioDivisaoService.recuperarPorUid(uidTreinoUsuarioDivisao);
+	public List<TreinoUsuarioDivisaoExercicio> pesquisarPorTreinoUsuarioDivisao(TreinoUsuarioDivisao treinoUsuarioDivisao, Date data, boolean executado) {
 		List<TreinoUsuarioDivisaoExercicio> retorno = treinoUsuarioDivisaoExercicioDAO.pesquisarPorTreinoUsuarioDivisao(treinoUsuarioDivisao,data,executado);
 		for(TreinoUsuarioDivisaoExercicio exercicio:retorno) {
 			exercicio.setExecucoesTemp(execucaoTreinoService.pesquisarPorTreinoUsuarioDivisaoExercicioData(exercicio, data));
 		}
 		return retorno;
+	}
+	
+	public Long countPorExercicioDivisao(Exercicio exercicio, TreinoUsuarioDivisao treinoUsuarioDivisao){
+		return treinoUsuarioDivisaoExercicioDAO.countPorExercicioDivisao(exercicio,treinoUsuarioDivisao);
 	}
 	
 	

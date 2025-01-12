@@ -20,9 +20,26 @@
 			                    <label class="form-label">Nome</label>
 			                    <h:inputText value="#{exercicioController.to.exercicio.nome}" styleClass="form-control" />
 	                  		</div>
+	                  		
 	                  		<div class="col-lg-12">
-			                    <label class="form-label">Imagem</label>
-			                    <h:inputText value="#{exercicioController.to.exercicio.imagem}" styleClass="form-control" />
+			                    <label class="form-label">Grupamento</label>
+			                    <h:selectOneMenu value="#{exercicioController.to.exercicio.grupamentoMuscular.id}" required="true" styleClass="form-control">
+			                    	<f:selectItem itemLabel="Selecione..." />
+		                			<f:selectItems value="#{combosBean.grupamentoMusculares}" var="grupamento" itemValue="#{grupamento.id}" itemLabel="#{grupamento.nome}" />
+			                    </h:selectOneMenu>
+	                  		</div>
+	                  		
+	                  		<div class="col-lg-12" style="margin-top:20px">
+			                    <label class="form-label">Thumbnail</label>
+			                    <h:inputFile id="idInputFileThumb" class="file" type="file" value="#{exercicioController.to.thumbnail}" label="Thumbnail"  styleClass="form-control" />
+	                  		</div>
+	                  		<div class="col-lg-12">
+			                    <label class="form-label">Imagem Execucao</label>
+			                    <h:inputFile id="idInputFileExecucao" class="file" type="file" value="#{exercicioController.to.imagemExecucao}" label="Imagem Execucao"  styleClass="form-control" />
+	                  		</div>
+	                  		<div class="col-lg-12">
+			                    <label class="form-label">Imagem Ativação Muscular</label>
+			                    <h:inputFile id="idInputFileAtivacao" class="file" type="file" value="#{exercicioController.to.imagemAtivacaoMuscular}" label="Imagem Ativação Muscular"  styleClass="form-control" />
 	                  		</div>
 	                  		
 	                  		<div class="col-lg-6" style="margin-top:30px">

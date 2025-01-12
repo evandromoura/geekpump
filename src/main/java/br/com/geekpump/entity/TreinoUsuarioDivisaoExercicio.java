@@ -21,7 +21,7 @@ import br.com.geekpump.util.UtilData;
 public class TreinoUsuarioDivisaoExercicio {
 	
 	@Id
-	@SequenceGenerator(name="TREINO_USUARIO_DIVISAO_EXERCICIO_ID_GENERATOR", sequenceName="treino_usuario_exercicio_id_seq", allocationSize = 1)
+	@SequenceGenerator(name="TREINO_USUARIO_DIVISAO_EXERCICIO_ID_GENERATOR", sequenceName="treino_usuario_divisao_exercicio_id_seq", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TREINO_USUARIO_DIVISAO_EXERCICIO_ID_GENERATOR")
 	private Integer id;
 

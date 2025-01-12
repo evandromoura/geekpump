@@ -17,14 +17,12 @@
 	              </div>
 	              <!-- Page title actions -->
 	              <div class="col-auto ms-auto d-print-none">
-	                <div class="btn-list">
-	                  <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-cadastro">
-	                    <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Divisão
+	                  <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-exercicio">
+	                    <i class="fa fa-plus" aria-hidden="true"></i> &#160;Add Exercicio
 	                  </a>
 	                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
 	                  </gk:data>
 	                  <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-sm btn-primary">OK</h:commandLink>
-	                </div>
 	              </div>
 	            </div>
 	    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
@@ -42,7 +40,7 @@
 	                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
 	                        </h:selectBooleanCheckbox>
 	                        <span class="form-imagecheck-figure">
-	                          <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+	                          <img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).thumbnail}" class="form-imagecheck-image object-cover card-img-start" alt="" />	
 	                        </span>
 	                      </label>
 	                      
@@ -78,13 +76,13 @@
 		    		</ui:repeat>
 		    		
 	    		</ui:fragment>
-	    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
+	    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios and !empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
 	    			<div class="page page-center">
 				      <div class="container-tight py-4">
 				        <div class="empty">
 				          <p class="empty-title">Boaa Mlk. Treino Finalizado</p>
 				          <p class="empty-subtitle text-secondary">
-				            Inclua os divisaos do treino.
+				            Inclua os exercicios da divisão.
 				          </p>
 				        </div>
 				      </div>
@@ -114,7 +112,7 @@
 	                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
 	                        </h:selectBooleanCheckbox>
 	                        <span class="form-imagecheck-figure">
-	                          <img src="https://blog.ciaathletica.com.br/wp-content/uploads/2024/08/Cia-Athletica-Diferenca-de-supino-reto-e-supino-inclinado-mulher-loira-halteres-Autores-GS2-Marketing-Divulgacao.jpg" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+	                          <img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).thumbnail}" class="form-imagecheck-image object-cover card-img-start" alt="" />
 	                        </span>
 	                      </label>
 	                      
@@ -155,9 +153,9 @@
 	    			<div class="page page-center">
 				      <div class="container-tight py-4">
 				        <div class="empty">
-				          <p class="empty-title">Nenhum divisao encontrado!</p>
+				          <p class="empty-title">Nenhum exercicio encontrado!</p>
 				          <p class="empty-subtitle text-secondary">
-				            Inclua os divisaos do treino.
+				            Inclua os exercicios da divisão.
 				          </p>
 				        </div>
 				      </div>
@@ -169,6 +167,67 @@
     	
     	
     	
+    	<div class="modal modal-blur fade" id="modal-exercicio" tabindex="-1" style="display: none;" aria-hidden="true">
+	      <div class="modal-dialog modal-dialog-centered" role="document">
+	        <div class="modal-content">
+	          <h:panelGroup id="modal-exercicio-panel"> 	
+		          <div class="modal-header">
+		            <h5 class="modal-title">Adicionar exercicio</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		          </div>
+		          <div class="modal-body">
+		            <div class="row mb-3 align-items-end">
+		             
+		             
+		              <div class="col-lg-4 col-5">
+		                <label class="form-label">Nome</label>
+		                <h:inputText value="#{treinoUsuarioDivisaoExercicioController.to.exercicioAcao.nome}" />
+		              </div>
+		              <div class="col-lg-4 col-5">
+		                <label class="form-label">Grupamento</label>
+		                <h:selectOneMenu value="#{treinoUsuarioDivisaoExercicioController.to.exercicioAcao.grupamentoMuscular.id}">
+		                	<f:selectItem itemLabel="Selecione..." />
+		                	<f:selectItems value="#{combosBean.grupamentoMusculares}" var="grupamento" itemValue="#{grupamento.id}" itemLabel="#{grupamento.nome}" />
+		                </h:selectOneMenu>
+		              </div>
+		              <div class="col-lg-4 col-2">
+		                <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisarExercicio()}" value="OK" styleClass="btn btn-sm btn-primary" >
+		                	<f:ajax render="modal-exercicio-panel" execute="modal-exercicio-panel"/>
+		                </h:commandLink>
+		              </div>
+		            </div>
+		            <div class="mb-3" style="display: block;overflow-y:scroll;height: 400px">
+		            	<ui:repeat var="exercicio" value="#{treinoUsuarioDivisaoExercicioController.to.exercicios}">
+		            		<div class="card" style="margin-top:10px">
+				                  <div class="row row-0">
+				                    <div class="col-3">
+				                      <!-- Photo -->
+				                      <label class="form-imagecheck mb-2">
+				                        <h:selectBooleanCheckbox value="#{exercicio.selecionado}" styleClass="form-imagecheck-input">
+				                        </h:selectBooleanCheckbox>
+				                        <span class="form-imagecheck-figure">
+				                          <img src="data:image/png;base64,#{exercicio.imagens.get(0).thumbnail}" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+				                        </span>
+				                      </label>
+				                    </div>
+				                    <div class="col">
+				                      <div class="card-body">
+				                        <h3 class="card-title">#{exercicio.nome}</h3>
+				                      </div>
+				                    </div>
+				                  </div>
+				                </div>
+		            	</ui:repeat>
+		            </div>
+		          </div>
+		          <div class="modal-footer">
+		            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+		            <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.adicionarExercicios()}" styleClass="btn btn-primary"> Adicionar</h:commandLink>
+		          </div>
+		       </h:panelGroup>   
+	        </div>
+	      </div>
+	    </div>
     	
     </ui:define>
 </ui:composition>    

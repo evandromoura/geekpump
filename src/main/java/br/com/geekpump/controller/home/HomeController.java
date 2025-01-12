@@ -30,4 +30,8 @@ public class HomeController extends AbstractController<HomeTO> implements Serial
 		
 	}
 	
+	private void calcularDados() {
+		
+	}
+	
 }

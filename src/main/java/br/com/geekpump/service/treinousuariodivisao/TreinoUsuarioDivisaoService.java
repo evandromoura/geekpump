@@ -1,6 +1,7 @@
 package br.com.geekpump.service.treinousuariodivisao;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,5 +29,13 @@ public class TreinoUsuarioDivisaoService extends AbstractService<TreinoUsuarioDi
 	public TreinoUsuarioDivisao recuperarPorUid(String uidTreinoUsuarioDivisao) {
 		return treinoUsuarioDivisaoDAO.recuperarPorUid(uidTreinoUsuarioDivisao);
 	}
+
+	@Override
+	public void incluir(TreinoUsuarioDivisao entidade) {
+		entidade.setUid(UUID.randomUUID().toString());
+		treinoUsuarioDivisaoDAO.incluir(entidade);
+	}
+	
+	
 
 }

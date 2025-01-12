@@ -20,6 +20,8 @@ public class TreinoUsuarioDivisao {
 	
 	private String nome;
 	
+	private String cor;
+	
 	private String uid;
 	
 	@ManyToOne
@@ -56,6 +58,14 @@ public class TreinoUsuarioDivisao {
 
 	public void setTreinoUsuario(TreinoUsuario treinoUsuario) {
 		this.treinoUsuario = treinoUsuario;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 }

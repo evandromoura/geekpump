@@ -5,8 +5,10 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
 @URLMappings(mappings={
 		  @URLMapping(id = "home", 			 			pattern = "/home",   viewId = "/home.xhtml"),
-		  @URLMapping(id = "login", 			 		pattern = "/login",   viewId = "/login.xhtml"),
-		  @URLMapping(id = "perfil", 			 		pattern = "/perfil",   viewId = "/pages/perfil/perfil.xhtml"),
+		  @URLMapping(id = "login", 			 		pattern = "/login",  viewId = "/login.xhtml"),
+		  @URLMapping(id = "perfil", 			 		pattern = "/perfil", viewId = "/pages/perfil/perfil.xhtml"),
+		  @URLMapping(id = "auth", 			 			pattern = "/auth",   viewId = "/auth.xhtml"),
+		  
 		  @URLMapping(id = "exercicio_list", 			pattern = "/exercicio",   viewId = "/pages/exercicio/exercicio_list.xhtml"),
 		  @URLMapping(id = "exercicio_edit", 			pattern = "/exercicio/edit/#{parametro}",   viewId = "/pages/exercicio/exercicio_form.xhtml"),
 		  @URLMapping(id = "grupamentomuscular_list", 	pattern = "/grupamentomuscular",   viewId = "/pages/grupamentomuscular/grupamentomuscular_list.xhtml"),

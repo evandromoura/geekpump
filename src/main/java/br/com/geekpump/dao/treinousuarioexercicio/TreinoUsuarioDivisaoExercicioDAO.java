@@ -13,6 +13,7 @@ import javax.persistence.criteria.Subquery;
 
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 import br.com.geekpump.util.UtilData;
@@ -24,9 +25,9 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 	public List<TreinoUsuarioDivisaoExercicio> pesquisarPorTreinoUsuarioDivisao(TreinoUsuarioDivisao treinoUsuarioDivisao,Date data, boolean executado) {
 		CriteriaQuery<TreinoUsuarioDivisaoExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioDivisaoExercicio.class);
 		Root<TreinoUsuarioDivisaoExercicio> root = criteria.from(TreinoUsuarioDivisaoExercicio.class);
-		return getManager().createQuery(
+		return inicializar(getManager().createQuery(
 				criteria.select(root).distinct(true).where(comporPredicates(root, treinoUsuarioDivisao, data, executado)))
-				.getResultList();
+				.getResultList());
 	}
 	
 	private Predicate[] comporPredicates(Root<TreinoUsuarioDivisaoExercicio> root, TreinoUsuarioDivisao treinoUsuarioDivisao,Date data, boolean executado) {
@@ -53,6 +54,26 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 		}
 		return (Predicate[]) predicates.toArray(new Predicate[predicates.size()]);
 		
+		
+	}
+
+	public Long countPorExercicioDivisao(Exercicio exercicio, TreinoUsuarioDivisao treinoUsuarioDivisao) {
+		CriteriaQuery<Long> criteriaLong = getCriteriaBuilder().createQuery(Long.class);
+		Root<TreinoUsuarioDivisaoExercicio> root = criteriaLong.from(TreinoUsuarioDivisaoExercicio.class);
+		criteriaLong.select(getCriteriaBuilder().count(root)).where(getCriteriaBuilder().equal(root.get("exercicio"), exercicio),
+				getCriteriaBuilder().equal(root.get("treinoUsuarioDivisao"), treinoUsuarioDivisao));
+		return getManager().createQuery(criteriaLong).getSingleResult();
+	}
+	
+	private List<TreinoUsuarioDivisaoExercicio> inicializar(List<TreinoUsuarioDivisaoExercicio> lista){
+		for(TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:lista) {
+			if(treinoUsuarioDivisaoExercicio.getExercicio() != null) {
+				if(treinoUsuarioDivisaoExercicio.getExercicio().getImagens() != null) {
+					treinoUsuarioDivisaoExercicio.getExercicio().getImagens().size();
+				}
+			}
+		}
+		return lista;
 		
 	}
 

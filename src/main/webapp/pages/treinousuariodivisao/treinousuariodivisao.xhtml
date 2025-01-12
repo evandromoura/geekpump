@@ -32,7 +32,7 @@
     		
     		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
 	    		<ui:repeat var="treinoUsuarioDivisao" value="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
-	    			<div class="card" style="margin-top:10px">
+	    			<div class="card" style="margin-top:10px;" >
 	                  <div class="card-header">
 	                  	<a href="/treinousuariodivisaoexercicio/#{treinoUsuarioDivisao.uid}">
 	                    	<h3 class="card-title">#{treinoUsuarioDivisao.nome}</h3>
@@ -47,6 +47,8 @@
 							</h:commandLink>
                  	   </div>
 	                  </div>
+	                  <div class="card-status-start" style="background-color: #{treinoUsuarioDivisao.cor}"></div>
+	                  
 	                </div>
 	    		</ui:repeat>
     		</ui:fragment>
@@ -78,6 +80,13 @@
 	              <div class="col">
 	                <label class="form-label">Nome</label>
 	                <h:inputText value="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisao.nome}" styleClass="form-control"></h:inputText>
+	                
+	              </div>
+	              <div class="col">
+	                <label class="form-label">Cor</label>
+	                <h:inputText value="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisao.cor}" styleClass="form-control">
+	                	<f:passThroughAttribute name="type" value="color"/>
+	                </h:inputText>
 	                
 	              </div>
 	            </div>

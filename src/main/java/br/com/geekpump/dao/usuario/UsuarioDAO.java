@@ -23,4 +23,14 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
 			return null;
 		}
 	}
+
+	public Usuario recuperarPorIdGoogle(String idGoogle) {
+		try {
+			CriteriaQuery<Usuario> criteria = getCriteriaBuilder().createQuery(Usuario.class);
+			Root<Usuario> root = criteria.from(Usuario.class);
+			return getManager().createQuery(criteria.select(root).where(getCriteriaBuilder().equal(root.get("idGoogle"), idGoogle))).getSingleResult();
+		}catch(Exception e) {
+			return null;
+		}
+	}
 }

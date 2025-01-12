@@ -25,8 +25,8 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 	
 	@PostConstruct
 	private void init() {
-		
 		pesquisar();
+		inicializarValores();
 	}
 	
 	public void pesquisar() {
@@ -42,13 +42,18 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 		}else {
 			treinoUsuarioDivisaoService.alterar(getTo().getTreinoUsuarioDivisao());
 		}
-		getTo().setTreinoUsuarioDivisao(null);
+		inicializarValores();
 		pesquisar();
 	}
 	
 	public void excluir() {
 		treinoUsuarioDivisaoService.excluir(getTo().getTreinoUsuarioDivisaoAcao());
 		pesquisar();
+	}
+	
+	private void inicializarValores() {
+		getTo().setTreinoUsuarioDivisao(null);
+		getTo().getTreinoUsuarioDivisao().setCor("#ffffff");
 	}
 
 }

@@ -16,7 +16,7 @@
 
 <h:body>
 	
-	
+	<script src="https://accounts.google.com/gsi/client" async="async" defer="defer"></script>
 	<div class="row g-0 flex-fill" style="overflow: hidden">
       <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center" style="border-color: inherit !important">
         <div class="container container-tight my-5 px-lg-5">
@@ -71,6 +71,17 @@
             </div>
             <div class="form-footer">
               <h:commandButton id="login" value="Entrar" action="#{identity.login}" styleClass="btn btn-primary w-100" />
+              <center>
+					<div id="g_id_onload"
+						data-client_id="1002306781581-3h36rn4n52cn1cie4rior1gjmena080b.apps.googleusercontent.com"
+						data-context="signin" data-ux_mode="popup"
+						data-login_uri="https://geekpump.com.br/auth"></div>
+	
+					<div class="g_id_signin" data-type="standard"
+						data-shape="rectangular" data-theme="outline"
+						data-text="$ {button.text}" data-size="large"
+						data-logo_alignment="left"></div>
+				</center>
             </div>
           </h:form>
           <div class="text-center text-secondary mt-3">

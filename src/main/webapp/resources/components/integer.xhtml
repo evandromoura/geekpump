@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cc="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<cc:interface>
+	<cc:attribute name="id"/>
+	<cc:attribute name="value" required="true"/>
+	<cc:attribute name="styleClass" />
+	<cc:attribute name="size" />
+	<cc:attribute name="label" />
+	<cc:attribute name="showIcon" default="false" />
+	<cc:attribute name="required" default="false" />
+	<cc:attribute name="placeholder" default=""/>
+</cc:interface>
+
+<cc:implementation>
+	<div class="input-group text-center">
+	 <h:inputText 	id="#{cc.attrs.id}"
+ 					value="#{cc.attrs.value}"
+ 					onkeypress="mascara(this,soNumeros);"
+ 					onblur="mascara(this,soNumeros);"  
+	 				styleClass="#{cc.attrs.styleClass}"
+	 				size="#{cc.attrs.size}"
+	 				required="#{cc.attrs.required}"
+	 				requiredMessage="O campo #{cc.attrs.label} é obrigatório"
+	 				label="#{cc.attrs.label}">
+		<f:passThroughAttribute name="type" value="tel"/>
+		<f:passThroughAttribute name="required" value="required" />
+		<f:passThroughAttribute name="placeholder" value="#{cc.attrs.placeholder}"/>	
+		<cc:insertChildren />
+	 </h:inputText>
+	</div>
+</cc:implementation>
+
+</html>

@@ -3,6 +3,7 @@ package br.com.geekpump.to;
 import br.com.geekpump.entity.Usuario;
 
 public class PerfilTO {
+	
 	private Usuario usuario;
 
 	public Usuario getUsuario() {

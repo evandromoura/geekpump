@@ -15,6 +15,7 @@ public class HttpSecurityConfiguration {
 	    		.authenticationUri("/login").loginPage("/login").errorPage("/login").restoreOriginalRequest()
 	    	.forPath("/javax.faces.resource/*").unprotected()
 	    	.forPath("/assets/*").unprotected()
+	    	.forPath("/auth/*").unprotected()
 	    	.forPath("/favicon.ico").unprotected()
 			.forPath("/index.html").unprotected()
 		    .forPath("/logout").logout().redirectTo("/index");

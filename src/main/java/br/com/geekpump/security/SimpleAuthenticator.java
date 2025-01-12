@@ -10,6 +10,7 @@ import org.picketlink.credential.DefaultLoginCredentials;
 import org.picketlink.idm.model.basic.User;
 
 import br.com.geekpump.entity.Usuario;
+import br.com.geekpump.enums.TipoAutenticacaoEnum;
 import br.com.geekpump.service.usuario.UsuarioService;
 
 @Named
@@ -25,15 +26,22 @@ public class SimpleAuthenticator extends BaseAuthenticator {
 	
 	@Override
 	public void authenticate() {
-		Usuario usuario = usuarioService.login(credentials.getUserId(), credentials.getPassword());
-		if(usuario != null) {
-			customIdentity.setUsuario(usuario);
-			User user = new User(credentials.getUserId());
+		
+		if(customIdentity.getTipoAutenticacao() != null && customIdentity.getTipoAutenticacao().equals(TipoAutenticacaoEnum.GOOGLE)) {
+			User user = new User(customIdentity.getUsuario().getIdGoogle());
 			setAccount(user);
 			setStatus(AuthenticationStatus.SUCCESS);
 		}else {
-			setStatus(AuthenticationStatus.FAILURE);
-		}
+			Usuario usuario = usuarioService.login(credentials.getUserId(), credentials.getPassword());
+			if(usuario != null) {
+				customIdentity.setUsuario(usuario);
+				User user = new User(credentials.getUserId());
+				setAccount(user);
+				setStatus(AuthenticationStatus.SUCCESS);
+			}else {
+				setStatus(AuthenticationStatus.FAILURE);
+			}
+		}	
 	}
 	
 	public String logout() {
