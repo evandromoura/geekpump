@@ -31,48 +31,48 @@
 		    		<ui:repeat var="treinoUsuarioDivisaoExercicio" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
 		    		
 		    			<div class="card" style="margin-top:10px">
-		                  <div class="row row-0">
-		                    <div class="col-3">
-		                      <!-- Photo -->
-		                      
-		                      <label class="form-imagecheck mb-2">
-		                        <h:selectBooleanCheckbox value="#{treinoUsuarioDivisaoExercicio.selecionado}" styleClass="form-imagecheck-input">
-		                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
-		                        </h:selectBooleanCheckbox>
-		                        <span class="form-imagecheck-figure">
-		                          <img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).thumbnail}" class="form-imagecheck-image object-cover card-img-start" alt="" />	
-		                        </span>
-		                      </label>
-		                      
-		                    </div>
-		                    <div class="col">
-		                      <div class="card-body">
-		                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
-		                        <p class="text-secondary">
-		                        	<div class="row">
-				                  	  <div class="col-6">
-					                    <div class="datagrid-title">Carga</div>
-					                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
-					                  </div>
-				                  	  <div class="col-6">
-					                    <div class="datagrid-title">Series</div>
-					                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
-					                  </div>
-				                  	  <div class="col-6">
-					                    <div class="datagrid-title">Repetições</div>
-					                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
-					                  </div>
-				                  	  <div class="col-6">
-					                    <div class="datagrid-title">Descanso</div>
-					                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
-					                  </div>
-					                 </div> 
-		                        
-		                        </p>
-		                      </div>
-		                    </div>
-		                  </div>
-	                	</div>
+	                  <div class="row row-0">
+	                    <div class="col-3">
+	                      <!-- Photo -->
+	                      
+	                      <label class="form-imagecheck mb-2">
+	                        <h:selectBooleanCheckbox value="#{treinoUsuarioDivisaoExercicio.selecionado}" styleClass="form-imagecheck-input">
+	                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
+	                        </h:selectBooleanCheckbox>
+	                        <span class="form-imagecheck-figure">
+	                          <img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).thumbnail}" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+	                        </span>
+	                      </label>
+	                      
+	                    </div>
+	                    <div class="col">
+	                      <div class="card-body">
+	                        <h3 class="card-title">#{treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
+	                        <p class="text-secondary">
+	                        	<div class="row">
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Carga</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Series</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSerie}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Repetições</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdRepeticao}</div>
+				                  </div>
+			                  	  <div class="col-6">
+				                    <div class="datagrid-title">Descanso</div>
+				                    <div class="datagrid-content">#{treinoUsuarioDivisaoExercicio.qtdSegundoDescansoFormat}</div>
+				                  </div>
+				                 </div> 
+	                        
+	                        </p>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
 		    		</ui:repeat>
 		    		
 	    		</ui:fragment>

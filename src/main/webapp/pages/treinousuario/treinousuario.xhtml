@@ -32,26 +32,49 @@
     		
     		<ui:fragment rendered="#{!empty treinoUsuarioController.to.treinos}">
 	    		<ui:repeat var="treino" value="#{treinoUsuarioController.to.treinos}">
-	    			
-		    			<div class="card" style="margin-top:10px">
-		                  <div class="card-header">
-    		                <a href="/treinousuariodivisao/#{treino.uid}" style="text-decoration: none;"> 
-		                    	<h3 class="card-title">#{treino.nome}</h3>
-		                    </a> 	
-		                   <div class="card-actions btn-actions">
-		                   		<h:commandLink>
-									<i class="fa fa-trash"></i>
-									<f:setPropertyActionListener target="#{treinoUsuarioController.to.treinoUsuarioAcao}"
-										value="#{treino}" />
-									<f:ajax render="modal-excluir-panel" />
-									<f:passThroughAttribute name="data-bs-toggle" value="modal" />
-									<f:passThroughAttribute name="data-bs-target" value="#modal-excluir" />
-								</h:commandLink>
-	                 	   </div>
-		                  </div>
-		                  <div class="card-body p-0">
-		                  </div>
-		                </div>
+	    				<div class="row">
+		    				<div class="col-8 col-lg-10" style="margin-top:10px;padding-left:0px;padding-right:2px">
+		    					<a href="/treinousuariodivisao/#{treino.uid}" style="text-decoration: none;">
+					    			<div class="card" style="margin-top:10px">
+					                  <div class="card-header">
+					                    	<h3 class="card-title">#{treino.nome}</h3>
+					                   <div class="card-actions btn-actions">
+				                 	   </div>
+					                  </div>
+					                  <div class="card-body p-0">
+					                  </div>
+					                </div>
+				                </a>
+			                </div>
+			                <div class="col-2 col-lg-1" style="margin-top:10px;padding-left:0px;padding-right:2px">
+			                	<div class="card" style="margin-top:10px">
+				                  <div class="card-header">
+				                  		<h:commandLink>
+											<i class="fa fa-edit" style="font-size: 21px;"></i>
+											<f:setPropertyActionListener target="#{treinoUsuarioController.to.treinoUsuario}" value="#{treino}" />
+											<f:ajax render="modal-cadastro-panel" />
+											<f:passThroughAttribute name="data-bs-toggle" value="modal" />
+											<f:passThroughAttribute name="data-bs-target" value="#modal-cadastro" />
+										</h:commandLink>
+				                  </div>
+				                 </div> 
+			                </div>
+			                <div class="col-2 col-lg-1" style="margin-top:10px;padding-left:0px;padding-right:2px">
+			                	<div class="card" style="margin-top:10px">
+				                  <div class="card-header">
+					                	<h:commandLink>
+											<i class="fa fa-trash" style="font-size: 21px;"></i>
+											<f:setPropertyActionListener target="#{treinoUsuarioController.to.treinoUsuarioAcao}"
+												value="#{treino}" />
+											<f:ajax render="modal-excluir-panel" />
+											<f:passThroughAttribute name="data-bs-toggle" value="modal" />
+											<f:passThroughAttribute name="data-bs-target" value="#modal-excluir" />
+										</h:commandLink>
+									</div>
+								</div>		
+			                </div>
+			                
+			             </div>   
 		               
 	    		
 	    		</ui:repeat>
@@ -74,23 +97,25 @@
     	<div class="modal modal-blur fade" id="modal-cadastro" tabindex="-1" style="display: none;" aria-hidden="true">
 	      <div class="modal-dialog modal-dialog-centered" role="document">
 	        <div class="modal-content">
-	          <div class="modal-header">
-	            <h5 class="modal-title">Adicionar Treino</h5>
-	            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	          </div>
-	          <div class="modal-body">
-	            <div class="row mb-3 align-items-end">
-	              <div class="col">
-	                <label class="form-label">Nome</label>
-	                <h:inputText value="#{treinoUsuarioController.to.treinoUsuario.nome}" styleClass="form-control"></h:inputText>
-	                
-	              </div>
-	            </div>
-	          </div>
-	          <div class="modal-footer">
-	            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-	            <h:commandLink action="#{treinoUsuarioController.gravar()}" styleClass="btn btn-primary">Gravar</h:commandLink>
-	          </div>
+	          <h:panelGroup id="modal-cadastro-panel">	
+		          <div class="modal-header">
+		            <h5 class="modal-title">Adicionar Treino</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		          </div>
+		          <div class="modal-body">
+		            <div class="row mb-3 align-items-end">
+		              <div class="col">
+		                <label class="form-label">Nome</label>
+		                <h:inputText value="#{treinoUsuarioController.to.treinoUsuario.nome}" styleClass="form-control"></h:inputText>
+		                
+		              </div>
+		            </div>
+		          </div>
+		          <div class="modal-footer">
+		            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+		            <h:commandLink action="#{treinoUsuarioController.gravar()}" styleClass="btn btn-primary">Gravar</h:commandLink>
+		          </div>
+		        </h:panelGroup>  
 	        </div>
 	      </div>
     	</div>
