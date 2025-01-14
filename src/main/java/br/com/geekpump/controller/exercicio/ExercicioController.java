@@ -64,14 +64,16 @@ public class ExercicioController extends AbstractController<ExercicioTO> impleme
 	
 	private void comporImagem() {
 		try {
-			ExercicioImagem imagem = new ExercicioImagem();
-			imagem.setThumbnail(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getThumbnail().getInputStream())));
-			imagem.setExecucao(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getImagemExecucao().getInputStream())));
-			imagem.setAtivacao(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getImagemAtivacaoMuscular().getInputStream())));
-			imagem.setExercicio(getTo().getExercicio());
-			List<ExercicioImagem> imagens = new ArrayList<ExercicioImagem>();
-			imagens.add(imagem);
-			getTo().getExercicio().setImagens(imagens);
+			if(getTo().getThumbnail() != null) {
+				ExercicioImagem imagem = new ExercicioImagem();
+				imagem.setThumbnail(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getThumbnail().getInputStream())));
+				imagem.setExecucao(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getImagemExecucao().getInputStream())));
+				imagem.setAtivacao(Base64Utils.base64Encode(br.com.geekpump.util.UtilArquivo.converteInputStreamEmBytes(getTo().getImagemAtivacaoMuscular().getInputStream())));
+				imagem.setExercicio(getTo().getExercicio());
+				List<ExercicioImagem> imagens = new ArrayList<ExercicioImagem>();
+				imagens.add(imagem);
+				getTo().getExercicio().setImagens(imagens);
+			}	
 		}catch(Exception e) {
 			
 		}

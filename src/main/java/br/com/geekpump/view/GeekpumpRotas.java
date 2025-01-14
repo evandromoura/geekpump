@@ -19,7 +19,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		  @URLMapping(id = "treino_usuario", 			pattern = "/treinousuario",   viewId = "/pages/treinousuario/treinousuario.xhtml"),
 		  @URLMapping(id = "treino_usuario_divisao", 			pattern = "/treinousuariodivisao/#{parametro}",   viewId = "/pages/treinousuariodivisao/treinousuariodivisao.xhtml"),
 		  @URLMapping(id = "treino_usuario_divisao_exercicio", 	pattern = "/treinousuariodivisaoexercicio/#{parametro}",   viewId = "/pages/treinousuariodivisaoexercicio/treinousuariodivisaoexercicio.xhtml"),
-		  @URLMapping(id = "treino_usuario_divisao_exercicio_view", 	pattern = "/treinousuariodivisaoexercicio/view/#{uid}",   viewId = "/pages/treinousuariodivisaoexercicio/treinousuariodivisaoexercicio_view.xhtml"),
+		  @URLMapping(id = "treino_usuario_divisao_exercicio_view", 	pattern = "/treinousuariodivisaoexercicio/view/#{parametro}/#{uid}",   viewId = "/pages/treinousuariodivisaoexercicio/treinousuariodivisaoexercicio_view.xhtml"),
 		})
 public class GeekpumpRotas {
 	

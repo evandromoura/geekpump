@@ -1,15 +1,18 @@
 package br.com.geekpump.to;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.GrupamentoMuscular;
+import br.com.geekpump.entity.HistoricoCarga;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 
 public class TreinoUsuarioDivisaoExercicioTO {
 	
+	private TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio;
 	private TreinoUsuarioDivisao treinoUsuarioDivisao;
 	private List<TreinoUsuarioDivisaoExercicio> treinoUsuarioExercicios;
 	private List<TreinoUsuarioDivisaoExercicio> treinoUsuarioExerciciosExecutados;
@@ -17,10 +20,20 @@ public class TreinoUsuarioDivisaoExercicioTO {
 	private Exercicio exercicioAcao;
 	private List<Exercicio> exercicios;
 	private GrupamentoMuscular grupamentoMuscular;
-	
 	private Date data;
-
 	
+	private String uidDivisao;
+	
+	private List<HistoricoCarga> historicoCargas;
+
+	public TreinoUsuarioDivisaoExercicio getTreinoUsuarioDivisaoExercicio() {
+		return treinoUsuarioDivisaoExercicio;
+	}
+
+	public void setTreinoUsuarioDivisaoExercicio(TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio) {
+		this.treinoUsuarioDivisaoExercicio = treinoUsuarioDivisaoExercicio;
+	}
+
 	public TreinoUsuarioDivisao getTreinoUsuarioDivisao() {
 		return treinoUsuarioDivisao;
 	}
@@ -82,6 +95,25 @@ public class TreinoUsuarioDivisaoExercicioTO {
 
 	public void setGrupamentoMuscular(GrupamentoMuscular grupamentoMuscular) {
 		this.grupamentoMuscular = grupamentoMuscular;
+	}
+
+	public List<HistoricoCarga> getHistoricoCargas() {
+		if (historicoCargas == null) {
+			historicoCargas = new ArrayList<HistoricoCarga>();
+		}
+		return historicoCargas;
+	}
+
+	public void setHistoricoCargas(List<HistoricoCarga> historicoCargas) {
+		this.historicoCargas = historicoCargas;
+	}
+
+	public String getUidDivisao() {
+		return uidDivisao;
+	}
+
+	public void setUidDivisao(String uidDivisao) {
+		this.uidDivisao = uidDivisao;
 	}
 	
 

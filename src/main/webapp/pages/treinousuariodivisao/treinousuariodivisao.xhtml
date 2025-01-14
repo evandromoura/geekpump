@@ -24,6 +24,9 @@
                   <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-cadastro">
                     <i class="fa fa-plus" aria-hidden="true"></i> &#160;Criar Divisão
                   </a>
+                  <a href="/treinousuario" class="btn">
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> &#160;Voltar
+                  </a>
                   
                 </div>
               </div>
@@ -33,7 +36,7 @@
     		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
 	    		<ui:repeat var="treinoUsuarioDivisao" value="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
 	    			<div class="row">
-	    				<div class="col-8 col-lg-10" style="margin-top:10px;padding-left:0px;padding-right:2px">
+	    				<div class="col-10 col-lg-10" style="margin-top:10px;padding-left:0px;padding-right:2px">
 			    			<a href="/treinousuariodivisaoexercicio/#{treinoUsuarioDivisao.uid}">
 				    			<div class="card">
 				                  <div class="card-header">
@@ -43,35 +46,30 @@
 				                </div>
 				              </a>  
 			              </div>
-			              <div class="col-2 col-lg-1" style="margin-top:10px;padding-left:0px;padding-right:2px">
-			              	<div class="card">
-			                  <div class="card-header" style="text-align: center;">
-			                  		<h:commandLink>
-										<i class="fa fa-edit" style="font-size: 21px;"></i>
+			              
+			              <div class="col-2 col-lg-2" style="margin-top:10px;padding-left:0px;padding-right:2px">
+			                	<span class="dropdown">
+	                              <button class="btn dropdown-toggle align-text-top" style="height: 58px" data-bs-boundary="viewport" data-bs-toggle="dropdown" aria-expanded="false">
+	                              	<i class="fa fa-gears"></i>
+	                              </button>
+	                              <div class="dropdown-menu dropdown-menu-end" style="">
+									<h:commandLink styleClass="dropdown-item">
+										<i class="fa fa-edit" style="font-size: 21px;"></i>&#160; Editar
 										<f:setPropertyActionListener target="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisao}" value="#{treinoUsuarioDivisao}" />
 										<f:ajax render="modal-cadastrar-panel" />
 										<f:passThroughAttribute name="data-bs-toggle" value="modal" />
 										<f:passThroughAttribute name="data-bs-target" value="#modal-cadastro" />
 									</h:commandLink>
-			                  </div>
-			                </div>  
-			              
-			              </div>
-			              <div class="col-2 col-lg-1" style="margin-top:10px;padding-left:0px;padding-right:2px">
-			              	<div class="card">
-			                  <div class="card-header">
-		                  		<h:commandLink>
-									<i class="fa fa-trash" style="font-size: 21px;"></i>
-									<f:setPropertyActionListener target="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisaoAcao}" value="#{treinoUsuarioDivisao}" />
-									<f:ajax render="modal-excluir-panel" />
-									<f:passThroughAttribute name="data-bs-toggle" value="modal" />
-									<f:passThroughAttribute name="data-bs-target" value="#modal-excluir" />
-								</h:commandLink>
-			                  </div>
-			                </div>  
-			              
-			              </div>
-			                
+	                                <h:commandLink styleClass="dropdown-item">
+										<i class="fa fa-trash" style="font-size: 21px;"></i>&#160; Excluir
+										<f:setPropertyActionListener target="#{treinoUsuarioDivisaoController.to.treinoUsuarioDivisaoAcao}" value="#{treinoUsuarioDivisao}" />
+										<f:ajax render="modal-excluir-panel" />
+										<f:passThroughAttribute name="data-bs-toggle" value="modal" />
+										<f:passThroughAttribute name="data-bs-target" value="#modal-excluir" />
+									</h:commandLink>
+	                              </div>
+	                            </span>
+			                </div>
 		              </div>  
 	    		</ui:repeat>
     		</ui:fragment>

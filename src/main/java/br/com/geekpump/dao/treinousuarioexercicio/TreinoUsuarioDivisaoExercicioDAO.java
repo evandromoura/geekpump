@@ -67,14 +67,26 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 	
 	private List<TreinoUsuarioDivisaoExercicio> inicializar(List<TreinoUsuarioDivisaoExercicio> lista){
 		for(TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:lista) {
-			if(treinoUsuarioDivisaoExercicio.getExercicio() != null) {
-				if(treinoUsuarioDivisaoExercicio.getExercicio().getImagens() != null) {
-					treinoUsuarioDivisaoExercicio.getExercicio().getImagens().size();
-				}
-			}
+			inicializar(treinoUsuarioDivisaoExercicio);
 		}
 		return lista;
 		
+	}
+
+	private TreinoUsuarioDivisaoExercicio inicializar(TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio) {
+		if(treinoUsuarioDivisaoExercicio.getExercicio() != null) {
+			if(treinoUsuarioDivisaoExercicio.getExercicio().getImagens() != null) {
+				treinoUsuarioDivisaoExercicio.getExercicio().getImagens().size();
+			}
+		}
+		return treinoUsuarioDivisaoExercicio;
+	}
+
+	public TreinoUsuarioDivisaoExercicio recuperarPorUid(String uid) {
+		CriteriaQuery<TreinoUsuarioDivisaoExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioDivisaoExercicio.class);
+		Root<TreinoUsuarioDivisaoExercicio> root = criteria.from(TreinoUsuarioDivisaoExercicio.class);
+		return inicializar(getManager().createQuery(
+				criteria.select(root).where(getCriteriaBuilder().equal(root.get("uid"), uid))).getSingleResult());
 	}
 
  

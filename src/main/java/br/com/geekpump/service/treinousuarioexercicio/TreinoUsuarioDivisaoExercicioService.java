@@ -41,8 +41,19 @@ public class TreinoUsuarioDivisaoExercicioService extends AbstractService<Treino
 	
 	
 	
+	@Override
+	public void incluir(TreinoUsuarioDivisaoExercicio entidade) {
+		entidade.setUid(UUID.randomUUID().toString());
+		super.incluir(entidade);
+	}
+
 	public static void main(String[] args) {
 		System.out.println(UUID.randomUUID().toString());	
+	}
+
+	public TreinoUsuarioDivisaoExercicio recuperarPorUid(String uid) {
+
+		return treinoUsuarioDivisaoExercicioDAO.recuperarPorUid(uid);
 	}
 	
 }

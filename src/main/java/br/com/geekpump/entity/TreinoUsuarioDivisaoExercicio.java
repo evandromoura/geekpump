@@ -44,7 +44,9 @@ public class TreinoUsuarioDivisaoExercicio {
 	@Column(name="qtd_segundo_descanso")
 	private Integer qtdSegundoDescanso;
 	
-	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio")
+	private String uid;
+	
+	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio",orphanRemoval = true)
 	private List<ExecucaoTreino> execucoes;
 	
 	
@@ -143,6 +145,14 @@ public class TreinoUsuarioDivisaoExercicio {
 
 	public void setExecucoesTemp(List<ExecucaoTreino> execucoesTemp) {
 		this.execucoesTemp = execucoesTemp;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	} 
 	
 	
