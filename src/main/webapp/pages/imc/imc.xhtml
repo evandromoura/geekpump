@@ -10,40 +10,55 @@
     <ui:define name="corpo">
          <div class="card">
              <div class="card-header">
-               <h3 class="card-title">#{perfilController.to.usuario.nome}</h3>
+               <h3 class="card-title">Calculo IMC</h3>
              </div>
              <div class="card-body">
                
                <div class="mb-3 row">
-                 <label class="col-4 col-form-label">Nome</label>
-                 <div class="col">
-                   <h:inputText value="#{perfilController.to.usuario.nome}" styleClass="form-control" />
-                 </div>
-               </div>
-               
-               <div class="mb-3 row">
                  <label class="col-4 col-form-label">Peso</label>
                  <div class="col">
-                   <gk:decimal value="#{perfilController.to.usuario.peso}" styleClass="form-control" />
+                   <gk:decimal value="#{iMCController.to.peso}" styleClass="form-control" />
                  </div>
                </div>
                <div class="mb-3 row">
                  <label class="col-4 col-form-label">Altura</label>
                  <div class="col">
-                   <gk:integer value="#{perfilController.to.usuario.altura}" styleClass="form-control" />
+                   <gk:integer value="#{iMCController.to.altura}" styleClass="form-control" />
+                 
                  </div>
                </div>
-               <div class="mb-3 row">
-                 <label class="col-4 col-form-label">Nascimento</label>
-                 <div class="col">
-                 	<gk:data value="#{perfilController.to.usuario.dataNascimento}" />
-                 </div>
-               </div>
+               
              </div>
              <div class="card-footer text-end">
-             	<h:commandLink action= "#{perfilController.gravar()}" styleClass="btn btn-md btn-success">Gravar</h:commandLink>
+             	<h:commandLink action= "#{iMCController.calcularIMC()}" styleClass="btn btn-md btn-success">Calcular IMC</h:commandLink>
              </div>
            </div>
                
+               
     </ui:define>
-</ui:composition>    
+</ui:composition>    	
+<!-- 	
+		<h:form>
+			#{iMCController.to.mensagem}
+			<br />
+		
+			ALTURA
+			<h:inputText value="#{iMCController.to.altura}"></h:inputText>
+			<br />
+			
+			PESO
+			<h:inputText value="#{iMCController.to.peso}"></h:inputText>
+			<br />
+			
+			<h:commandLink action="#{iMCController.calcularIMC()}" value="Calcular"></h:commandLink>
+		
+			<br />
+			<ui:fragment rendered="#{iMCController.to.resultado ne null}">
+			   O Resultado é: #{iMCController.to.resultado}
+			</ui:fragment>
+		
+		</h:form>
+		-->
+
+
+   

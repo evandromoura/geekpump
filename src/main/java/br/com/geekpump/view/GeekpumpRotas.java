@@ -8,6 +8,9 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		  @URLMapping(id = "login", 			 		pattern = "/login",  viewId = "/login.xhtml"),
 		  @URLMapping(id = "perfil", 			 		pattern = "/perfil", viewId = "/pages/perfil/perfil.xhtml"),
 		  @URLMapping(id = "auth", 			 			pattern = "/auth",   viewId = "/auth.xhtml"),
+
+		  @URLMapping(id = "imc", 			 			pattern = "/imc",   viewId = "/pages/imc/imc.xhtml"),
+
 		  
 		  @URLMapping(id = "exercicio_list", 			pattern = "/exercicio",   viewId = "/pages/exercicio/exercicio_list.xhtml"),
 		  @URLMapping(id = "exercicio_edit", 			pattern = "/exercicio/edit/#{parametro}",   viewId = "/pages/exercicio/exercicio_form.xhtml"),
@@ -19,6 +22,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		  @URLMapping(id = "treino_usuario", 			pattern = "/treinousuario",   viewId = "/pages/treinousuario/treinousuario.xhtml"),
 		  @URLMapping(id = "treino_usuario_divisao", 			pattern = "/treinousuariodivisao/#{parametro}",   viewId = "/pages/treinousuariodivisao/treinousuariodivisao.xhtml"),
 		  @URLMapping(id = "treino_usuario_divisao_exercicio", 	pattern = "/treinousuariodivisaoexercicio/#{parametro}",   viewId = "/pages/treinousuariodivisaoexercicio/treinousuariodivisaoexercicio.xhtml"),
+		  @URLMapping(id = "treino_usuario_divisao_exercicio_view", 	pattern = "/treinousuariodivisaoexercicio/view/#{parametro}/#{uid}",   viewId = "/pages/treinousuariodivisaoexercicio/treinousuariodivisaoexercicio_view.xhtml"),
 		})
 public class GeekpumpRotas {
 	

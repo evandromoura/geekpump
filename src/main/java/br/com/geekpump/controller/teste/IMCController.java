@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
+import br.com.geekpump.security.CustomIdentity;
 import br.com.geekpump.service.imc.IMCService;
 import br.com.geekpump.to.IMCTO;
 
@@ -20,18 +21,19 @@ public class IMCController extends AbstractController<IMCTO> implements Serializ
 	private static final long serialVersionUID = 5140346605944619491L;
 	
 	private @Inject IMCService imcService;
-
+	
+	private @Inject CustomIdentity customIdentity;
 	
 	@PostConstruct
 	private void init() {
 		getTo().setMensagem("BEM VINDO");
-		//Consulta ao banco, etc...
+		getTo().setPeso(customIdentity.getUsuario().getPeso());
+		getTo().setAltura(customIdentity.getUsuario().getAltura());
 	}
 	
-	
 	public void calcularIMC() {
-		getTo().setResultado(
-				imcService.calcularIMC(Double.valueOf(getTo().getAltura()), Double.valueOf(getTo().getPeso())));
+//			getTo().setResultado(); 
+			imcService.calcularIMC(Double.valueOf(getTo().getAltura()), Double.valueOf(getTo().getPeso()));
 	}
 	
 	

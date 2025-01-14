@@ -3,27 +3,28 @@ package br.com.geekpump.to;
 public class IMCTO {
 
 	
-	private String peso;
-	private String altura;
-	private String resultado;
+	private Double peso;
+	private Double altura;
+	private Double resultado;
 	private String mensagem;
+	private Double imc;
 	
-	public String getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
-	public void setPeso(String peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
-	public String getAltura() {
+	public Double getAltura() {
 		return altura;
 	}
-	public void setAltura(String altura) {
+	public void setAltura(Double altura) {
 		this.altura = altura;
 	}
-	public String getResultado() {
+	public Double getResultado() {
 		return resultado;
 	}
-	public void setResultado(String resultado) {
+	public void setResultado(Double resultado) {
 		this.resultado = resultado;
 	}
 	public String getMensagem() {
@@ -32,6 +33,14 @@ public class IMCTO {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
+	public Double getImc() {
+		return imc;
+	}
+	public void setImc(Double imc) {
+		this.imc = imc;
+	}
+	
+	
 	
 	
 }
