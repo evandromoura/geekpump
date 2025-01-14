@@ -40,11 +40,11 @@ public class ExercicioDAO extends AbstractDAO<Exercicio> {
 	}
 	
 	private List<Exercicio> inicializar(List<Exercicio> exercicios){
-		for(Exercicio exercicio:exercicios) {
-			if(exercicio.getImagens() != null) {
-				exercicio.getImagens().size(); 
-			}
-		}
+//		for(Exercicio exercicio:exercicios) {
+//			if(exercicio.getImagens() != null) {
+//				exercicio.getImagens().size(); 
+//			}
+//		}
 		return exercicios;
 	}
 

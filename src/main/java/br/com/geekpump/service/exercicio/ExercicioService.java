@@ -1,6 +1,7 @@
 package br.com.geekpump.service.exercicio;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,5 +25,13 @@ public class ExercicioService extends AbstractService<Exercicio> {
 	public List<Exercicio> pesquisar(Exercicio exercicio){
 		return exercicioDAO.pesquisar(exercicio);
 	}
+
+	@Override
+	public void incluir(Exercicio entidade) {
+		entidade.setUid(UUID.randomUUID().toString());
+		super.incluir(entidade);
+	}
+	
+	
 
 }
