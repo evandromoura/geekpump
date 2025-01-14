@@ -10,6 +10,7 @@
     <title>GEEKPUMP</title>
     <meta name="viewport" content="width=device-width, user-scalable=no" />
 	<script src="/assets/js/tabler.min.js"></script>
+	<link rel="stylesheet" href="/assets/css/login.css?v=1.0" />
 	<link rel="stylesheet" href="/assets/css/tabler.css?v=1.0" />
 	<link rel="stylesheet" href="/assets/css/font-awesome.min.css?v=1.0" />
 </h:head>
@@ -21,9 +22,12 @@
       <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center" style="border-color: inherit !important">
         <div class="container container-tight my-5 px-lg-5">
           
-          <h2 class="h3 text-center mb-3">
-          	<img src="/assets/img/logo_bioface.png" style="width:50%" />
-          </h2>
+          <div style="width: 100%;text-align: center">
+		          	<div class="pro-sidebar-logo">
+						<div><a href="/home" style="text-decoration: none;color: #000">G</a></div>
+						<h5><a href="/home" style="text-decoration: none;color: #000">GEEK PUMP</a></h5>
+					</div>
+		  </div>    
           <h:form method="POST" prependId="false">
             <div class="mb-3">
               <label class="form-label">Usuário</label>
@@ -42,12 +46,6 @@
             <div class="mb-2">
               <label class="form-label">
                 Senha
-                <span class="form-label-description">
-                  <h:outputLink value="#{request.contextPath}/recuperar-senha" styleClass="btn btn-link">
-                      Esqueceu sua senha?
-                  </h:outputLink>
-                    
-                </span>
               </label>
               <div class="input-group input-group-flat">
                 <h:inputSecret id="j_password" styleClass="form-control underlined" required="true" label="#{resources['label.global.senha']}" redisplay="true">
@@ -70,8 +68,11 @@
             	}</script>
             </div>
             <div class="form-footer">
-              <h:commandButton id="login" value="Entrar" action="#{identity.login}" styleClass="btn btn-primary w-100" />
+              
               <center>
+              		<h:commandButton id="login" value="Entrar" action="#{identity.login}" styleClass="btn btn-primary" />
+              		<br />
+              		<br />
 					<div id="g_id_onload"
 						data-client_id="1002306781581-3h36rn4n52cn1cie4rior1gjmena080b.apps.googleusercontent.com"
 						data-context="signin" data-ux_mode="popup"
@@ -88,15 +89,13 @@
           </div>
           
         </div>
-	         <div class="logo-trix">
-		    	  <a href="http://www.trixti.com.br" title="Trix Ti" target="_blank"> <img src="/assets/img/logo.png" alt="Logo GEEKPUMP"></img></a>	 
-		    </div>
+	         
       </div>
       
       <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
         <!-- Photo -->
 		<div class="h-100 min-vh-100 logobioface" style="display: flex; justify-content: center; align-items: center;">
-		  <img src="/assets/img/logo_bioface_branca.png" alt="Logo Bioface"></img>
+<!-- 		  <img src="/assets/img/logo_bioface_branca.png" alt="Logo Bioface"></img> -->
 		</div>
       </div>
     </div>

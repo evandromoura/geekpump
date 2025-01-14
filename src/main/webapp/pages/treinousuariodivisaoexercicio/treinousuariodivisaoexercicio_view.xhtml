@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:gk="http://java.sun.com/jsf/composite/components"
+	template="/WEB-INF/templates/default.xhtml">
+
+
+	<ui:define name="scripts">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	</ui:define>
+	<ui:define name="corpo">
+		<div class="row g-2 align-items-center">
+              <div class="col">
+                <div class="page-pretitle">
+                </div>
+              </div>
+              <!-- Page title actions -->
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  
+                  <a href="/treinousuariodivisaoexercicio/#{treinoUsuarioDivisaoExercicioController.to.uidDivisao}" class="btn">
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> &#160;Voltar
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+		<h:panelGroup id="idPainelPrincipal">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
+				</div>
+				<div class="card-body">
+					<img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).execucao}" class="form-imagecheck-image object-cover card-img-start" alt="" />
+				</div>
+			</div>
+			<br />
+			<div class="card">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-3">
+							<label class="form-label">Carga</label>
+							<gk:decimal styleClass="form-control" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.carga}"/>
+						</div>
+						<div class="col-3">
+							<label class="form-label">Series</label>
+							<gk:integer styleClass="form-control" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.qtdSerie}"/>
+						</div>
+						<div class="col-3">
+							<label class="form-label">Repet.</label>
+							<gk:integer styleClass="form-control" value="#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.qtdRepeticao}"/>
+						</div>
+						<div class="col-3">
+							<label class="form-label">&#160;</label>
+							<h:commandLink action="#{treinoUsuarioDivisaoExercicioController.gravarInformacoes}" styleClass="btn btn-md">OK
+							</h:commandLink>	
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="accordion" id="accordion-example" style="background: #fff">
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="heading-1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
+                    Evolução de Carga
+                  </button>
+                </h3>
+                <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example" style="">
+                  <div class="accordion-body pt-0">
+                        <div id="container"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false">
+                    Ativação Muscular
+                  </button>
+                </h2>
+                <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordion-example" style="">
+                  <div class="accordion-body pt-0">
+                    <img src="data:image/png;base64,#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.imagens.get(0).ativacao}" class="form-imagecheck-image object-cover card-img-start" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <br />
+            <a href="#" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modal-excluir">
+              <i class="fa fa-times" aria-hidden="true"></i> &#160;Excluir
+            </a>
+            
+                
+		</h:panelGroup>
+		
+		
+		<div class="modal modal-blur fade" id="modal-excluir" tabindex="-1" style="display: none;" aria-hidden="true">
+    		  	
+		      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+		        <div class="modal-content">
+		          <h:panelGroup id="modal-excluir-panel"> 	
+			          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			          <div class="modal-status bg-danger"></div>
+			          <div class="modal-body text-center py-4">
+			            <h3>Confirmação</h3>
+			            <div class="text-secondary">Deseja remover #{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.nome} do seu treino?</div>
+			          </div>
+			          <div class="modal-footer">
+			            <div class="w-100">
+			              <div class="row">
+			                <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+			                    Cancel
+			                  </a></div>
+			                <div class="col">
+			                  <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.excluir()}" styleClass="btn btn-danger w-100">
+			                    Sim
+			                  </h:commandLink>
+			                  </div>
+			              </div>
+			            </div>
+			          </div>
+				   </h:panelGroup>   
+		        </div>
+		      </div>
+		 </div>
+		
+		<script>
+
+		let datas = #{treinoUsuarioDivisaoExercicioController.historicoCargaDataArray};
+		let cargas = #{treinoUsuarioDivisaoExercicioController.historicoCargaArray};
+		
+		Highcharts.chart('container', {
+		    chart: {
+		        type: 'line'
+		    },
+		    title: {
+		        text: ''
+		    },
+		    xAxis: {
+		        categories: datas
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'KG'
+		        }
+		    },
+		    plotOptions: {
+		        line: {
+		            dataLabels: {
+		                enabled: true
+		            },
+		            enableMouseTracking: false
+		        }
+		    },
+		    series: [{
+		        name: '#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.nome}',
+		        data: cargas
+		    }]
+		});
+
+		</script>
+
+	</ui:define>
+</ui:composition>

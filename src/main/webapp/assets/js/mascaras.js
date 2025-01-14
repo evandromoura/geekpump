@@ -58,6 +58,19 @@ function decimal(v){
     return v; 
 }
 
+function decimalDouble(v){
+	
+    v = v.replace(/\D/g, "");
+
+    v = v.replace(/(\d{2})$/, ".$1");
+
+    v = v.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    v = v.replace(/^0+(\d)/, "$1");
+
+    return v;
+}
+
 function maskMonetario(v){
     v=v.replace(/\D/g,"");
     v=v.replace(/(\d{2})$/,",$1");

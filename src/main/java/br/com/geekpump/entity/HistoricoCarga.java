@@ -26,7 +26,7 @@ public class HistoricoCarga {
 	private Double carga;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name= "data_cargo")
+	@Column(name= "data_carga")
 	private Date dataCarga;
 	
 	@ManyToOne

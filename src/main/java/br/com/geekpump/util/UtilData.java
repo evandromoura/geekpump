@@ -1,7 +1,9 @@
 package br.com.geekpump.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class UtilData {
 
@@ -169,5 +171,26 @@ public class UtilData {
 	 */
 	public static boolean data1MenorIgualData2(Date dt1, Date d2) {
 		return ((dt1.compareTo(d2) < 0) || (dt1.compareTo(d2) == 0));
+	}
+	
+	
+	/**
+	 * M�todo que formata date
+	 * 
+	 * @param date Date
+	 * @param pattern String
+	 * @return String
+	 */
+	public static String formatDate(java.util.Date date, String pattern) {
+		String retorno;
+		if (date == null) {
+			retorno = "";
+		} else {
+			SimpleDateFormat formatter = new SimpleDateFormat(pattern,
+					new Locale("pt", "BR"));
+			//			formatter.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+			retorno = formatter.format(date);
+		}
+		return retorno;
 	}
 }

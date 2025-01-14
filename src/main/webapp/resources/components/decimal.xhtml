@@ -17,9 +17,9 @@
 		<ui:fragment rendered="#{cc.attrs.showIcon}">
          	<span class="input-group-addon "><i class="fa-solid fa-dollar-sign" style="padding-left: 5px;font-size: 12px"></i></span>
          </ui:fragment>
-		 <h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}" onkeypress="mascara(this,decimal);" onblur="mascara(this,decimal);"  
+		 <h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}" onkeypress="mascara(this,decimalDouble);" onblur="mascara(this,decimalDouble);"  
 		 		styleClass="#{cc.attrs.styleClass}" size="#{cc.attrs.size}" required="#{cc.attrs.required}" label="#{cc.attrs.label}">
-			<f:convertNumber pattern="#,##0.00" />
+			<f:convertNumber pattern="#0.00" minFractionDigits="2" />
 			<f:passThroughAttribute name="type" value="tel"/>
 			<cc:insertChildren />
 		 </h:inputText>
