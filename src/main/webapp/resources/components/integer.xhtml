@@ -18,6 +18,8 @@
 	 <h:inputText 	id="#{cc.attrs.id}"
  					value="#{cc.attrs.value}"
  					onkeypress="mascara(this,soNumeros);"
+ 	 				onkeyup="mascara(this,soNumeros);"
+ 	 				onkeydown="mascara(this,soNumeros);"
  					onblur="mascara(this,soNumeros);"  
 	 				styleClass="#{cc.attrs.styleClass}"
 	 				size="#{cc.attrs.size}"
