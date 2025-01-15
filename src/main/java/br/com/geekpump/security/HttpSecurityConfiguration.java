@@ -16,6 +16,7 @@ public class HttpSecurityConfiguration {
 	    	.forPath("/javax.faces.resource/*").unprotected()
 	    	.forPath("/assets/*").unprotected()
 	    	.forPath("/auth/*").unprotected()
+	    	.forPath("/view/*").unprotected()
 	    	.forPath("/favicon.ico").unprotected()
 			.forPath("/index.html").unprotected()
 		    .forPath("/logout").logout().redirectTo("/index");

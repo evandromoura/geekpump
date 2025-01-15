@@ -27,6 +27,8 @@ public class Exercicio {
 	
 	private String imagem;
 	
+	private String uid;
+	
 	@ManyToOne
 	@JoinColumn(name="id_grupamento_muscular")
 	private GrupamentoMuscular grupamentoMuscular;
@@ -59,6 +61,14 @@ public class Exercicio {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public GrupamentoMuscular getGrupamentoMuscular() {
