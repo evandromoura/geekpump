@@ -51,6 +51,9 @@ public class Usuario {
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_nascimento")
 	private Date dataNascimento;
+	
+	@Enumerated(EnumType.STRING)
+	private GeneroEnum genero;
 
 	public Integer getId() {
 		return id;
@@ -124,6 +127,12 @@ public class Usuario {
 	}
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	public GeneroEnum getGenero() {
+		return genero;
+	}
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
 	}
 	public static void main(String[] args) {
 		System.out.println(UUID.randomUUID().toString());

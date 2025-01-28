@@ -38,6 +38,16 @@
                  <div class="col">
                  	<gk:data value="#{perfilController.to.usuario.dataNascimento}" />
                  </div>
+                 
+                 <div class="mb-3 row">
+                 <label class="col-4 col-form-label">Genero</label>
+                 <div class="col">
+                   <h:selectOneMenu value="#{perfilController.to.usuario.genero}" styleClass="form-control" style="margin-left:7px">
+						<f:selectItems value="#{combosBean.generos}" var="genero" itemValue="#{genero}" itemLabel="#{genero.name}" />                   	
+                   </h:selectOneMenu>
+                 </div>
+               </div>
+                 
                </div>
              </div>
              <div class="card-footer text-end">

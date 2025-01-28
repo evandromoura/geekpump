@@ -15,6 +15,15 @@
              <div class="card-body">
                
                <div class="mb-3 row">
+                 <label class="col-4 col-form-label">Genero</label>
+                 <div class="col">
+                   <h:selectOneMenu value="#{iMCController.to.genero}" styleClass="form-control">
+						<f:selectItems value="#{combosBean.generos}" var="genero" itemValue="#{genero}" itemLabel="#{genero.name}" />                   	
+                   </h:selectOneMenu>
+                 </div>
+               </div>
+               
+               <div class="mb-3 row">
                  <label class="col-4 col-form-label">Peso</label>
                  <div class="col">
                    <gk:decimal value="#{iMCController.to.peso}" styleClass="form-control" />
@@ -33,32 +42,12 @@
              	<h:commandLink action= "#{iMCController.calcularIMC()}" styleClass="btn btn-md btn-success">Calcular IMC</h:commandLink>
              </div>
            </div>
-               
+           <ui:fragment rendered="#{iMCController.to.resultado.mensagem ne null}">
+           	  <br />	
+           	  <div class="alert alert-important alert-#{iMCController.to.resultado.cor} alert-dismissible">
+				  #{iMCController.to.resultado.mensagem}
+           	  </div>	
+			</ui:fragment>
                
     </ui:define>
 </ui:composition>    	
-<!-- 	
-		<h:form>
-			#{iMCController.to.mensagem}
-			<br />
-		
-			ALTURA
-			<h:inputText value="#{iMCController.to.altura}"></h:inputText>
-			<br />
-			
-			PESO
-			<h:inputText value="#{iMCController.to.peso}"></h:inputText>
-			<br />
-			
-			<h:commandLink action="#{iMCController.calcularIMC()}" value="Calcular"></h:commandLink>
-		
-			<br />
-			<ui:fragment rendered="#{iMCController.to.resultado ne null}">
-			   O Resultado é: #{iMCController.to.resultado}
-			</ui:fragment>
-		
-		</h:form>
-		-->
-
-
-   

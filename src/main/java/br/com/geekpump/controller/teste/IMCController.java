@@ -26,15 +26,15 @@ public class IMCController extends AbstractController<IMCTO> implements Serializ
 	
 	@PostConstruct
 	private void init() {
-		getTo().setMensagem("BEM VINDO");
 		getTo().setPeso(customIdentity.getUsuario().getPeso());
 		getTo().setAltura(customIdentity.getUsuario().getAltura());
+		getTo().setGenero(customIdentity.getUsuario().getGenero());
 	}
 	
 	public void calcularIMC() {
-//			getTo().setResultado(); 
-			imcService.calcularIMC(Double.valueOf(getTo().getAltura()), Double.valueOf(getTo().getPeso()));
+		getTo().setResultado(imcService.calcularIMC(getTo().getGenero(), 
+				Double.valueOf(getTo().getAltura()) / 100,
+				Double.valueOf(getTo().getPeso())));
 	}
-	
 	
 }

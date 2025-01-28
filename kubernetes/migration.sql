@@ -1,1 +1,1 @@
-ALTER TABLE public.treino_usuario_divisao_exercicio ADD uid character varying NULL;
+ALTER TABLE public.usuario ADD genero character varying NULL;
