@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.GrupamentoMuscular;
 import br.com.geekpump.entity.HistoricoCarga;
+import br.com.geekpump.entity.HistoricoRepeticao;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 
@@ -25,6 +26,8 @@ public class TreinoUsuarioDivisaoExercicioTO {
 	private String uidDivisao;
 	
 	private List<HistoricoCarga> historicoCargas;
+	
+	private List<HistoricoRepeticao> historicoRepeticoes;
 
 	public TreinoUsuarioDivisaoExercicio getTreinoUsuarioDivisaoExercicio() {
 		return treinoUsuarioDivisaoExercicio;
@@ -106,6 +109,14 @@ public class TreinoUsuarioDivisaoExercicioTO {
 
 	public void setHistoricoCargas(List<HistoricoCarga> historicoCargas) {
 		this.historicoCargas = historicoCargas;
+	}
+
+	public List<HistoricoRepeticao> getHistoricoRepeticoes() {
+		return historicoRepeticoes;
+	}
+
+	public void setHistoricoRepeticoes(List<HistoricoRepeticao> historicoRepeticoes) {
+		this.historicoRepeticoes = historicoRepeticoes;
 	}
 
 	public String getUidDivisao() {
