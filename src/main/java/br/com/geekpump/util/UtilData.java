@@ -1,5 +1,6 @@
 package br.com.geekpump.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Locale;
 
 public class UtilData {
 
+	
 	public static String formatarHora(Integer hora) {
 		Integer ss = hora % 60;  
 		hora /= 60;  
@@ -40,6 +42,7 @@ public class UtilData {
 				calendar.set(Calendar.HOUR_OF_DAY, horas);
 				calendar.set(Calendar.MINUTE, minutos);
 				calendar.set(Calendar.SECOND, segundos);
+				calendar.set(Calendar.MILLISECOND, 0);
 				data = calendar.getTime();
 			}
 		} catch (Exception e) {
@@ -192,5 +195,25 @@ public class UtilData {
 			retorno = formatter.format(date);
 		}
 		return retorno;
+	}
+	
+	public static Date getDataPorStringAAAMMDD(String valor)throws Exception{
+		Date retorno = null;
+		if(!UtilString.vazio(valor)&&(valor.replaceAll(" ","").length() ==8)){
+			retorno = new Date((valor.substring(4,6))+"/"+valor.substring(6,8)+"/"+(valor.substring(0,4)));
+		}else if(!UtilString.vazio(valor)&&(valor.replaceAll(" ","").length() ==21)){
+			DateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+			retorno = dataFormat.parse(valor.substring(8,10)+"/"+(valor.substring(5,7))+"/"+(valor.substring(0,4))+" "+(valor.substring(10,18)));
+		}
+		return retorno;
+	}
+	
+	public static String getDiaSemana(Date data) {
+		String dataFormatada = null;
+		if (data != null) {
+			SimpleDateFormat f = new SimpleDateFormat("EEE");
+			dataFormatada = f.format(data);
+		}
+		return dataFormatada;
 	}
 }

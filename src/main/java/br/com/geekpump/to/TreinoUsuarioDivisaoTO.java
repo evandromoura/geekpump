@@ -1,5 +1,6 @@
 package br.com.geekpump.to;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.geekpump.entity.TreinoUsuario;
@@ -12,6 +13,8 @@ public class TreinoUsuarioDivisaoTO {
 	private TreinoUsuarioDivisao treinoUsuarioDivisaoAcao;
 	
 	private List<TreinoUsuarioDivisao> treinoUsuarioDivisoes;
+	
+	private List<CalendarioHorizontalTO> calendarios;
 	
 	
 	public TreinoUsuario getTreinoUsuario() {
@@ -53,6 +56,17 @@ public class TreinoUsuarioDivisaoTO {
 
 	public void setTreinoUsuarioDivisoes(List<TreinoUsuarioDivisao> treinoUsuarioDivisoes) {
 		this.treinoUsuarioDivisoes = treinoUsuarioDivisoes;
+	}
+
+	public List<CalendarioHorizontalTO> getCalendarios() {
+		if (calendarios == null) {
+			calendarios = new ArrayList<CalendarioHorizontalTO>();
+		}
+		return calendarios;
+	}
+
+	public void setCalendarios(List<CalendarioHorizontalTO> calendarios) {
+		this.calendarios = calendarios;
 	}
 	
 	

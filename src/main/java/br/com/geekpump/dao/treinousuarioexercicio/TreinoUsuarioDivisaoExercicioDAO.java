@@ -26,7 +26,7 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 		CriteriaQuery<TreinoUsuarioDivisaoExercicio> criteria = getCriteriaBuilder().createQuery(TreinoUsuarioDivisaoExercicio.class);
 		Root<TreinoUsuarioDivisaoExercicio> root = criteria.from(TreinoUsuarioDivisaoExercicio.class);
 		return inicializar(getManager().createQuery(
-				criteria.select(root).distinct(true).where(comporPredicates(root, treinoUsuarioDivisao, data, executado)))
+				criteria.select(root).distinct(true).where(comporPredicates(root, treinoUsuarioDivisao, data, executado)).orderBy(getCriteriaBuilder().asc(root.get("id"))))
 				.getResultList());
 	}
 	

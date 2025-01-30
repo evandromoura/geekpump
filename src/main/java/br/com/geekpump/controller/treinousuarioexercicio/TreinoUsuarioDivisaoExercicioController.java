@@ -2,7 +2,9 @@ package br.com.geekpump.controller.treinousuarioexercicio;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -52,7 +54,16 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 			inicializarView();
 		} else {
 			inicializarFiltros();
-			getTo().setData(new Date());
+			if(getRequest().getParameter("data") != null) {
+				try {
+					Date data = UtilData.getDataPorStringAAAMMDD(getRequest().getParameter("data"));
+					getTo().setData(data);
+				}catch(Exception e) {
+					getTo().setData(new Date());	
+				}
+			}else {
+				getTo().setData(new Date());
+			}
 			pesquisar();
 		}
 	}
@@ -266,6 +277,25 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 		}
 		sb.append("]");
 		return sb.toString();
+	}
+	
+	public String getGruposExercicios() {
+		List<String> grupos = new ArrayList<String>();
+		for (TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:getTo().getTreinoUsuarioExercicios()) {
+			if(!grupos.contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome())) {
+				grupos.add(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome());
+			}
+		}
+		for (TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:getTo().getTreinoUsuarioExerciciosExecutados()) {
+			if(!grupos.contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome())) {
+				grupos.add(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome());
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		for(String grupo:grupos) {
+			sb.append(grupo).append(", ");
+		}
+		return sb.toString().length() > 0? sb.toString().substring(0, sb.toString().length() - 2):"";
 	}
 
 }

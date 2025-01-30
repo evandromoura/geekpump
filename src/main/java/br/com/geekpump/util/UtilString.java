@@ -32,7 +32,7 @@ public class UtilString implements Serializable {
 	 *            String
 	 * @return boolean
 	 */
-	public boolean vazio(String valor) {
+	public static boolean vazio(String valor) {
 		boolean retorno = false;
 		if (valor == null || valor.equals("")) {
 			retorno = true;

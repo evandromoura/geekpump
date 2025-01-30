@@ -6,6 +6,15 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 
+
+	<ui:define name="scripts">
+		<link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css" />
+		<link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css" />
+		
+		<script src="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/owl.carousel.js"></script>	
+	</ui:define>
+	
+	
     <ui:define name="corpo">
     
     	<div class="row g-2 align-items-center">
@@ -31,6 +40,91 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+            	<div class="col-lg-12">
+            	<br />
+				<div class="nonloop owl-carousel owl-loaded owl-drag">
+					<div class="owl-stage-outer">
+						<div class="owl-stage"
+							style="transition: all; width: 2244px; transform: translate3d(-654px, 0px, 0px);">
+							<ui:fragment rendered="#{!empty treinoUsuarioDivisaoController.to.calendarios}">
+								<ui:repeat var="calendario" value="#{treinoUsuarioDivisaoController.to.calendarios}">
+									<div class="owl-item" style="margin-right: 10px;">
+										<div class="item">
+												<div class="card">
+													<div class="card-body">
+														<ui:fragment rendered="#{calendario.execucoes.size() > 0}">
+															<div class="card-title">
+																<a style="text-decoration: none" href="/treinousuariodivisaoexercicio/#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.uid}?data=#{calendario.dataFormatParam}">
+																	#{calendario.dataFormat} <small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
+																</a>
+																<a style="text-decoration: none" href="/treinousuariodivisaoexercicio/#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.uid}?data=#{calendario.dataFormatParam}">
+																	<span class="badge" style="border-color: #{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.cor};background:#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.cor}">
+																		#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.nome}
+																	</span>
+																</a>
+																<br />
+																<span class="gl-star-rating gl-star-rating--ltr" data-star-rating="">
+																	<span class="gl-star-rating--stars" data-rating="5">
+																		<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) gt 0}">	
+																			<span data-index="0" data-value="1" class="gl-active" style="color:#f59f00"><i class="fa fa-star" aria-hidden="true"></i></span>
+																			<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 25}">
+																				<span data-index="1" data-value="2" class="gl-active" style="color:#f59f00"><i class="fa fa-star" aria-hidden="true"></i></span>
+																				<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 50}">
+																					<span data-index="2" data-value="3" class="gl-active" style="color:#f59f00"><i class="fa fa-star" aria-hidden="true"></i></span>
+																						<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 75}">
+																							<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) eq 100}">
+																								<span data-index="4" data-value="5" class="gl-selected gl-active" style="color:#f59f00"><i class="fa fa-star" aria-hidden="true"></i></span>
+																							</ui:fragment>	
+																							<ui:fragment rendered="#{!(((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) eq 100)}">
+																								<span data-index="4" data-value="5" class="gl-selected gl-active" style="color:#f59f00"><i class="fa fa-star-half-o" aria-hidden="true"></i></span>
+																							</ui:fragment>			
+																						</ui:fragment>
+																						<ui:fragment rendered="#{!(((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 75)}">
+																							<span data-index="3" data-value="4" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																						</ui:fragment>		
+																				</ui:fragment>
+																				<ui:fragment rendered="#{!(((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 50)}">
+																					<span data-index="2" data-value="3" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																					<span data-index="3" data-value="4" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																				</ui:fragment>	
+																			</ui:fragment>
+																			<ui:fragment rendered="#{!(((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.exercicios.size()) ge 25)}">
+																				<span data-index="1" data-value="2" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																				<span data-index="2" data-value="3" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																				<span data-index="3" data-value="4" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+																			
+																			</ui:fragment>
+																		</ui:fragment>
+																	</span>
+																</span>	
+															</div>	
+													</ui:fragment>
+													<ui:fragment rendered="#{calendario.execucoes.size() eq 0}">
+															<div class="card-title">
+																#{calendario.dataFormat} <small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
+																<div class="badge" style="border-color: #fff;background:#fff;">
+																	&#160;&#160; ...
+																</div>
+																<span class="gl-star-rating gl-star-rating--ltr" data-star-rating="">
+																	&#160;&#160;
+																</span>
+															</div>
+																
+													</ui:fragment>
+													</div>
+												</div>
+										</div>
+											
+										</div>
+								</ui:repeat>
+							</ui:fragment>		
+						</div>
+					</div>
+				</div>
+			</div>
+            </div>
+            
     	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
     		
     		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoController.to.treinoUsuarioDivisoes}">
@@ -150,5 +244,18 @@
 		        </div>
 		      </div>
 		 </div>
+		 
+		 <script>
+		 var totalItems = $('.owl-carousel .owl-item').length;
+		 console.log('Total itens', totalItems);
+		 var owl = $('.owl-carousel').owlCarousel({
+		        loop:false,
+		        margin:10,
+		        autoplayHoverPause:false
+		    });
+		 var totalItems = owl.find('.owl-stage').children().length;
+		 var lastIndex = totalItems - 1;
+		 owl.trigger('to.owl.carousel', [lastIndex, 50, true]);
+		 </script>
     </ui:define>
 </ui:composition>    

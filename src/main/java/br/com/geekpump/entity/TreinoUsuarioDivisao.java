@@ -1,11 +1,14 @@
 package br.com.geekpump.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,6 +30,9 @@ public class TreinoUsuarioDivisao {
 	@ManyToOne
 	@JoinColumn(name="id_treino_usuario")
 	private TreinoUsuario treinoUsuario;
+	
+	@OneToMany(mappedBy = "treinoUsuarioDivisao")
+	private List<TreinoUsuarioDivisaoExercicio> exercicios;
 
 	public String getUid() {
 		return uid;
@@ -66,6 +72,14 @@ public class TreinoUsuarioDivisao {
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	public List<TreinoUsuarioDivisaoExercicio> getExercicios() {
+		return exercicios;
+	}
+
+	public void setExercicios(List<TreinoUsuarioDivisaoExercicio> exercicios) {
+		this.exercicios = exercicios;
 	}
 
 }

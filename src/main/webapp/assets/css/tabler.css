@@ -20152,6 +20152,7 @@ Image check
   border: var(--tblr-border-width) var(--tblr-border-style) var(--tblr-border-color);
   border-radius: var(--tblr-border-radius);
   transition: opacity 0.3s;
+  border-color: #000;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-imagecheck-figure:before {
