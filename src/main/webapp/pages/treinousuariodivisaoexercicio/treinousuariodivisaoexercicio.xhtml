@@ -7,6 +7,7 @@
 	xmlns:gk="http://java.sun.com/jsf/composite/components" 
 	template="/WEB-INF/templates/default.xhtml">
 
+	
     <ui:define name="corpo">
     	<h:panelGroup id="idPainelPrincipal" styleClass="row g-2 align-items-center">
 	    	<div class="row">
@@ -29,7 +30,9 @@
 	              
 	        </div>
         	<div class="row align-items-center">
-        		<div class="col"><b>#{treinoUsuarioDivisaoExercicioController.gruposExercicios}</b></div>
+        		<div class="col">
+        			<b> #{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados.size()} / #{(treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios.size() + treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados.size())}</b> Exercícios
+        		</div>
 	        	<div class="col">
 	        		<div class="row">
 	        		   <div class="offset-1 col-11 offset-lg-9 col-lg-3">
@@ -42,7 +45,44 @@
 			         </div>   
 		         </div>  
 	        </div>
-	        
+	        <div class="row align-items-center">
+	        		
+	        		<div class="accordion" id="accordion-example" style="margin-top: 20px;width: 100%">
+									<div class="accordion-item" style="background: #fff">
+										<h2 class="accordion-header" id="heading-1">
+											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
+												<ui:repeat var="grupamento" value="#{treinoUsuarioDivisaoExercicioController.gruposExercicios.keySet()}" varStatus="status">
+													#{grupamento.nome}<h:outputText value="," rendered="#{status.index lt treinoUsuarioDivisaoExercicioController.gruposExercicios.keySet().size() - 1}" /> 
+												</ui:repeat>
+											</button>
+										</h2>
+										<div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example" style="">
+											<div class="accordion-body pt-0">
+												<table class="table table-borderless" style="height: 100%;width: 100%">
+													<tbody>
+													<ui:repeat var="grupamento" value="#{treinoUsuarioDivisaoExercicioController.gruposExercicios.keySet()}">
+															<tr>
+																<td><b>#{grupamento.nome}</b></td>
+																<td class="w-50">
+																	<div class="progress progress-md" style="height: 15px">
+																		<div class="progress-bar bg-primary" style="width: #{treinoUsuarioDivisaoExercicioController.gruposExercicios.get(grupamento) * 100 / (treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios.size() + treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados.size())}%">
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<h:outputText value="#{treinoUsuarioDivisaoExercicioController.gruposExercicios.get(grupamento) * 100 / (treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios.size() + treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados.size())}">
+											        					<f:convertNumber pattern="#,##0.00" />
+											        				</h:outputText>%
+																</td>
+															</tr>
+													</ui:repeat>		
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>	
+	        </div>
 	         
 	    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
 	    		
@@ -243,6 +283,7 @@
 	        </div>
 	      </div>
 	    </div>
+	    
     	
     </ui:define>
 </ui:composition>    
