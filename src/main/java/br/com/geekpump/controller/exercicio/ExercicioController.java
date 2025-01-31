@@ -79,5 +79,11 @@ public class ExercicioController extends AbstractController<ExercicioTO> impleme
 		}
 	}
 	
+	public void excluir() {
+//		exercicioService.excluir(getTo().getExercicioAcao());
+//		pesquisar();
+		
+	}
+	
 	
 }
