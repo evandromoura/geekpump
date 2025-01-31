@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.dao.exercicio.ExercicioDAO;
 import br.com.geekpump.entity.Exercicio;
+import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.service.AbstractService;
 
 @Stateless
@@ -30,6 +31,10 @@ public class ExercicioService extends AbstractService<Exercicio> {
 	public void incluir(Exercicio entidade) {
 		entidade.setUid(UUID.randomUUID().toString());
 		super.incluir(entidade);
+	}
+
+	public Integer countPorTreinoUsuarioDivisao(TreinoUsuarioDivisao divisao) {
+		return exercicioDAO.countPorTreinoUsuarioDivisao(divisao);
 	}
 	
 	

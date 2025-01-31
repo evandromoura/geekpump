@@ -6,6 +6,7 @@
 <cc:interface>
 	<cc:attribute name="value" required="true"/>
 	<cc:attribute name="styleClass" default="form-control"/>
+	<cc:attribute name="style" default=""/>
 	<cc:attribute name="disabled" default="false" />
 	<cc:attribute name="timeZone" default="America/Sao_Paulo" />
 	<cc:attribute name="label" default="" />
@@ -15,7 +16,7 @@
 
 <cc:implementation>
 	 
-	<div class="input-group text-center">
+	<div class="input-group text-center" style="#{cc.attrs.style}">
 		<ui:fragment rendered="#{!cc.attrs.hideIcon}">
 <!--          	<span class="input-group-addon "><i class="fa fa-calendar" style="padding-left: 5px;font-size: 12px"></i></span> -->
          </ui:fragment>

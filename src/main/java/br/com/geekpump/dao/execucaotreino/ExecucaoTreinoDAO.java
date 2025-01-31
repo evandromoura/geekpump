@@ -43,11 +43,11 @@ public class ExecucaoTreinoDAO extends AbstractDAO<ExecucaoTreino> {
 	
 	public List<ExecucaoTreino> inicializarLista(List<ExecucaoTreino> execucoes){
 		
-		for(ExecucaoTreino execucao:execucoes) {
-			if(execucao.getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao().getExercicios() != null) {
-				execucao.getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao().getExercicios().size();
-			}
-		}
+//		for(ExecucaoTreino execucao:execucoes) {
+//			if(execucao.getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao().getExercicios() != null) {
+//				execucao.getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao().getExercicios().size();
+//			}
+//		}
 		
 		return execucoes;
 	}

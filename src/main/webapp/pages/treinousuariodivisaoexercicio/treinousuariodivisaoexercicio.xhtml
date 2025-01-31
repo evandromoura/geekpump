@@ -8,7 +8,7 @@
 	template="/WEB-INF/templates/default.xhtml">
 
     <ui:define name="corpo">
-    	<h:panelGroup id="idPainelPrincipal">
+    	<h:panelGroup id="idPainelPrincipal" styleClass="row g-2 align-items-center">
 	    	<div class="row">
 	              <div class="col">
 	                <div class="page-title">
@@ -16,7 +16,6 @@
 		                  #{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisao.nome}<br />
 	                  </div>
 	                </div>
-	                #{treinoUsuarioDivisaoExercicioController.gruposExercicios}
 	              </div>
 	              <!-- Page title actions -->
 	              <div class="col-auto">
@@ -30,16 +29,16 @@
 	              
 	        </div>
         	<div class="row align-items-center">
-        		<div class="col"></div>
+        		<div class="col"><b>#{treinoUsuarioDivisaoExercicioController.gruposExercicios}</b></div>
 	        	<div class="col">
 	        		<div class="row">
-	        		   <div class="col-9">
-		                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
-		                  </gk:data>
+	        		   <div class="offset-1 col-11 offset-lg-9 col-lg-3">
+	        		   	  <div class="btn-group" role="group" aria-label="Basic example" style="margin-top:10px;width:100%">	
+		        		   	  <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-md btn-default"><i class="fa fa-search" aria-hidden="true"></i></h:commandLink>	
+			                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}" style="width: 100%" />
+		                  </div>
 			            </div>
-			            <div class="col-2">
-			               <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-sm btn-primary">OK</h:commandLink>
-			            </div>
+			            
 			         </div>   
 		         </div>  
 	        </div>
@@ -59,7 +58,7 @@
 		                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
 		                        </h:selectBooleanCheckbox>
 		                        <span class="form-imagecheck-figure">
-		                          <img src="https://geekpump.com.br/view/image?uid=#{treinoUsuarioDivisaoExercicio.exercicio.uid}&amp;type=thumbnail" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+		                          <img src="https://geekpump.com.br/view/image?uid=#{treinoUsuarioDivisaoExercicio.exercicio.uid}&amp;type=thumbnail" class="form-imagecheck-image object-cover card-img-start" alt=""  style="width:100px; max-width: 150px" />	
 		                        </span>
 		                      </label>
 		                    </div>
@@ -82,7 +81,7 @@
 		                  </div>
 		                    <div class="card-actions">
 		                      <a href="/treinousuariodivisaoexercicio/view/#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisao.uid}/#{treinoUsuarioDivisaoExercicio.uid}" class="">
-		                        <i class="fa fa-caret-right" style="font-size: 21px;"></i>
+		                        <i class="fa fa-caret-right" style="font-size: 25px;"></i>
 		                      </a>
 		                      
 		                    </div>
@@ -173,7 +172,7 @@
 				        <div class="empty">
 				          <p class="empty-title">Nenhum exercicio executado!</p>
 				          <p class="empty-subtitle text-secondary">
-				            Vamos lá, você consegue.
+				            Clique no exercício para executar.
 				          </p>
 				        </div>
 				      </div>

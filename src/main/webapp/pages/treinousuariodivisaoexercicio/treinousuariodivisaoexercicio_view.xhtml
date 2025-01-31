@@ -30,8 +30,7 @@
                   
                 </div>
               </div>
-            </div>
-		<h:panelGroup id="idPainelPrincipal">
+              <h:panelGroup id="idPainelPrincipal">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.nome}</h3>
@@ -69,11 +68,11 @@
 			<div class="accordion" id="accordion-example" style="background: #fff">
               <div class="accordion-item">
                 <h3 class="accordion-header" id="heading-1">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true">
                     Evolução de Carga
                   </button>
                 </h3>
-                <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordion-example" style="">
+                <div id="collapse-1" class="accordion-collapse collapse show" data-bs-parent="#accordion-example" style="">
                   <div class="accordion-body pt-0">
                         <div id="container"></div>
                   </div>
@@ -110,12 +109,13 @@
             </div>
             
             <br />
-            <a href="#" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modal-excluir">
+            <a href="#" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modal-excluir" style="margin-bottom: 20px">
               <i class="fa fa-times" aria-hidden="true"></i> &#160;Excluir
             </a>
-            
                 
 		</h:panelGroup>
+            </div>
+		
 		
 		
 		<div class="modal modal-blur fade" id="modal-excluir" tabindex="-1" style="display: none;" aria-hidden="true">
@@ -157,6 +157,9 @@
 		    chart: {
 		        type: 'line'
 		    },
+		    credits: {
+		        enabled: false
+		    },
 		    title: {
 		        text: ''
 		    },
@@ -178,7 +181,12 @@
 		    },
 		    series: [{
 		        name: '#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.nome}',
-		        data: cargas
+		        data: cargas,
+		        lineWidth: 4,
+		        marker: {
+		            enabled: true,
+		            radius: 5
+		        }
 		    }]
 		});
 
@@ -193,6 +201,9 @@
 		    chart: {
 		        type: 'line'
 		    },
+		    credits: {
+		        enabled: false
+		    },
 		    title: {
 		        text: ''
 		    },
@@ -201,7 +212,7 @@
 		    },
 		    yAxis: {
 		        title: {
-		            text: 'Repetições'
+		            text: 'QTD'
 		        }
 		    },
 		    plotOptions: {
