@@ -2,9 +2,10 @@ package br.com.geekpump.controller.treinousuarioexercicio;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -279,23 +280,25 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 		return sb.toString();
 	}
 	
-	public String getGruposExercicios() {
-		List<String> grupos = new ArrayList<String>();
+	public Map<GrupamentoMuscular,Integer> getGruposExercicios() {
+		Map<GrupamentoMuscular,Integer> grupos = new HashMap<GrupamentoMuscular, Integer>();
 		for (TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:getTo().getTreinoUsuarioExercicios()) {
-			if(!grupos.contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome())) {
-				grupos.add(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome());
+			if(!grupos.keySet().contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular())) {
+				grupos.put(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular(),1);
+			}else {
+				grupos.put(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular(),grupos.get(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular()) + 1);
 			}
 		}
 		for (TreinoUsuarioDivisaoExercicio treinoUsuarioDivisaoExercicio:getTo().getTreinoUsuarioExerciciosExecutados()) {
-			if(!grupos.contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome())) {
-				grupos.add(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular().getNome());
-			}
+			if(!grupos.keySet().contains(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular())) {
+				grupos.put(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular(),1);
+			}else {
+				grupos.put(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular(),grupos.get(treinoUsuarioDivisaoExercicio.getExercicio().getGrupamentoMuscular()) + 1);
+			}	
+			
 		}
-		StringBuilder sb = new StringBuilder();
-		for(String grupo:grupos) {
-			sb.append(grupo).append(", ");
-		}
-		return sb.toString().length() > 0? sb.toString().substring(0, sb.toString().length() - 2):"";
+		return grupos.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+	            .collect(LinkedHashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()),Map::putAll);
 	}
 
 }

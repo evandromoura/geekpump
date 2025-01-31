@@ -57,12 +57,12 @@
 														<div class="card-body">
 															
 																<div class="card-title">
-																		#{calendario.dataFormat} <small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
+																		<span style="font-size: 0.8rem">#{calendario.dataFormat}</span> <small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
 																		<span class="badge" style="border-color: #{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.cor};background:#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.cor}">
 																			#{calendario.execucoes.get(0).treinoUsuarioDivisaoExercicio.treinoUsuarioDivisao.nome}
 																		</span>
 																	<br />
-																	<span class="gl-star-rating gl-star-rating--ltr" data-star-rating="">
+																	<span class="gl-star-rating gl-star-rating--ltr" data-star-rating="" style="font-size: 0.8rem">
 																		<span class="gl-star-rating--stars" data-rating="5">
 																			<ui:fragment rendered="#{((calendario.execucoes.size() * 100) / calendario.execucoes.get(0).qtdExercicios) gt 0}">	
 																				<span data-index="0" data-value="1" class="gl-active" style="color:#f59f00"><i class="fa fa-star" aria-hidden="true"></i></span>
@@ -91,7 +91,6 @@
 																					<span data-index="1" data-value="2" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
 																					<span data-index="2" data-value="3" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
 																					<span data-index="3" data-value="4" class="gl-active" style="color:#f59f00"><i class="fa fa-star-o" aria-hidden="true"></i></span>
-																				
 																				</ui:fragment>
 																			</ui:fragment>
 																		</span>
@@ -106,8 +105,9 @@
 												<div class="card" style="height: 100px">
 														<div class="card-body">
 																<div class="card-title">
-																		#{calendario.dataFormat} <small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
-																		<br />
+																	<span style="font-size: 0.7rem">
+																		#{calendario.dataFormat} </span><small style="font-size: 0.7rem">#{calendario.diaSemanaFormat}</small>
+																	<br />
 																</div>
 																<div class="text-center">
 																	<h:commandLink styleClass="text-center">
