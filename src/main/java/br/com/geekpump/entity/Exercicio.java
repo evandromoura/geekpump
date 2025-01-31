@@ -36,6 +36,9 @@ public class Exercicio {
 	@OneToMany(mappedBy = "exercicio",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ExercicioImagem> imagens;
 	
+	@OneToMany(mappedBy = "exercicio")
+	private List<TreinoUsuarioDivisaoExercicio> treinoUsuarioDivisaoExercicios;
+	
 	@Transient
 	private boolean selecionado;
 
@@ -93,6 +96,14 @@ public class Exercicio {
 
 	public void setImagens(List<ExercicioImagem> imagens) {
 		this.imagens = imagens;
+	}
+
+	public List<TreinoUsuarioDivisaoExercicio> getTreinoUsuarioDivisaoExercicios() {
+		return treinoUsuarioDivisaoExercicios;
+	}
+
+	public void setTreinoUsuarioDivisaoExercicios(List<TreinoUsuarioDivisaoExercicio> treinoUsuarioDivisaoExercicios) {
+		this.treinoUsuarioDivisaoExercicios = treinoUsuarioDivisaoExercicios;
 	}
 	
 	

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.entity.Exercicio;
+import br.com.geekpump.entity.TreinoUsuarioDivisao;
 
 public class ExercicioDAO extends AbstractDAO<Exercicio> {
 
@@ -46,6 +48,14 @@ public class ExercicioDAO extends AbstractDAO<Exercicio> {
 //			}
 //		}
 		return exercicios;
+	}
+
+	public Integer countPorTreinoUsuarioDivisao(TreinoUsuarioDivisao divisao) {
+		CriteriaQuery<Long> criteriaLong = getCriteriaBuilder().createQuery(Long.class);
+		Root<Exercicio> root = criteriaLong.from(Exercicio.class);
+		Predicate[] predicates  = {getCriteriaBuilder().equal(root.join("treinoUsuarioDivisaoExercicios", JoinType.LEFT).get("treinoUsuarioDivisao"),divisao)};
+		criteriaLong.select(getCriteriaBuilder().count(root)).where(predicates);
+		return getManager().createQuery(criteriaLong).getSingleResult().intValue();
 	}
 
 }

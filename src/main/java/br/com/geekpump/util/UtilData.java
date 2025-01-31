@@ -211,7 +211,7 @@ public class UtilData {
 	public static String getDiaSemana(Date data) {
 		String dataFormatada = null;
 		if (data != null) {
-			SimpleDateFormat f = new SimpleDateFormat("EEE");
+			SimpleDateFormat f = new SimpleDateFormat("EEE",new Locale("pt", "BR"));
 			dataFormatada = f.format(data);
 		}
 		return dataFormatada;

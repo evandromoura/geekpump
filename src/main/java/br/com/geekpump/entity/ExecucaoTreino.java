@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "execucao_treino", schema = "public")
@@ -32,6 +33,9 @@ public class ExecucaoTreino {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name= "data_execucao")
 	private Date dataExecucao;
+	
+	@Transient
+	private Integer qtdExercicios;
 
 	public Integer getId() {
 		return id;
@@ -55,5 +59,13 @@ public class ExecucaoTreino {
 
 	public void setDataExecucao(Date dataExecucao) {
 		this.dataExecucao = dataExecucao;
+	}
+
+	public Integer getQtdExercicios() {
+		return qtdExercicios;
+	}
+
+	public void setQtdExercicios(Integer qtdExercicios) {
+		this.qtdExercicios = qtdExercicios;
 	}
 }

@@ -16,6 +16,8 @@ public class TreinoUsuarioDivisaoTO {
 	
 	private List<CalendarioHorizontalTO> calendarios;
 	
+	private String paramData;
+	
 	
 	public TreinoUsuario getTreinoUsuario() {
 		if (treinoUsuario == null) {
@@ -67,6 +69,14 @@ public class TreinoUsuarioDivisaoTO {
 
 	public void setCalendarios(List<CalendarioHorizontalTO> calendarios) {
 		this.calendarios = calendarios;
+	}
+
+	public String getParamData() {
+		return paramData;
+	}
+
+	public void setParamData(String paramData) {
+		this.paramData = paramData;
 	}
 	
 	
