@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import br.com.geekpump.dao.AbstractDAO;
 import br.com.geekpump.dao.execucaotreino.ExecucaoTreinoDAO;
 import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 import br.com.geekpump.service.AbstractService;
 
@@ -41,6 +42,9 @@ public class ExecucaoTreinoService extends AbstractService<ExecucaoTreino> {
 		
 	}
 	
-	
+	public List<ExecucaoTreino> pesquisarPorTreinoUsuarioDivisaoData(List<TreinoUsuarioDivisao> treinoUsuarioDivisoes, Date data){
+		return execucaoTreinoDAO.pesquisarPorTreinoUsuarioDivisaoData(treinoUsuarioDivisoes,data);
+		
+	}
 	
 }

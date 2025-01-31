@@ -9,11 +9,14 @@
 
     <ui:define name="corpo">
     	<h:panelGroup id="idPainelPrincipal">
-	    	<div class="row g-2 align-items-center">
+	    	<div class="row">
 	              <div class="col">
-	                <h2 class="page-title">
-	                  Exercicios
-	                </h2>
+	                <div class="page-title">
+	                  <div class="badge" style="background: #{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisao.cor}">
+		                  #{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisao.nome}<br />
+	                  </div>
+	                </div>
+	                #{treinoUsuarioDivisaoExercicioController.gruposExercicios}
 	              </div>
 	              <!-- Page title actions -->
 	              <div class="col-auto">
@@ -26,15 +29,22 @@
 	              </div>
 	              
 	        </div>
-	        <div class="row">
-	        	<div class="col-4">
-                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
-                  </gk:data>
-	            </div>
-	            <div class="col-2">
-	               <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-sm btn-primary">OK</h:commandLink>
-	            </div>
+        	<div class="row align-items-center">
+        		<div class="col"></div>
+	        	<div class="col">
+	        		<div class="row">
+	        		   <div class="col-9">
+		                  <gk:data value="#{treinoUsuarioDivisaoExercicioController.to.data}">
+		                  </gk:data>
+			            </div>
+			            <div class="col-2">
+			               <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisar()}" styleClass="btn btn-sm btn-primary">OK</h:commandLink>
+			            </div>
+			         </div>   
+		         </div>  
 	        </div>
+	        
+	         
 	    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
 	    		
 	    		<ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios}">
@@ -60,10 +70,6 @@
 				                  	  <div class="col-6">
 					                    <h4>Carga</h4>
 					                    <div class="datagrid-content" style="font-size:1.2rem">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
-					                    
-					                    <h4>Repeticao</h4>
-					                    <div class="datagrid-content" style="font-size:1.2rem">#{treinoUsuarioDivisaoExercicio.qtdRepeticao} </div>
-					                    
 					                  </div>
 				                  	  <div class="col-6">
 					                    <h4>Series</h4>
@@ -88,12 +94,20 @@
 	    		<ui:fragment rendered="#{empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExercicios and !empty treinoUsuarioDivisaoExercicioController.to.treinoUsuarioExerciciosExecutados}">
 	    			<div class="page page-center">
 				      <div class="container-tight py-4">
-				        <div class="empty">
-				          <p class="empty-title">Boaa Mlk. Treino Finalizado</p>
-				          <p class="empty-subtitle text-secondary">
-				            Até o próximo treino.
-				          </p>
-				        </div>
+				      	
+				        
+				        <div class="alert alert-success" role="alert">
+							<div class="d-flex">
+								<div>
+									<i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 1.5rem"></i>&#160;&#160;
+								</div>
+								<div>
+									Treino finalizado com sucesso!
+									<div class="text-secondary">Até o próximo treino.</div>
+								</div>
+								
+							</div>
+						</div>	
 				      </div>
 				    </div>	
 	    		</ui:fragment>
@@ -132,10 +146,6 @@
 				                  	  <div class="col-6">
 					                    <h4>Carga</h4>
 					                    <div class="datagrid-content" style="font-size:1.2rem">#{treinoUsuarioDivisaoExercicio.carga} kg</div>
-					                    
-					                    <h4>Repeticao</h4>
-					                    <div class="datagrid-content" style="font-size:1.2rem">#{treinoUsuarioDivisaoExercicio.repeticao}</div>
-					                    
 					                  </div>
 				                  	  <div class="col-6">
 					                    <h4>Series</h4>

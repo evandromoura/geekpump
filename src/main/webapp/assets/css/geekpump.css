@@ -2,3 +2,7 @@ a {
     color: #000;
     text-decoration: none !important;
 }
+
+.form-imagecheck-figure:before {
+	    border-color: #000 !important;
+}
