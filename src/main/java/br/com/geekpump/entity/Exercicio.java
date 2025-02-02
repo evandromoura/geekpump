@@ -36,8 +36,14 @@ public class Exercicio {
 	@OneToMany(mappedBy = "exercicio",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ExercicioImagem> imagens;
 	
-	@OneToMany(mappedBy = "exercicio")
+	@OneToMany(mappedBy = "exercicio",orphanRemoval = true)
 	private List<TreinoUsuarioDivisaoExercicio> treinoUsuarioDivisaoExercicios;
+
+	@OneToMany(mappedBy = "exercicio",orphanRemoval = true)	
+	private List<HistoricoCarga> historicoCargas;
+	
+	@OneToMany(mappedBy = "exercicio",orphanRemoval = true)
+	private List<HistoricoRepeticao> historicoRepeticoes;
 	
 	@Transient
 	private boolean selecionado;
@@ -104,6 +110,22 @@ public class Exercicio {
 
 	public void setTreinoUsuarioDivisaoExercicios(List<TreinoUsuarioDivisaoExercicio> treinoUsuarioDivisaoExercicios) {
 		this.treinoUsuarioDivisaoExercicios = treinoUsuarioDivisaoExercicios;
+	}
+
+	public List<HistoricoCarga> getHistoricoCargas() {
+		return historicoCargas;
+	}
+
+	public void setHistoricoCargas(List<HistoricoCarga> historicoCargas) {
+		this.historicoCargas = historicoCargas;
+	}
+
+	public List<HistoricoRepeticao> getHistoricoRepeticoes() {
+		return historicoRepeticoes;
+	}
+
+	public void setHistoricoRepeticoes(List<HistoricoRepeticao> historicoRepeticoes) {
+		this.historicoRepeticoes = historicoRepeticoes;
 	}
 	
 	

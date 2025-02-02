@@ -1,5 +1,6 @@
 package br.com.geekpump.controller.exercicio;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,10 +81,7 @@ public class ExercicioController extends AbstractController<ExercicioTO> impleme
 	}
 	
 	public void excluir() {
-//		exercicioService.excluir(getTo().getExercicioAcao());
-//		pesquisar();
-		
-	}
-	
-	
+		exercicioService.excluir(getTo().getExercicioAcao());
+		pesquisar();	
+	}	
 }
