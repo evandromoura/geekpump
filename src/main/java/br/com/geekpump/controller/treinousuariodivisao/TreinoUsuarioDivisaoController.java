@@ -1,7 +1,6 @@
 package br.com.geekpump.controller.treinousuariodivisao;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +12,6 @@ import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
 import br.com.geekpump.entity.ExecucaoTreino;
-import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.service.execucaotreino.ExecucaoTreinoService;
 import br.com.geekpump.service.exercicio.ExercicioService;
 import br.com.geekpump.service.treinousuario.TreinoUsuarioService;
@@ -75,11 +73,15 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 		List<CalendarioHorizontalTO> calendarios = new ArrayList<CalendarioHorizontalTO>();
 		for(int i=QTD_DIAS_CALENDARIO;i>=0;i--) {
 			Date dataAjustada = UtilData.subtrairDias(dataAtual, i);
-			List<ExecucaoTreino> execucoes =  execucaoTreinoService.pesquisarPorTreinoUsuarioDivisaoData(getTo().getTreinoUsuarioDivisoes(), dataAjustada);
-			if(execucoes != null && !execucoes.isEmpty()) {
-				execucoes.get(0).setQtdExercicios(exercicioService.countPorTreinoUsuarioDivisao(execucoes.get(0).getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao()));
+			if(getTo().getTreinoUsuarioDivisoes() != null && !getTo().getTreinoUsuarioDivisoes().isEmpty()) {
+				List<ExecucaoTreino> execucoes =  execucaoTreinoService.pesquisarPorTreinoUsuarioDivisaoData(getTo().getTreinoUsuarioDivisoes(), dataAjustada);
+				if(execucoes != null && !execucoes.isEmpty()) {
+					execucoes.get(0).setQtdExercicios(exercicioService.countPorTreinoUsuarioDivisao(execucoes.get(0).getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao()));
+				}
+				calendarios.add(new CalendarioHorizontalTO(dataAjustada,execucoes));
+			}else {
+				calendarios.add(new CalendarioHorizontalTO(dataAjustada,null));
 			}
-			calendarios.add(new CalendarioHorizontalTO(dataAjustada,execucoes));
 		}
 		getTo().setCalendarios(calendarios);
 	}
