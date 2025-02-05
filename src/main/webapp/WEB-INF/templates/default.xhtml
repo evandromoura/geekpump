@@ -9,7 +9,7 @@
     <script src="/assets/js/tabler.min.js"></script>
 	<link rel="stylesheet" href="/assets/css/tabler.css?v=1.1" />
 	<link rel="stylesheet" href="/assets/css/font-awesome.min.css?v=1.1" />
-	<link rel="stylesheet" href="/assets/css/menu.css?v=1.1" />
+<!-- 	<link rel="stylesheet" href="/assets/css/menu.css?v=1.1" /> -->
 	<link rel="stylesheet" href="/assets/css/geekpump.css?v=1.1" />
 	<script src="/assets/js/jquery-2.2.4.min.js?v=1.1"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,17 +21,12 @@
     
   </h:head>
   <h:body>
-    <div class="page layout has-sidebar fixed-sidebar fixed-header" >
+    <div class="page" >
       <ui:include src="menu.xhtml" />
 
       <div id="overlay" class="overlay"></div>
       <div class="page-wrapper layout" id="principal" >
       	<h:form prependId="false" id="formGeekpump" enctype="multipart/form-data" acceptcharset="ISO-8859-1">
-	        <div class="page-header d-print-none" data-bs-theme="dark">
-	          <div class="container-xl">
-	            <ui:insert name="header" />
-	          </div>
-	        </div>
 	        <div class="page-body">
 	          <div class="container-xl">
 	            <ui:insert name="corpo" />

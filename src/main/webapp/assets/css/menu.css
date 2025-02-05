@@ -1240,3 +1240,9 @@ position: fixed;
 table button{color: #fff;}
 .dt-paging{margin-top: 3px; text-align: center;}
 .dt-buttons{margin-bottom: 3px;}
+
+
+#sidebar {
+  position: absolute !important; /* Evita que o menu fique fixo e bloqueie a rolagem */
+  overflow: visible !important; /* Permite que a página role normalmente */
+}

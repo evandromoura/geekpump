@@ -4,111 +4,55 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	
-	<aside id="sidebar" class="sidebar break-point-lg has-bg-image">
-		<a id="btn-collapse" style="text-decoration: none;" class="sidebar-collapser">
-			<i class="fa fa-chevron-left" style="font-size: 12px;"></i>
-		</a>
-		<a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg btn btn-sm btn-primary">
-              <i class="fa fa-navicon"></i>
-            </a>
-		<div class="image-wrapper">
-<!-- 			<img src="/resources/layout/assets/img/sidebar_bg.png" class="transparent-img" /> -->
-		</div>
-		<div class="sidebar-layout">
-			<div class="sidebar-header">
+
+
+
+	<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" style="background: #000">
+		<div class="container-fluid">
+			<button class="navbar-toggler collapsed" type="button"
+				data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
+				aria-controls="sidebar-menu" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-brand navbar-brand-autodark">
 				<div class="pro-sidebar-logo">
-					<div><a href="/home" style="text-decoration: none;color: #fff">G</a></div>
 					<h5><a href="/home" style="text-decoration: none;color: #fff">GEEK PUMP</a></h5>
 				</div>
-			</div>	
-			<div class="sidebar-content">
-				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ADMIN'}">
-					<nav class="menu open-current-submenu">
-						<ul>
-							<li class="menu-header"><span> MENU </span></li>
-							<li class="menu-item">
-								<a href="/usuario" class="#{submenu eq 'admin'?'active':''}"> 
-									<span class="menu-icon"> <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-									</span> 
-									<span class="menu-title">Usuario</span>
-								</a>
-							</li>
-							<li class="menu-item">
-								<a href="/exercicio" class="#{submenu eq 'admin'?'active':''}"> 
-									<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
-									<span class="menu-title">Exercicios</span>
-								</a>
-							</li>
-							<li class="menu-item">
-								<a href="/grupamentomuscular" class="#{submenu eq 'admin'?'active':''}"> 
-									<span class="menu-icon"> <i class="fa fa-camera" aria-hidden="true"></i></span> 
-									<span class="menu-title">Grupamento Muscular</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</ui:fragment>	
-				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
-					<nav class="menu open-current-submenu">
-						<ul>
-							<li class="menu-header"><span> MENU </span></li>
-							<li class="menu-item">
-								<a href="/"> 
-									<span class="menu-icon"> <i class="fa fa-home" aria-hidden="true"></i>
-									</span> 
-									<span class="menu-title">Home</span>
-								</a>
-							</li>
-							<li class="menu-item">
-								<a href="/perfil"> 
-									<span class="menu-icon"> <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-									</span> 
-									<span class="menu-title">Perfil</span>
-								</a>
-							</li>
-						</ul>
-					</nav>		
-				</ui:fragment>
-				<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'PERSONAL'}">
-					MENU DE PERSONAL
-				</ui:fragment>
 			</div>
-		<div class="sidebar-footer">
-			<div class="row" style="width: 100%">
-				<h:panelGroup id="idPanelMessage" style="padding: 20px 0;">
-		           	<h:messages infoClass="alert alert-important alert-dismissible alert-success"
-						errorClass="alert alert-important alert-dismissible alert-danger"
-						warnClass="alert alert-important alert-dismissible alert-warning" id="idMessages"
-						style="list-style-type: none;font-size:0.65rem"  />
-				</h:panelGroup>
-			</div>		
-            	<div class="card card-sm" style="width: 100%;background-color: rgba(22, 45, 74, 0.7);border: none">
-                      <div class="card-body">
-                      	<h:form>
-	                        <div class="row align-items-center">
-	                          <div class="col-auto">
-	                            <span>
-	                            	<img class="react-logo" src="#{customIdentity.usuario.imagem}" alt="react" style="max-width: 35px"></img>
-	                            </span>
-	                          </div>
-	                          <div class="col">
-	                            <div class="font-weight-light" style="color: #fff">
-	                              #{customIdentity.usuario.nome}
-	                            </div>
-	                            <div class="text-secondary" style="color: #fff">
-	                              #{customIdentity.usuario.perfil.name}&#160;&#160;
-									<h:commandLink styleClass="btn btn-sm btn-outline-secondary" title="Sair" action="#{simpleAuthenticator.logout()}" immediate="true"> 
-										<i class="fa fa-sign-out"></i>   
-									</h:commandLink>
-	                            </div>
-	                          </div>
-	                        </div>
-	                     </h:form>   
-                      </div>
-                </div>
-          </div>
+			<div class="navbar-nav flex-row d-lg-none">
+				<div class="nav-item dropdown">
+					<a href="#" class="nav-link d-flex lh-1 text-reset p-0"
+						data-bs-toggle="dropdown" aria-label="Open user menu"> <span
+						class="avatar avatar-sm"
+						style="background-image: url(#{customIdentity.usuario.imagem})"></span>
+						<div class="d-none d-xl-block ps-2">
+							<div>Paweł Kuna</div>
+							<div class="mt-1 small text-secondary">UI Designer</div>
+						</div>
+					</a>
+					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+						<a
+							href="/perfil" class="dropdown-item">Perfil</a> 
+						<div class="dropdown-divider"></div>
+						<a href="./settings.html" class="dropdown-item">Settings</a> <a
+							href="./sign-in.html" class="dropdown-item">Logout</a>
+					</div>
+				</div>
+			</div>
+			<div class="navbar-collapse collapse" id="sidebar-menu" style="">
+				<ul class="navbar-nav pt-lg-3">
+					<li class="nav-item active"><a class="nav-link" href="/home"> <span
+							class="nav-link-icon d-md-none d-lg-inline-block"> 
+							<i class="fa fa-home" aria-hidden="true"></i>
+							</span> <span
+							class="nav-link-title"> Home </span>
+					</a></li>
+				</ul>
+			</div>
 		</div>
 	</aside>
-	
-</ui:composition>	
+
+
+
+</ui:composition>
