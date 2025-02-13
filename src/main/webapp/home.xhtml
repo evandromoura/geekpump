@@ -6,39 +6,95 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/templates/default.xhtml">
 
-    <ui:define name="corpo">
-    
-    	<div class="row g-2 align-items-center">
-              <div class="col">
-                <div class="page-pretitle">
-                  Home
-                </div>
-                <h2 class="page-title">
-                  #{customIdentity.usuario.perfil.name}
-                </h2>
-              </div>
-              <!-- Page title actions -->
-              
-            </div>
-    	<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
-    		<a href="/treinousuario">
-	    		<div class="card card-active" style="margin-top:10px">
-	                <div class="card-header">
-	                  <h3 class="card-title">Acesse seu treino</h3>
-	                  <div class="card-actions btn-actions">
-	                    
-	                    	<i class="fa fa-share" aria-hidden="true"></i>
-	                    
-	                  </div>
-	                </div>
-	                <div class="card-body p-0">
-	                </div>
-	              </div>
-	           </a>   
-    		
-    		
-    	</ui:fragment>
-    	
-    	
-    </ui:define>
-</ui:composition>    
+	<ui:define name="corpo">
+		<script src="https://preview.tabler.io/dist/libs/apexcharts/dist/apexcharts.min.js?1738448791"></script>
+		<div class="row g-2 align-items-center">
+			<div class="col">
+				<div class="page-pretitle">Home</div>
+				<h2 class="page-title">#{customIdentity.usuario.perfil.name}</h2>
+			</div>
+			<!-- Page title actions -->
+
+		</div>
+		<ui:fragment
+			rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
+			<a href="/treinousuario">
+				<div class="card card-active" style="margin-top: 10px">
+					<div class="card-header">
+						<h3 class="card-title">Acesse seu treino</h3>
+						<div class="card-actions btn-actions">
+
+							<i class="fa fa-share" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="card-body p-0"></div>
+				</div>
+			</a>
+
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-md-6 col-xl-3"> -->
+<!-- 					<div class="card card-sm"> -->
+<!-- 						<div class="card-body"> -->
+<!-- 							<div class="row align-items-center"> -->
+<!-- 								<div class="col-auto"> -->
+<!-- 									<div class="chart-sparkline chart-sparkline-square" id="sparkline-orders"></div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col"> -->
+<!-- 									<div class="font-weight-medium">5 treinos executados</div> -->
+<!-- 									<div class="text-secondary">32 shipped</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+<!-- 				<h:commandLink action="#{homeController.importarArquivos()}" value="IMPORTAR ARQUIVOS" styleClass="btn btn-primary" /> -->
+<!-- 			</div> -->
+			
+			<script>
+			//<![CDATA[
+				document.addEventListener("DOMContentLoaded", function () {
+					window.ApexCharts && (new ApexCharts(document.getElementById('sparkline-orders'), {
+						chart: {
+							type: "radialBar",
+							fontFamily: 'inherit',
+							height: 40,
+							width: 40,
+							animations: {
+								enabled: false
+							},
+							sparkline: {
+								enabled: true
+							},
+						},
+						tooltip: {
+							enabled: false,
+						},
+						plotOptions: {
+							radialBar: {
+								hollow: {
+									margin: 0,
+									size: '75%'
+								},
+								track: {
+									margin: 0
+								},
+								dataLabels: {
+									show: false
+								}
+							}
+						},
+						colors: [tabler.getColor("green")],
+						series: [78],
+					})).render();
+				});
+		//]]>
+		</script>
+
+
+		</ui:fragment>
+
+
+	</ui:define>
+</ui:composition>
