@@ -1,5 +1,6 @@
 package br.com.geekpump.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -48,6 +49,9 @@ public class TreinoUsuarioDivisaoExercicio {
 	
 	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio",orphanRemoval = true)
 	private List<ExecucaoTreinoExercicio> execucoes;
+	
+	@Column(name="data_add")
+	private Date dataAdd;
 	
 	
 	@Transient
@@ -153,6 +157,14 @@ public class TreinoUsuarioDivisaoExercicio {
 
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+
+	public Date getDataAdd() {
+		return dataAdd;
+	}
+
+	public void setDataAdd(Date dataAdd) {
+		this.dataAdd = dataAdd;
 	} 
 	
 	

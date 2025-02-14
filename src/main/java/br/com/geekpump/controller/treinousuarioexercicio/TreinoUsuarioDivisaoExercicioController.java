@@ -151,6 +151,7 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 					treinoUsuarioDivisaoExercicio.setExercicio(exercicio);
 					treinoUsuarioDivisaoExercicio.setQtdSerie(0);
 					treinoUsuarioDivisaoExercicio.setQtdRepeticao(0);
+					treinoUsuarioDivisaoExercicio.setDataAdd(new Date());
 
 					if (historicoCarga != null) {
 						treinoUsuarioDivisaoExercicio.setCarga(historicoCarga.getCarga());

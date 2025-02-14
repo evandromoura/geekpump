@@ -104,7 +104,7 @@
                 </h2>
                 <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordion-example" style="">
                   <div class="accordion-body pt-0">
-                    <img src="https://geekpump.com.br/view/image?uid=#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.uid}&amp;type=ativacao" class="form-imagecheck-image object-cover card-img-start" alt="" />
+                    <img src="https://raw.githubusercontent.com/evandromoura/geekpump-img/refs/heads/main/images/#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisaoExercicio.exercicio.uid}_thumb.gif" class="form-imagecheck-image object-cover card-img-start" alt="" />
                   </div>
                 </div>
               </div>
@@ -134,14 +134,17 @@
 			          <div class="modal-footer">
 			            <div class="w-100">
 			              <div class="row">
-			                <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
-			                    Cancel
-			                  </a></div>
-			                <div class="col">
+			              	<div class="col">
 			                  <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.excluir()}" styleClass="btn btn-danger w-100">
 			                    Sim
 			                  </h:commandLink>
-			                  </div>
+			                </div>
+			                <div class="col">
+			                  <a href="#" class="btn w-100" data-bs-dismiss="modal">
+			                    Cancelar
+			                  </a>
+			                </div>
+			                
 			              </div>
 			            </div>
 			          </div>

@@ -33,48 +33,6 @@
 					<div class="card-body p-0"></div>
 				</div>
 			</a>
-
-			<script>
-			//<![CDATA[
-				document.addEventListener("DOMContentLoaded", function () {
-					window.ApexCharts && (new ApexCharts(document.getElementById('sparkline-orders'), {
-						chart: {
-							type: "radialBar",
-							fontFamily: 'inherit',
-							height: 40,
-							width: 40,
-							animations: {
-								enabled: false
-							},
-							sparkline: {
-								enabled: true
-							},
-						},
-						tooltip: {
-							enabled: false,
-						},
-						plotOptions: {
-							radialBar: {
-								hollow: {
-									margin: 0,
-									size: '75%'
-								},
-								track: {
-									margin: 0
-								},
-								dataLabels: {
-									show: false
-								}
-							}
-						},
-						colors: [tabler.getColor("green")],
-						series: [78],
-					})).render();
-				});
-		//]]>
-		</script>
-
-
 		</ui:fragment>
 
 

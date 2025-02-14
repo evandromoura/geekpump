@@ -23,5 +23,5 @@ ALTER TABLE public.historico_repeticao ADD CONSTRAINT historico_repeticao_usuari
 
 ALTER TABLE public.execucao_treino RENAME TO execucao_treino_exercicio;
 ALTER SEQUENCE public.execucao_treino_id_seq RENAME TO execucao_treino_exercicio_id_seq;
-
+ALTER TABLE public.treino_usuario_divisao_exercicio ADD data_add timestamp without time zone NULL;
 
