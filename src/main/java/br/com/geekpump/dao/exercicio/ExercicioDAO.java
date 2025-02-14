@@ -20,7 +20,7 @@ public class ExercicioDAO extends AbstractDAO<Exercicio> {
 		Root<Exercicio> root = criteria.from(Exercicio.class);
 		List<Exercicio> exercicios = getManager()
 				.createQuery(criteria.select(root)
-						.where(comporFiltros(root, exercicio)).orderBy(getCriteriaBuilder().desc(root.get("id"))))
+						.where(comporFiltros(root, exercicio)).orderBy(getCriteriaBuilder().asc(root.get("nome"))))
 				.getResultList();
 		
 		return inicializar(exercicios);
@@ -56,6 +56,16 @@ public class ExercicioDAO extends AbstractDAO<Exercicio> {
 		Predicate[] predicates  = {getCriteriaBuilder().equal(root.join("treinoUsuarioDivisaoExercicios", JoinType.LEFT).get("treinoUsuarioDivisao"),divisao)};
 		criteriaLong.select(getCriteriaBuilder().count(root)).where(predicates);
 		return getManager().createQuery(criteriaLong).getSingleResult().intValue();
+	}
+
+	public Exercicio recuperarPorNome(String nome) {
+		try {
+			CriteriaQuery<Exercicio> criteria = getCriteriaBuilder().createQuery(Exercicio.class);
+			Root<Exercicio> root = criteria.from(Exercicio.class);
+			return getManager().createQuery(criteria.select(root).where(getCriteriaBuilder().equal(root.get("nome"), nome))).setMaxResults(1).getSingleResult();
+		}catch(Exception e) {
+			return null;
+		}
 	}
 
 }

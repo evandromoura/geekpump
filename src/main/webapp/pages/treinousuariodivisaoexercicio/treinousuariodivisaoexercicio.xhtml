@@ -7,6 +7,7 @@
 	xmlns:gk="http://java.sun.com/jsf/composite/components" 
 	template="/WEB-INF/templates/default.xhtml">
 
+	<ui:param name="menu" value="home" />
 	
     <ui:define name="corpo">
     	<h:panelGroup id="idPainelPrincipal" styleClass="row g-2 align-items-center">
@@ -20,9 +21,12 @@
 	              </div>
 	              <!-- Page title actions -->
 	              <div class="col-auto">
-	                  <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-exercicio">
-	                    <i class="fa fa-plus" aria-hidden="true"></i> &#160;Add
-	                  </a>
+	              	  <h:commandLink styleClass="btn">
+		                  <f:passThroughAttribute name="data-bs-toggle" value="modal" />
+		                  <f:passThroughAttribute name="data-bs-target" value="#modal-exercicio" />
+		                  <i class="fa fa-plus" aria-hidden="true"></i> &#160;Add
+		                  <f:ajax listener="#{treinoUsuarioDivisaoExercicioController.abrirTelaAdicionarExercicio()}" render="modal-exercicio-panel" execute="@this" />
+		              </h:commandLink>    
 	                  <a href="/treinousuariodivisao/#{treinoUsuarioDivisaoExercicioController.to.treinoUsuarioDivisao.treinoUsuario.uid}" class="btn">
 	                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> &#160;Voltar
 	                  </a>
@@ -98,7 +102,7 @@
 		                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
 		                        </h:selectBooleanCheckbox>
 		                        <span class="form-imagecheck-figure">
-		                          <img src="https://geekpump.com.br/view/image?uid=#{treinoUsuarioDivisaoExercicio.exercicio.uid}&amp;type=thumbnail" class="form-imagecheck-image object-cover card-img-start" alt=""  style="width:100px; max-width: 150px" />	
+		                          <img src="https://raw.githubusercontent.com/evandromoura/geekpump-img/refs/heads/main/images/#{treinoUsuarioDivisaoExercicio.exercicio.uid}_thumb.gif" class="form-imagecheck-image object-cover card-img-start" alt=""  style="width:150px; max-heigth: 150px" />
 		                        </span>
 		                      </label>
 		                    </div>
@@ -174,7 +178,7 @@
 		                        	<f:ajax event="change" listener="#{treinoUsuarioDivisaoExercicioController.gravarExecucao()}" render="idPainelPrincipal"   />
 		                        </h:selectBooleanCheckbox>
 		                        <span class="form-imagecheck-figure">
-		                          <img src="https://geekpump.com.br/view/image?uid=#{treinoUsuarioDivisaoExercicio.exercicio.uid}&amp;type=thumbnail" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+		                          <img src="https://raw.githubusercontent.com/evandromoura/geekpump-img/refs/heads/main/images/#{treinoUsuarioDivisaoExercicio.exercicio.uid}_thumb.gif" class="form-imagecheck-image object-cover card-img-start" style="width:150px; max-heigth: 150px" />
 		                        </span>
 		                      </label>
 		                    </div>
@@ -224,7 +228,7 @@
     	
     	
     	
-    	<div class="modal modal-blur fade" id="modal-exercicio" tabindex="-1" style="display: none;" aria-hidden="true">
+    	<div class="modal modal-blur fade" id="modal-exercicio" tabindex="-1" style="display: none;" aria-hidden="true" >
 	      <div class="modal-dialog modal-dialog-centered" role="document">
 	        <div class="modal-content">
 	          <h:panelGroup id="modal-exercicio-panel"> 	
@@ -240,13 +244,14 @@
 		              </div>
 		              <div class="col-lg-4 col-5">
 		                <label class="form-label">Grupamento</label>
-		                <h:selectOneMenu value="#{treinoUsuarioDivisaoExercicioController.to.exercicioAcao.grupamentoMuscular.id}" styleClass="form-control">
+		                <h:selectOneMenu value="#{treinoUsuarioDivisaoExercicioController.to.exercicioAcao.grupamentoMuscular.id}" styleClass="form-control" style="width:100%">
 		                	<f:selectItem itemLabel="Selecione..." />
 		                	<f:selectItems value="#{combosBean.grupamentoMusculares}" var="grupamento" itemValue="#{grupamento.id}" itemLabel="#{grupamento.nome}" />
 		                </h:selectOneMenu>
 		              </div>
 		              <div class="col-lg-4 col-2">
-		                <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisarExercicio()}" value="OK" styleClass="btn btn-sm btn-primary" >
+		                <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.pesquisarExercicio()}" styleClass="btn btn-lg btn-default" >
+		                	<i class="fa fa-search" aria-hidden="true"></i>
 		                	<f:ajax render="modal-exercicio-panel" execute="modal-exercicio-panel"/>
 		                </h:commandLink>
 		              </div>
@@ -261,7 +266,7 @@
 				                        <h:selectBooleanCheckbox value="#{exercicio.selecionado}" styleClass="form-imagecheck-input">
 				                        </h:selectBooleanCheckbox>
 				                        <span class="form-imagecheck-figure">
-				                          <img src="https://geekpump.com.br/view/image?uid=#{exercicio.uid}&amp;type=thumbnail" class="form-imagecheck-image object-cover card-img-start" alt="" />	
+				                          <img src="https://raw.githubusercontent.com/evandromoura/geekpump-img/refs/heads/main/images/#{exercicio.uid}_thumb.gif" class="form-imagecheck-image object-cover card-img-start" style="width:150px; max-heigth: 150px" />	
 				                        </span>
 				                      </label>
 				                    </div>
@@ -276,8 +281,10 @@
 		            </div>
 		          </div>
 		          <div class="modal-footer">
-		            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-		            <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.adicionarExercicios()}" styleClass="btn btn-primary"> Adicionar</h:commandLink>
+		          	<ui:fragment rendered="#{!empty treinoUsuarioDivisaoExercicioController.to.exercicios}">
+			            <h:commandLink action="#{treinoUsuarioDivisaoExercicioController.adicionarExercicios()}" styleClass="btn btn-success me-auto"><i class="fa fa-plus" aria-hidden="true"></i>&#160;Adicionar</h:commandLink>
+		          	</ui:fragment>
+		            <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
 		          </div>
 		       </h:panelGroup>   
 	        </div>

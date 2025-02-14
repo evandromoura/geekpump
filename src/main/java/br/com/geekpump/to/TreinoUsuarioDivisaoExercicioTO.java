@@ -82,6 +82,9 @@ public class TreinoUsuarioDivisaoExercicioTO {
 	}
 
 	public List<Exercicio> getExercicios() {
+		if (exercicios == null) {
+			exercicios = new ArrayList<Exercicio>();
+		}
 		return exercicios;
 	}
 

@@ -61,9 +61,9 @@ public class ImagemDownload extends HttpServlet {
 			
         }catch(Exception e) {
         } finally {
-        	if(arquivo !=null && arquivo.exists()) {
-        		arquivo.delete();
-        	}
+//        	if(arquivo !=null && arquivo.exists()) {
+//        		arquivo.delete();
+//        	}
         	if(fis != null) {
         		fis.close();
         	}

@@ -11,8 +11,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
-import br.com.geekpump.entity.ExecucaoTreino;
-import br.com.geekpump.service.execucaotreino.ExecucaoTreinoService;
+import br.com.geekpump.entity.ExecucaoTreinoExercicio;
+import br.com.geekpump.service.execucaotreino.ExecucaoTreinoExercicioService;
 import br.com.geekpump.service.exercicio.ExercicioService;
 import br.com.geekpump.service.treinousuario.TreinoUsuarioService;
 import br.com.geekpump.service.treinousuariodivisao.TreinoUsuarioDivisaoService;
@@ -29,7 +29,7 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 	
 	private @Inject TreinoUsuarioDivisaoService treinoUsuarioDivisaoService;
 	private @Inject TreinoUsuarioService treinoUsuarioService;
-	private @Inject ExecucaoTreinoService execucaoTreinoService;
+	private @Inject ExecucaoTreinoExercicioService execucaoTreinoExercicioService;
 	private @Inject ExercicioService exercicioService;
 	private int QTD_DIAS_CALENDARIO = 15;	
 	
@@ -74,7 +74,7 @@ public class TreinoUsuarioDivisaoController extends AbstractController<TreinoUsu
 		for(int i=QTD_DIAS_CALENDARIO;i>=0;i--) {
 			Date dataAjustada = UtilData.subtrairDias(dataAtual, i);
 			if(getTo().getTreinoUsuarioDivisoes() != null && !getTo().getTreinoUsuarioDivisoes().isEmpty()) {
-				List<ExecucaoTreino> execucoes =  execucaoTreinoService.pesquisarPorTreinoUsuarioDivisaoData(getTo().getTreinoUsuarioDivisoes(), dataAjustada);
+				List<ExecucaoTreinoExercicio> execucoes =  execucaoTreinoExercicioService.pesquisarPorTreinoUsuarioDivisaoData(getTo().getTreinoUsuarioDivisoes(), dataAjustada);
 				if(execucoes != null && !execucoes.isEmpty()) {
 					execucoes.get(0).setQtdExercicios(exercicioService.countPorTreinoUsuarioDivisao(execucoes.get(0).getTreinoUsuarioDivisaoExercicio().getTreinoUsuarioDivisao()));
 				}

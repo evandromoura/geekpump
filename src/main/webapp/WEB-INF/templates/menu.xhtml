@@ -7,49 +7,98 @@
 
 
 
-	<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" style="background: #000">
+	<aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" style="background: #151f2c">
 		<div class="container-fluid">
-			<button class="navbar-toggler collapsed" type="button"
+			<button class="navbar-toggler collapsed " type="button"
 				data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
 				aria-controls="sidebar-menu" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			
 			<div class="navbar-brand navbar-brand-autodark">
 				<div class="pro-sidebar-logo">
-					<h5><a href="/home" style="text-decoration: none;color: #fff">GEEK PUMP</a></h5>
+					<div class=""><a href="/home" style="text-decoration: none;color: #fff">G</a></div>
+					<h5 class="d-none d-md-block" ><a href="/home" style="text-decoration: none;color: #fff">GEEK PUMP</a></h5>
 				</div>
 			</div>
-			<div class="navbar-nav flex-row d-lg-none">
+			<div class="navbar-nav flex-row d-md-none">
 				<div class="nav-item dropdown">
 					<a href="#" class="nav-link d-flex lh-1 text-reset p-0"
 						data-bs-toggle="dropdown" aria-label="Open user menu"> <span
 						class="avatar avatar-sm"
 						style="background-image: url(#{customIdentity.usuario.imagem})"></span>
-						<div class="d-none d-xl-block ps-2">
-							<div>Paweł Kuna</div>
-							<div class="mt-1 small text-secondary">UI Designer</div>
-						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-						<a
-							href="/perfil" class="dropdown-item">Perfil</a> 
-						<div class="dropdown-divider"></div>
-						<a href="./settings.html" class="dropdown-item">Settings</a> <a
-							href="./sign-in.html" class="dropdown-item">Logout</a>
+						<a href="/perfil" class="dropdown-item"><i class="fa fa-user-circle-o" aria-hidden="true" />&#160;Perfil</a> 
+						<h:form>
+							<h:commandLink styleClass="dropdown-item" title="Sair" action="#{simpleAuthenticator.logout()}" immediate="true"> 
+								<i class="fa fa-sign-out" />&#160;Sair   
+							</h:commandLink>
+						</h:form>	
 					</div>
 				</div>
 			</div>
-			<div class="navbar-collapse collapse" id="sidebar-menu" style="">
-				<ul class="navbar-nav pt-lg-3">
-					<li class="nav-item active"><a class="nav-link" href="/home"> <span
-							class="nav-link-icon d-md-none d-lg-inline-block"> 
-							<i class="fa fa-home" aria-hidden="true"></i>
-							</span> <span
-							class="nav-link-title"> Home </span>
-					</a></li>
-				</ul>
-			</div>
+			<ui:fragment rendered="#{customIdentity.usuario.perfil.name eq 'ALUNO'}">
+				<div class="navbar-collapse collapse" id="sidebar-menu" style="">
+					<ul class="navbar-nav pt-lg-3">
+						<li class="nav-item #{menu eq 'home'?'active':''}">
+						<a class="nav-link" href="/home"> 
+							<span class="nav-link-icon #{menu eq 'home'?'active':''}"> 
+								<i class="fa fa-home" aria-hidden="true"></i>
+							</span> 
+							<span class="nav-link-title"> Home </span>
+						</a></li>
+						<li class="nav-item #{menu eq 'perfil'?'active':''}"><a class="nav-link" href="/perfil"> <span
+								class="nav-link-icon #{menu eq 'perfil'?'active':''}"> 
+								<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+								</span> <span
+								class="nav-link-title"> Perfil </span>
+						</a></li>
+						<li class="nav-item #{menu eq 'calculadora'?'active':''}"><a class="nav-link" href="/imc"> <span
+								class="nav-link-icon #{menu eq 'calculadora'?'active':''}"> 
+								<i class="fa fa-calculator" aria-hidden="true"></i>
+								</span> <span
+								class="nav-link-title"> Calculadora IMC </span>
+						</a></li>
+					</ul>
+				</div>
+			</ui:fragment>	
+			
+			<div class="navbar-footer d-none d-md-block">
+				<div class="row" style="width: 100%">
+					<h:panelGroup id="idPanelMessage" style="padding: 20px 0;">
+			           	<h:messages infoClass="alert alert-important alert-dismissible alert-success"
+							errorClass="alert alert-important alert-dismissible alert-danger"
+							warnClass="alert alert-important alert-dismissible alert-warning" id="idMessages"
+							style="list-style-type: none;font-size:0.65rem"  />
+					</h:panelGroup>
+				</div>		
+	            	<div class="card card-sm" style="width: 100%;background-color: rgba(22, 45, 74, 0.7);border: none">
+	                      <div class="card-body">
+	                      	<h:form>
+		                        <div class="row align-items-center">
+		                          <div class="col-auto">
+		                            <span>
+		                            	<img class="react-logo" src="#{customIdentity.usuario.imagem}" alt="react" style="max-width: 35px"></img>
+		                            </span>
+		                          </div>
+		                          <div class="col">
+		                            <div class="font-weight-light" style="color: #fff">
+		                              #{customIdentity.usuario.nome}
+		                            </div>
+		                            <div class="text-secondary" style="color: #fff">
+		                              #{customIdentity.usuario.perfil.name}&#160;&#160;
+										<h:commandLink styleClass="btn btn-sm btn-outline-secondary" title="Sair" action="#{simpleAuthenticator.logout()}" immediate="true"> 
+											<i class="fa fa-sign-out"></i>   
+										</h:commandLink>
+		                            </div>
+		                          </div>
+		                        </div>
+		                     </h:form>   
+	                      </div>
+	                </div>
+	          </div>
 		</div>
 	</aside>
 

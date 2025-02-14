@@ -20823,6 +20823,16 @@ Dimmer
   height: 1.25rem;
   margin-right: 0.5rem;
   color: var(--tblr-icon-color);
+  font-size: 1.2rem;
+}
+
+.nav-link-title{
+	margin-top:0.5rem;
+}
+
+.nav-link-icon.active {
+  color: #4ad0d7;
+  text-decoration: none;
 }
 .nav-link-icon svg {
   display: block;

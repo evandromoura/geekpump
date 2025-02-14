@@ -47,11 +47,11 @@ public class TreinoUsuarioDivisaoExercicio {
 	private String uid;
 	
 	@OneToMany(mappedBy = "treinoUsuarioDivisaoExercicio",orphanRemoval = true)
-	private List<ExecucaoTreino> execucoes;
+	private List<ExecucaoTreinoExercicio> execucoes;
 	
 	
 	@Transient
-	private List<ExecucaoTreino> execucoesTemp;
+	private List<ExecucaoTreinoExercicio> execucoesTemp;
 	
 	/**
 	 * Campo @Transient são desconectados com o banco de dados. Serve para controle 
@@ -123,11 +123,11 @@ public class TreinoUsuarioDivisaoExercicio {
 		this.qtdSegundoDescanso = qtdSegundoDescanso;
 	}
 
-	public List<ExecucaoTreino> getExecucoes() {
+	public List<ExecucaoTreinoExercicio> getExecucoes() {
 		return execucoes;
 	}
 
-	public void setExecucoes(List<ExecucaoTreino> execucoes) {
+	public void setExecucoes(List<ExecucaoTreinoExercicio> execucoes) {
 		this.execucoes = execucoes;
 	}
 
@@ -139,11 +139,11 @@ public class TreinoUsuarioDivisaoExercicio {
 		this.selecionado = selecionado;
 	}
 
-	public List<ExecucaoTreino> getExecucoesTemp() {
+	public List<ExecucaoTreinoExercicio> getExecucoesTemp() {
 		return execucoesTemp;
 	}
 
-	public void setExecucoesTemp(List<ExecucaoTreino> execucoesTemp) {
+	public void setExecucoesTemp(List<ExecucaoTreinoExercicio> execucoesTemp) {
 		this.execucoesTemp = execucoesTemp;
 	}
 

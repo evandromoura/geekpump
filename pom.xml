@@ -55,6 +55,16 @@
 		    <artifactId>commons-lang</artifactId>
 		    <version>2.6</version>
 		</dependency>
+		<dependency>
+	        <groupId>com.madgag</groupId>
+	        <artifactId>animated-gif-lib</artifactId>
+	        <version>1.4</version>
+	    </dependency>
+	    <dependency>
+		    <groupId>com.madgag</groupId>
+		    <artifactId>animated-gif-lib</artifactId>
+		    <version>1.4</version>
+		</dependency>
     </dependencies>
     <build>
         <finalName>geekpump</finalName>

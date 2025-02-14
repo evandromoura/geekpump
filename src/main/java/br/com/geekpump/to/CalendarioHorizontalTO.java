@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.ExecucaoTreinoExercicio;
 import br.com.geekpump.util.UtilData;
 
 public class CalendarioHorizontalTO {
 
 	private Date data;
 	
-	private List<ExecucaoTreino> execucoes;
+	private List<ExecucaoTreinoExercicio> execucoes;
 	
 	public Date getData() {
 		return data;
@@ -19,7 +19,7 @@ public class CalendarioHorizontalTO {
 	
 	public CalendarioHorizontalTO() {}
 	
-	public CalendarioHorizontalTO(Date data,List<ExecucaoTreino> execucoes) {
+	public CalendarioHorizontalTO(Date data,List<ExecucaoTreinoExercicio> execucoes) {
 		setData(data);
 		setExecucoes(execucoes);
 	}
@@ -49,14 +49,14 @@ public class CalendarioHorizontalTO {
 		this.data = data;
 	}
 
-	public List<ExecucaoTreino> getExecucoes() {
+	public List<ExecucaoTreinoExercicio> getExecucoes() {
 		if (execucoes == null) {
-			execucoes = new ArrayList<ExecucaoTreino>();
+			execucoes = new ArrayList<ExecucaoTreinoExercicio>();
 		}
 		return execucoes;
 	}
 
-	public void setExecucoes(List<ExecucaoTreino> execucoes) {
+	public void setExecucoes(List<ExecucaoTreinoExercicio> execucoes) {
 		this.execucoes = execucoes;
 	}
 

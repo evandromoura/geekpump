@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
 
 import br.com.geekpump.dao.AbstractDAO;
-import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.ExecucaoTreinoExercicio;
 import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.TreinoUsuarioDivisao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
@@ -36,12 +36,12 @@ public class TreinoUsuarioDivisaoExercicioDAO extends AbstractDAO<TreinoUsuarioD
 		if(executado) {
 			Date dataInicio = UtilData.ajustaData(data, 0, 0, 0);
 			Date dataFim = UtilData.ajustaData(data, 23, 59, 59);
-			Join<TreinoUsuarioDivisaoExercicio, ExecucaoTreino> join = root.join("execucoes",JoinType.LEFT);
+			Join<TreinoUsuarioDivisaoExercicio, ExecucaoTreinoExercicio> join = root.join("execucoes",JoinType.LEFT);
 			predicates.add(getCriteriaBuilder().greaterThanOrEqualTo(join.get("dataExecucao"),dataInicio));
 			predicates.add(getCriteriaBuilder().lessThanOrEqualTo(join.get("dataExecucao"),dataFim));
 		}else {
 			Subquery<Long> subquery = getCriteriaBuilder().createQuery().subquery(Long.class);
-	        Root<ExecucaoTreino> subRoot = subquery.from(ExecucaoTreino.class);
+	        Root<ExecucaoTreinoExercicio> subRoot = subquery.from(ExecucaoTreinoExercicio.class);
 	        subquery.select(subRoot.get("id"))
 	                .where(
 	                    getCriteriaBuilder().equal(subRoot.get("treinoUsuarioDivisaoExercicio"), root.get("id")),

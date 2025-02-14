@@ -32,6 +32,10 @@ public class ExercicioService extends AbstractService<Exercicio> {
 		entidade.setUid(UUID.randomUUID().toString());
 		super.incluir(entidade);
 	}
+	
+	public Exercicio recuperarPorNome(String nome) {
+		return exercicioDAO.recuperarPorNome(nome);
+	}
 
 	public Integer countPorTreinoUsuarioDivisao(TreinoUsuarioDivisao divisao) {
 		return exercicioDAO.countPorTreinoUsuarioDivisao(divisao);

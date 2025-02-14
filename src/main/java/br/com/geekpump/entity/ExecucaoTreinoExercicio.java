@@ -16,13 +16,13 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "execucao_treino", schema = "public")
+@Table(name = "execucao_treino_exercicio", schema = "public")
 
-public class ExecucaoTreino {
+public class ExecucaoTreinoExercicio {
 
 	@Id
-	@SequenceGenerator(name="EXECUCAO_TREINO_ID_GENERATOR", sequenceName="execucao_treino_id_seq", allocationSize = 1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EXECUCAO_TREINO_ID_GENERATOR")
+	@SequenceGenerator(name="EXECUCAO_TREINO_EXERCICIO_ID_GENERATOR", sequenceName="execucao_treino_exercicio_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EXECUCAO_TREINO_EXERCICIO_ID_GENERATOR")
 	
 	private Integer id;
 	

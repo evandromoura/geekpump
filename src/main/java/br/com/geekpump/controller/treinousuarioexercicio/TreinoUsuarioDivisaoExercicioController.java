@@ -13,14 +13,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.geekpump.controller.AbstractController;
-import br.com.geekpump.entity.ExecucaoTreino;
+import br.com.geekpump.entity.ExecucaoTreinoExercicio;
 import br.com.geekpump.entity.Exercicio;
 import br.com.geekpump.entity.GrupamentoMuscular;
 import br.com.geekpump.entity.HistoricoCarga;
 import br.com.geekpump.entity.HistoricoRepeticao;
 import br.com.geekpump.entity.TreinoUsuarioDivisaoExercicio;
 import br.com.geekpump.security.CustomIdentity;
-import br.com.geekpump.service.execucaotreino.ExecucaoTreinoService;
+import br.com.geekpump.service.execucaotreino.ExecucaoTreinoExercicioService;
 import br.com.geekpump.service.exercicio.ExercicioService;
 import br.com.geekpump.service.historicocarga.HistoricoCargaService;
 import br.com.geekpump.service.historicorepeticao.HistoricoRepeticaoService;
@@ -39,7 +39,7 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 	private @Inject TreinoUsuarioDivisaoService treinoUsuarioDivisaoService;
 	private @Inject TreinoUsuarioDivisaoExercicioService treinoUsuarioDivisaoExercicioService;
 
-	private @Inject ExecucaoTreinoService execucaoTreinoService;
+	private @Inject ExecucaoTreinoExercicioService execucaoTreinoExercicioService;
 	private @Inject ExercicioService exercicioService;
 
 	private @Inject HistoricoCargaService historicoCargaService;
@@ -99,10 +99,10 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 	public void gravarExecucao() {
 		for (TreinoUsuarioDivisaoExercicio exercicio : getTo().getTreinoUsuarioExercicios()) {
 			if (exercicio.isSelecionado()) {
-				ExecucaoTreino execucaoTreino = new ExecucaoTreino();
+				ExecucaoTreinoExercicio execucaoTreino = new ExecucaoTreinoExercicio();
 				execucaoTreino.setTreinoUsuarioDivisaoExercicio(exercicio);
 				execucaoTreino.setDataExecucao(getTo().getData());
-				execucaoTreinoService.incluir(execucaoTreino);
+				execucaoTreinoExercicioService.incluir(execucaoTreino);
 			}
 		}
 
@@ -110,11 +110,11 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 		Date dataFim = UtilData.ajustaData(getTo().getData(), 23, 59, 59);
 		for (TreinoUsuarioDivisaoExercicio exercicioExecutado : getTo().getTreinoUsuarioExerciciosExecutados()) {
 			if (!exercicioExecutado.isSelecionado()) {
-				for (ExecucaoTreino execucaoTreino : exercicioExecutado.getExecucoesTemp()) {
+				for (ExecucaoTreinoExercicio execucaoTreino : exercicioExecutado.getExecucoesTemp()) {
 					if (execucaoTreino != null && execucaoTreino.getId() != null) {
 						if (UtilData.data1MaiorIgualData2(execucaoTreino.getDataExecucao(), dataInicio)
 								&& UtilData.data1MenorIgualData2(execucaoTreino.getDataExecucao(), dataFim)) {
-							execucaoTreinoService.excluir(execucaoTreino);
+							execucaoTreinoExercicioService.excluir(execucaoTreino);
 						}
 					}
 				}
@@ -201,6 +201,10 @@ public class TreinoUsuarioDivisaoExercicioController extends AbstractController<
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void abrirTelaAdicionarExercicio() {
+		getTo().setExercicios(null);
 	}
 
 	private void incluirHistoricoRepeticao() {

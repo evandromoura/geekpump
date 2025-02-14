@@ -16,3 +16,12 @@ CREATE TABLE public.historico_repeticao (
 ALTER TABLE public.historico_repeticao ADD CONSTRAINT historico_repeticao_exercicio_fk FOREIGN KEY (id_exercicio) REFERENCES public.exercicio(id);
 ALTER TABLE public.historico_repeticao ADD CONSTRAINT historico_repeticao_usuario_fk FOREIGN KEY (id_usuario) REFERENCES public.usuario(id);
 
+
+
+---------------------------REFACTOR
+
+
+ALTER TABLE public.execucao_treino RENAME TO execucao_treino_exercicio;
+ALTER SEQUENCE public.execucao_treino_id_seq RENAME TO execucao_treino_exercicio_id_seq;
+
+

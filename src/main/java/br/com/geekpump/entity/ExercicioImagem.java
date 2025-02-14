@@ -28,6 +28,19 @@ public class ExercicioImagem {
 	@JoinColumn(name="id_exercicio")
 	private Exercicio exercicio;
 
+	
+	public ExercicioImagem() {
+		
+	}
+	
+	public ExercicioImagem(String thumbnail,String execucao, String ativacao, Exercicio exercicio) {
+		setThumbnail(thumbnail);
+		setExecucao(execucao);
+		setAtivacao(ativacao);
+		setExercicio(exercicio);
+	}
+	
+	
 	public Integer getId() {
 		return id;
 	}
