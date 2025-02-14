@@ -10,7 +10,7 @@ FROM evandromoura/wildfly:24.0.1.Final.itm
 	COPY kubernetes/postgresql-42.2.23.jre6.jar $JBOSS_HOME/standalone/deployments/
 
 	#BUILD
-	COPY /target/geekpump $JBOSS_HOME/standalone/deployments/geekpump.war
+	COPY /target/geekpump.war $JBOSS_HOME/standalone/deployments/
 	
 	#PORTAS
 	EXPOSE 8080 8009 9990 7600 8888
